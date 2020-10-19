@@ -1,0 +1,43 @@
+// 替换 antd less
+// 所有的默认 less 变量 https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+// @primary-color: #007aff;
+@black: #000000;
+@primary-color: #1890ff;
+// @primary-color: #3c8dbc;
+@menu-dark-highlight-color: @primary-color;
+@font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei',
+  '微软雅黑', Arial, sans-serif;
+// @text-color: #150f55; // 主文本色
+@text-color: fade(@black, 85%);
+@text-color-secondary: rgba(0, 0, 0, 0.65); // 次文本色
+
+@layout-body-background: #f0f2f5;
+@layout-header-background: #ffffff;
+@layout-header-height: 48px;
+@layout-header-padding: 0 12px;
+@layout-header-color: @text-color;
+@layout-sider-background: #ffffff;
+
+@menu-collapsed-width: 64px;
+@menu-item-height: 32px; // default --> 40
+@menu-one-level-height: 40px;
+@menu-icon-size: 16px;
+
+// default
+@table-padding-vertical: 16px;
+@table-padding-horizontal: 16px;
+// middle
+@table-padding-vertical-md: @table-padding-vertical / 2;
+@table-padding-horizontal-md: @table-padding-horizontal / 2;
+// small
+@table-padding-vertical-sm: @table-padding-vertical / 4;
+@table-padding-horizontal-sm: @table-padding-horizontal / 4;
+
+@border-radius-base: 4px;
+@border-color-base: #cccccc;
+
+// modal
+@modal-body-padding: 8px; // @padding-xs;
+@modal-footer-padding-vertical: 8px; // @padding-xs;
+
+@menu-item-boundary-margin: 4px;

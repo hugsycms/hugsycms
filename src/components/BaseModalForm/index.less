@@ -1,0 +1,48 @@
+@import '../../assets/less/variables.less';
+
+.fixed-search {
+  .fixed-search-triger {
+    
+  }
+
+  .fixed-search-triger-fixed {
+    position: fixed;
+    top: 38.2%;
+    right: 0;
+    z-index: 9999;
+  }
+}
+
+.fixed-search-panel {
+  height: 100%;
+  top: 55px;
+  right: 0;
+  .ant-drawer-content-wrapper {
+    height: auto;
+  }
+  .fixed-search-panel_action {
+    padding: 8px;
+    .fixed-search-panel_item-label {
+      display: inline-flex;
+    }
+  }
+  .fixed-search-panel_item {
+    border-bottom: 1px solid #cccccc;
+    padding: 8px 0;
+    .fixed-search-panel_item-label {
+      display: inline-block;
+      margin-right: 4px;
+    }
+    .fixed-search-panel_item-alue {
+      display: inline-block;
+    }
+  }
+
+  .ant-drawer-body {
+    padding: 12px 12px 0 12px;
+
+    .ant-table-wrapper {
+      overflow: auto !important;
+    }
+  }
+}

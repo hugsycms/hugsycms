@@ -1,0 +1,182 @@
+@import '~@/assets/less/variables.less';
+
+.global-base-table {
+  background: #ffffff;
+  // .ant-spin-nested-loading,
+  // .ant-spin-container {
+  //   height: 100%;
+  //   .ant-table {
+  //     padding-bottom: 4px;
+  //     .ant-table-container,
+  //     .ant-table-body {
+  //       height: 100%;
+  //     }
+  //   }
+  // }
+  .ant-spin-container .ant-table-bordered .ant-table-container {
+    margin: 0 8px;
+    border: 1px solid @normal-border-color;
+  }
+
+  .ant-table-thead > tr > th {
+    background-color: @global-base-table-thead-bg-color;
+    color: #150f55;
+    font-weight: 600;
+    .suffix {
+      margin-left: 4px;
+      font-weight: 400;
+      font-size: 12px;
+      font-style: normal;
+      color: @text-color-secondary;
+    }
+  }
+  .ant-table-thead {
+    .ant-table-cell {
+      .filter-block {
+        display: none;
+      }
+      &:hover {
+        .filter-block {
+          display: block;
+        }
+      }
+    }
+  }
+
+  tbody {
+    & > tr:hover {
+      td {
+        background-color: #e6f6ff !important;
+      }
+    }
+
+    // & > tr:nth-child(odd) {
+    //   td {
+    //     background-color: #fafafa // #e6f6ff;;
+    //   }
+    // }
+
+    .ant-table-cell {
+      &:empty:after {
+        content: '--';
+        position: inherit;
+        box-shadow: none !important;
+      }
+
+      .ant-btn-link {
+        padding: 0;
+        color: #999;
+
+        &:hover {
+          color: @primary-color;
+        }
+
+        .anticon + span,
+        & > span + .anticon {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &_title {
+    background: #ffffff;
+  }
+
+  &_title-operations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    // border-bottom: 1px solid #f5f5f5;
+    &-left {
+      display: flex;
+      font-weight: 400;
+      font-size: 16px;
+      color: @global-base-table-title-color;
+      justify-content: flex-start;
+      align-items: center;
+      &-flag {
+        width: 4px;
+        height: 8px;
+        background-color: @global-base-table-flag-bg-color;
+        margin-right: 6px;
+      }
+    }
+    &-right {
+      display: flex;
+      align-items: center;
+      &-add {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px 10px 3px 3px;
+        background-color: @primary-color;
+        border-radius: @border-radius-base;
+        margin-right: 8px;
+        span {
+          display: inline-block;
+          margin: auto 0;
+        }
+      }
+      &-config {
+        margin-left: 10px;
+        position: relative;
+
+        // &::before {
+        //   content: '';
+        //   width: 1px;
+        //   height: 13px;
+        //   background-color: #ccc;
+        //   position: absolute;
+        //   top: 4px;
+        //   left: -2px;
+        // }
+        &__icon {
+          font-size: 16px;
+          cursor: pointer;
+          margin: 0 8px;
+        }
+      }
+    }
+  }
+  .ant-pagination {
+    margin: 8px;
+    position: relative;
+    // text-align: left;
+    // width: calc(100% - 16px);
+    // border-top: 1px solid #e5e8f2;
+    // padding-top: 4px;
+    // right: 0;
+    // bottom: 0;
+    // width: 100%;
+    // text-align: right;
+    // background: #ffffff;
+  }
+
+  .react-resizable {
+    position: relative;
+    background-clip: padding-box;
+  }
+
+  .react-resizable-handle {
+    position: absolute;
+    right: -5px;
+    bottom: 0;
+    z-index: 1;
+    width: 10px;
+    height: 100%;
+    cursor: col-resize;
+  }
+}
+
+.global-base-table_title-operations-right-config__columns {
+  .ant-checkbox-group-item {
+    display: block;
+  }
+  .ant-popover-inner-content {
+    height: 200px;
+    overflow-x: scroll;
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "declaration": false,
+    "noImplicitReturns": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "inlineSourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnusedLabels": true,
+    "allowUnreachableCode": true,
+    "jsx": "react",
+    "allowJs": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["src/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

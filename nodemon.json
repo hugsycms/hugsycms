@@ -1,0 +1,13 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", ".svn", "node_modules/**/node_modules"],
+  "verbose": true,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "watch": ["src/__mock__/*.js"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}
