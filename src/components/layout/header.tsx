@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import { Layout, Dropdown, message, Menu, Select, Divider, Button } from 'antd';
-import classnames from 'classnames';
 import { isUndefined, get } from 'lodash';
 import store from 'store';
-
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@/components/GeneralComponents/CustomIcon';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogout } from './reducer';
-
 import ResetPasswordModal from './components/ResetPasswordModal';
-import FixedSearch from '../BaseModalForm/FixedSearch';
 import CustomSpin from '../GeneralComponents/CustomSpin';
-
 import light from '@/assets/less/light';
 import dark from '@/assets/less/dark';
-import { collapsedWidth, width } from './sider';
+import { width } from './sider';
 import './header.less';
 
 interface IProps {
@@ -32,12 +27,13 @@ export default class Header extends Component<IProps> {
 
   componentDidMount() {
     this.handleChangeTheme(store.get('theme') || 'default');
+    this.handleChangeLanguage(store.get('language') || 'en_US');
   }
 
   handleLogout = () => {
     doLogout();
-    window.location.href = '/login';
     message.success('退出登录成功');
+    window.location.href = '/login';
   };
 
   renderTrigger = () => {
@@ -51,6 +47,11 @@ export default class Header extends Component<IProps> {
         onClick={onToggle}
       ></Button>
     );
+  };
+
+  handleChangeLanguage = (language) => {
+    const { onChangeLanguage } = this.props;
+    onChangeLanguage && onChangeLanguage(language);
   };
 
   handleChangeTheme = (theme: string) => {
@@ -83,6 +84,7 @@ export default class Header extends Component<IProps> {
   render() {
     const { resetModalVisible, themeProcessing, theme } = this.state;
     const { user, collapsed } = this.props;
+    const language = store.get('language') || 'en_US';
     return (
       <Layout.Header className="global-container-layout_header">
         {themeProcessing ? (
@@ -112,6 +114,19 @@ export default class Header extends Component<IProps> {
                           <Select.Option value="default">默认主题</Select.Option>
                           <Select.Option value="light">暖色主题</Select.Option>
                           {/* <Select.Option value="dark">黑色主题</Select.Option> */}
+                        </Select>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <Select
+                          size="small"
+                          onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation();
+                          }}
+                          onChange={this.handleChangeLanguage}
+                          value={language}
+                        >
+                          <Select.Option value="en_US">English</Select.Option>
+                          <Select.Option value="zh_CN">中文</Select.Option>
                         </Select>
                       </Menu.Item>
                       <Menu.Item

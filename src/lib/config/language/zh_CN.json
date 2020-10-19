@@ -1,0 +1,7 @@
+{
+  "login.head": "登录",
+  "login.username": "用户名",
+  "login.password": "密码",
+
+  "baselist.total": "一共 {{total}} 条记录"
+}

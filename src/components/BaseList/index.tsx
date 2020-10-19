@@ -423,7 +423,7 @@ export default class BaseList extends React.Component<IProps, IState> {
               needPagination && {
                 position: ['bottomCenter'],
                 total,
-                showTotal: () => `共 ${total} 条记录`,
+                showTotal: () => `${window.t('baselist.total', { total })}`,
                 pageSize: get(defaultQuery, 'size'),
                 defaultCurrent: 1,
                 onChange: this.handlePageChange,

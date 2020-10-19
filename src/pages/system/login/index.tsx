@@ -56,7 +56,7 @@ export class Login extends Component {
         </header>
         <main className="login-main">
           <div className="login-main-center">
-            <h2 className="login-main-center-title">系 统 登 录</h2>
+            <h2 className="login-main-center-title">系统登录</h2>
             <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
               <Form.Item
                 name="username"

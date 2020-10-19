@@ -1,0 +1,7 @@
+{
+  "login.head": "login",
+  "login.username": "username",
+  "login.password": "password",
+
+  "baselist.total": "a total of {{total}} records"
+}
