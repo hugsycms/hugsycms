@@ -192,7 +192,7 @@ export default class BaseTable extends Component<IProps, IState> {
         );
       }
       return {
-        align: 'left',
+        align: 'center',
         ...column,
         ...cellHeaderAction,
         width: width || TABLE_CELL_WIDTH,
@@ -234,7 +234,6 @@ export default class BaseTable extends Component<IProps, IState> {
 
   handleQueryClick = () => {
     const { queryVisible } = this.state;
-    // TODO you bug
     this.setState(
       {
         queryVisible: !queryVisible,
@@ -395,10 +394,9 @@ export default class BaseTable extends Component<IProps, IState> {
 
     // 默认y轴滚动高度
     const thead = size === 'small' ? 31 : size === 'middle' ? 39 : 55;
-    const tfoot = 48; // const tfoot = size === 'small' ? 40 : 48;
+    const tfoot = 48; 
     const yScroll = get(containerProps, 'height') - this.queryRef?.clientHeight - thead - tfoot;
-    // TODO
-    // console.log('------------------------------', yScroll);
+
     return (
       <>
         {this.renderTitle()}

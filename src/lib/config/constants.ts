@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   AUTH_NAME: 'username',
   APP_INDEX_TITLE: 'HUGSYCMS',
   COPYRIGHT: 'Copyright © HUGSYCMS',
-  VERSION: 'v2.6.3',
+  VERSION: 'v0.0.1',
   TITLE: 'HUGSYCMS',
   APP_INDEX_DESCRIPTION: 'HUGSYCMS',
   LOGO,

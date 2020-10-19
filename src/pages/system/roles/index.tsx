@@ -10,8 +10,6 @@ import { EditOutlined, DeleteOutlined } from '@/components/GeneralComponents/Cus
 import CustomSpin from '@/components/GeneralComponents/CustomSpin';
 import request from '@/lib/request';
 import MenuPermissionCard from './components/MenuPermissionCard';
-import ApiPermissionCard from './components/ApiPermissionCard';
-
 import './index.less';
 
 export default class Roles extends BaseList {
@@ -41,7 +39,7 @@ export default class Roles extends BaseList {
     {
       title: '操作',
       align: 'center',
-      width: 136,
+      width: 156,
       render: (value: any, rowData: any) => {
         return (
           <>
@@ -129,7 +127,7 @@ export default class Roles extends BaseList {
           <CustomSpin />
         ) : (
           <Row gutter={[8, 0]} className="role-wrap">
-            <Col span={12}>
+            <Col span={14}>
               <div>
                 <RoleTable
                   columns={this.roleColumns}
@@ -147,18 +145,11 @@ export default class Roles extends BaseList {
                 />
               </div>
             </Col>
-            <Col span={6}>
+            <Col span={10}>
               <MenuPermissionCard
                 key={get(activeRole, 'id')}
                 role={activeRole}
                 onSaveMenuPermission={this.handleSaveMenuPermission}
-              />
-            </Col>
-            <Col span={6}>
-              <ApiPermissionCard
-                key={get(activeRole, 'id')}
-                role={activeRole}
-                onSaveApiPermission={this.handleSaveApiPermission}
               />
             </Col>
           </Row>

@@ -100,10 +100,10 @@ router.get('/api/mock/users', (ctx) => {
     },
     {
       id: 2,
-      login: 'anonymoususer',
-      firstName: 'Anonymous',
+      login: 'demo01',
+      firstName: 'demo01',
       lastName: 'User',
-      email: 'anonymous@localhost',
+      email: 'demo01@localhost',
       imageUrl: '',
       activated: true,
       langKey: 'zh-cn',

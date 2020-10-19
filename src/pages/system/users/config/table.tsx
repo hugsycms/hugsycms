@@ -4,12 +4,12 @@ import { APP_CONFIG } from '@/lib/config/constants';
 import { formatTimeToStandard } from '@/utils/format';
 
 export const tableColumns = [
-  // {
-  //   title: '编号',
-  //   dataIndex: 'id',
-  //   key: 'id',
-  //
-  // },
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+    width: APP_CONFIG.CELL_WIDTH_SMALL,
+  },
   {
     title: '账号',
     dataIndex: 'login',

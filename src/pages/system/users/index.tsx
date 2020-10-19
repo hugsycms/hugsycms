@@ -10,7 +10,6 @@ import { get } from 'lodash';
 import BaseList from '@/components/BaseList';
 import request from '@/lib/request';
 import ResetPasswordModal from './components/ResetPasswordModal';
-import { APP_CONFIG } from '@/lib/config/constants';
 
 export default class List extends BaseList {
   static defaultProps = {
@@ -63,7 +62,7 @@ export default class List extends BaseList {
       showSorter: false,
       showFilter: false,
       fixed: 'right',
-      width: 186,
+      width: 256,
       render: (value: any, rowData: any, index: any) => {
         return (
           <>

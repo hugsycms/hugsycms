@@ -11,8 +11,8 @@ export default () => {
     request.get('/').then((data: any) => {
       const bar = new Bar('bar-chart-container', {
         data: MOCK_DATA,
-        xField: 'Date',
-        yField: 'scales',
+        xField: 'scales',
+        yField: 'Date',
         xAxis: {
           tickCount: 5,
         },
