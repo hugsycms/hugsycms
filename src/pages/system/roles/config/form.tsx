@@ -25,8 +25,8 @@ export const modalFormDescriptions = {
       placeholder: '请输入角色名称',
     },
   },
-  groupdesc: {
-    key: 'groupdesc',
+  description: {
+    key: 'description',
     label: '角色描述',
     rules: [{ required: true, message: '角色描述是必填项' }],
     inputType: 'text_area',

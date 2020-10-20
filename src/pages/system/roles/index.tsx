@@ -14,7 +14,7 @@ import './index.less';
 
 export default class Roles extends BaseList {
   static defaultProps = {
-    baseUrl: '/api/mock/groups',
+    baseUrl: '/api/mock/roles/all',
     baseTitle: '角色',
     needPagination: false,
     showQuery: false,
@@ -70,12 +70,9 @@ export default class Roles extends BaseList {
 
   handleSearch = async () => {
     const { baseUrl, needPagination } = this.props;
-    const dataSource = processFromApi(await request.get(baseUrl as string));
-    let total = 0;
-    if (needPagination) {
-      total = await request.get(`${baseUrl}/count`);
-    }
-    this.setState({ dataSource, total, loading: false });
+    const data = get(await request.get(baseUrl), 'data');
+    const dataSource = processFromApi(data);
+    this.setState({ dataSource, total: 0, loading: false });
   };
 
   handleRowClick = (rowData: any) => (e: any) => {

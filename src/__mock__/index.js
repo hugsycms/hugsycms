@@ -3,16 +3,12 @@ const router = require('./routes');
 const app = new Koa();
 const { MOCK_PORT = 3352 } = process.env;
 
-// app.use(async (ctx, next) => {
-//   ctx.set('Access-Control-Allow-Origin', '*');
-//   ctx.set(
-//     'Access-Control-Allow-Headers',
-//     'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
-//   );
-//   ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-
-//   await next();
-// });
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
+  ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  await next();
+});
 
 app.use(router.routes());
 

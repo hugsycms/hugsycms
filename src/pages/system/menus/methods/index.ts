@@ -1,24 +1,31 @@
 import request from '@/lib/request';
-import { map, isEmpty } from 'lodash';
+import { message } from 'antd';
+import { map, isEmpty, get } from 'lodash';
 
 export const getAllMenus = async () => {
-  return await request.get('/api/mock/permissions?size=1000');
+  return get(await request.get('/api/mock/permissions/all'), 'data');
 };
 
 export const getActiveMenu = async (id) => {
-  return await request.get(`/api/mock/permissions/${id}`);
+  return get(await request.get(`/api/mock/permissions/${id}`), 'data');
 };
 
-export const addMenu = async (data) => {
-  return await request.post('/api/mock/permissions', data);
+export const createMenu = async (data) => {
+  // TODO: change yourself
+      message.error('预览模式，无法提交');
+  return Promise.reject('预览模式，无法提交');
 };
 
 export const updateMenu = async (data) => {
-  return await request.put('/api/mock/permissions', data);
+  // TODO: change yourself
+      message.error('预览模式，无法提交');
+  return Promise.reject('预览模式，无法提交');
 };
 
 export const deleteMenu = async (id) => {
-  return await request.delete(`/api/mock/permissions/${id}`);
+  // TODO: change yourself
+      message.error('预览模式，无法提交');
+  return Promise.reject('预览模式，无法提交');
 };
 
 export const transferMenus = (menus, parentid = 0) => {

@@ -4,7 +4,7 @@ import { fromApi, toApi } from '../config/adapter';
 
 export default generateModalForm({
   formDescriptions,
-  url: '/api/mock/groups',
+  url: '/api/mock/roles',
   title: '角色',
   fromApi,
   toApi,

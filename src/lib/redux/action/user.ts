@@ -5,10 +5,9 @@ import { get, reduce, concat, keyBy, pick, values, map } from 'lodash';
 import { omitRoutes } from '@/lib/routes';
 
 export const initUser = (username: any) => async (dispatch: Dispatch) => {
-  const basicInfo = await request.get(`/api/mock/users/${username}`);
-
+  const basicInfo = get(await request.get(`/api/mock/users/${username}`), 'data');
   let selfPermissions = concat(
-    reduce(get(basicInfo, 'groups'), (sum, group) => concat(sum as [], get(group, 'permissions') as []), []),
+    reduce(get(basicInfo, 'roles'), (sum, group) => concat(sum as [], get(group, 'permissions') as []), []),
     omitRoutes,
   );
   const permissionsMapping = keyBy(concat(selfPermissions, omitRoutes), 'key');
@@ -17,19 +16,7 @@ export const initUser = (username: any) => async (dispatch: Dispatch) => {
     permissions: selfPermissions,
     permissionsMapping,
     basicInfo: {
-      ...pick(basicInfo, [
-        'activated',
-        'authorities',
-        'createdBy',
-        'createdDate',
-        'email',
-        'firstName',
-        'id',
-        'imageUrl',
-        'lastModifiedBy',
-        'lastModifiedDate',
-        'login',
-      ]),
+      ...pick(basicInfo, ['activated', 'createdBy', 'createdDate', 'email', 'username', 'id', 'avatar', 'nickname']),
     },
   };
   await dispatch({

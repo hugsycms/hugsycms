@@ -19,7 +19,8 @@ export default (App: any) => {
       const token = store.get(APP_CONFIG.TOKEN);
       const username = store.get(APP_CONFIG.AUTH_NAME);
       const loginTime = store.get(APP_CONFIG.LOGIN_TIME);
-      if (!token || !username || APP_CONFIG.EXPIRE_TIME * 1000 + loginTime < new Date().getTime()) {
+      const expired = store.get(APP_CONFIG.EXPIRED);
+      if (!token || !username || expired * 1000 + loginTime * 1000 < new Date().getTime()) {
         doLogout();
         window.location.href = '/login';
         return;

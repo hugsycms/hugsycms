@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { message } from 'antd';
-import { get } from 'lodash';
+import { get, startsWith } from 'lodash';
 import { APP_CONFIG, RUNTIME_CONFIG } from '../config/constants';
 import store from 'store';
 
@@ -9,8 +9,8 @@ axios.interceptors.request.use((config: any) => {
   config.timeout = 240000;
   let token = store.get(APP_CONFIG.TOKEN);
 
-  // 不是登录并且没有 token ，跳转到登录页面
-  if (!(['/api/authenticate', '/api/dictionaries', '/api/desklogin'].indexOf(url) > -1) && !token) {
+  // 不是登录并且没有 token 且不是 mock 接口，跳转到登录页面
+  if (!(['/api/authenticate', '/api/desklogin'].indexOf(url) > -1) && !token && !startsWith(url, '/api/mock')) {
     message.error('未登录，请先登录');
     window.location.href = '/login';
     return config;

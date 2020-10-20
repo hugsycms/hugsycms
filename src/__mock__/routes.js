@@ -1,35 +1,159 @@
 const router = require('koa-router')();
+const { keyBy, get, filter } = require('lodash');
+const Mock = require('mockjs');
+const permissions = [
+  {
+    id: 2,
+    type: 'menu',
+    key: '/system',
+    name: '系统管理',
+    parentid: 0,
+    icon: 'icon-setting',
+    sort: 999,
+    active: true,
+  },
+  {
+    id: 3,
+    type: 'menu',
+    key: '/system/user',
+    name: '用户管理',
+    parentid: 2,
+    icon: '',
+    sort: 3,
+    active: null,
+  },
+  {
+    id: 4,
+    type: 'menu',
+    key: '/system/menu',
+    name: '菜单管理',
+    parentid: 2,
+    icon: '',
+    sort: 4,
+    active: null,
+  },
+  {
+    id: 5,
+    type: 'menu',
+    key: '/system/role',
+    name: '角色管理',
+    parentid: 2,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 6,
+    type: 'menu',
+    key: '/demo',
+    name: '三种页面',
+    parentid: 0,
+    icon: 'icon-unorderedlist',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 7,
+    type: 'menu',
+    key: '/demo1/list',
+    name: '弹窗编辑',
+    parentid: 6,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 8,
+    type: 'menu',
+    key: '/demo2/list',
+    name: '表格内编辑',
+    parentid: 6,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 9,
+    type: 'menu',
+    key: '/demo3/list',
+    name: '新页面编辑',
+    parentid: 6,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 10,
+    type: 'page',
+    key: '/demo3/add',
+    name: '新页面编辑-添加',
+    parentid: 6,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+  {
+    id: 11,
+    type: 'page',
+    key: '/demo3/edit',
+    name: '新页面编辑-修改',
+    parentid: 6,
+    icon: '',
+    sort: 5,
+    active: null,
+  },
+];
 
+const roles = [
+  {
+    id: 1,
+    code: 'ADMIN',
+    name: '超级管理员',
+    description: '所有权限',
+    permissions,
+  },
+  {
+    id: 2,
+    code: 'DEMO',
+    name: '普通用户',
+    description: '部分权限',
+    permissions: permissions.slice(5),
+  },
+];
+
+const result = {
+  ok: (data) => {
+    return {
+      code: 1,
+      message: 'success',
+      data,
+    };
+  },
+};
 router.post('/api/mock/authenticate', (ctx) => {
-  setTimeout(() => {}, 10);
-  ctx.body = {
-    id_token:
-      'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfQUxMX0FETUlTU0lPTixST0xFX1NFTEVDVF9QTEFOTE9HLFJPTEVfU0VMRUNUX1BSRUdOQU5DWUhJU1RPUlksUk9MRV9TRUxFQ1RfUFJFTUFSSVRBTEVYQU0sUk9MRV9TRUxFQ1RfUFJFTUFSSVRBTFZJU0lULFJPTEVfU0VMRUNUX1BSRU5BVEFMRElBR05PU0lTLFJPTEVfU0VMRUNUX1BSRU5BVEFMRVhBTSxST0xFX1NFTEVDVF9QUkVOQVRBTFBBVElFTlQsUk9MRV9TRUxFQ1RfUFJFTkFUQUxTQ1JFRU4sUk9MRV9TRUxFQ1RfUFJFTkFUQUxWSVNJVCIsImV4cCI6MTYwMjkyOTQ4Mn0.HYp7WgTPaIlIx2xtKRfGFWMsIVo24ZZQRFLiR66X3IJdY7rkwGExspKiAPA7pTMxPS5Uze5CZtDxagRNKLRQ4w',
-  };
+  ctx.body = result.ok({
+    loginTime: Date.parse(new Date()) / 1000,
+    expired: 3600,
+    token: 'eyJhbGciOiJIUzUxMiJ9.eyUlTU0lPTixST0xFX1NFTEVDVF9QTEFOTE9HLFJPTEVfU0VMRUNUX1BSRUdOQU5DWLRQ4w',
+  });
 });
 
 router.get('/api/mock/users/admin', (ctx) => {
-  ctx.body = {
+  ctx.body = result.ok({
     id: 3,
-    login: 'admin',
-    firstName: 'Administrator',
-    lastName: 'Administrator',
+    username: 'admin',
+    nickname: 'Administrator',
     email: 'admin@localhost',
-    imageUrl: '',
+    avatar: Mock.Random.image('50x50'),
     activated: true,
-    langKey: 'zh-cn',
     createdBy: 'system',
     createdDate: null,
-    lastModifiedBy: 'admin',
-    lastModifiedDate: '2020-08-07T07:27:29Z',
-    password: null,
-    authorities: null,
-    groups: [
+    roles: [
       {
         id: 1,
         name: 'ADMIN',
         nickname: '超级管理员',
-        groupdesc: 'master权限',
+        description: 'master权限',
         permissions: [
           {
             id: 2,
@@ -37,7 +161,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             key: '/system',
             name: '系统管理',
             parentid: 0,
-            icon: 'icon-setting1',
+            icon: 'icon-setting',
             sort: 999,
             active: true,
           },
@@ -71,238 +195,182 @@ router.get('/api/mock/users/admin', (ctx) => {
             sort: 5,
             active: null,
           },
+          {
+            id: 6,
+            type: 'menu',
+            key: '/demo',
+            name: '三种页面',
+            parentid: 0,
+            icon: 'icon-unorderedlist',
+            sort: 5,
+            active: null,
+          },
+          {
+            id: 7,
+            type: 'menu',
+            key: '/demo1/list',
+            name: '弹窗编辑',
+            parentid: 6,
+            icon: '',
+            sort: 5,
+            active: null,
+          },
+          {
+            id: 8,
+            type: 'menu',
+            key: '/demo2/list',
+            name: '表格内编辑',
+            parentid: 6,
+            icon: '',
+            sort: 5,
+            active: null,
+          },
+          {
+            id: 9,
+            type: 'menu',
+            key: '/demo3/list',
+            name: '新页面编辑',
+            parentid: 6,
+            icon: '',
+            sort: 5,
+            active: null,
+          },
+          {
+            id: 9,
+            type: 'page',
+            key: '/demo3/add',
+            name: '新页面编辑-添加',
+            parentid: 6,
+            icon: '',
+            sort: 5,
+            active: null,
+          },
+          {
+            id: 9,
+            type: 'page',
+            key: '/demo3/edit',
+            name: '新页面编辑-修改',
+            parentid: 6,
+            icon: '',
+            sort: 5,
+            active: null,
+          },
         ],
       },
     ],
-    wards: null,
-  };
+  });
 });
 
 router.get('/api/mock/users', (ctx) => {
-  ctx.body = [
-    {
-      id: 1,
-      login: 'system',
-      firstName: 'System',
-      lastName: 'System',
-      email: 'system@localhost',
-      imageUrl: '',
-      activated: true,
-      langKey: 'zh-cn',
-      createdBy: 'system',
-      createdDate: null,
-      lastModifiedBy: 'admin',
-      lastModifiedDate: '2020-10-13T07:59:27Z',
-      password: null,
-      authorities: null,
-      groups: [],
-      wards: null,
-    },
-    {
-      id: 2,
-      login: 'demo01',
-      firstName: 'demo01',
-      lastName: 'User',
-      email: 'demo01@localhost',
-      imageUrl: '',
-      activated: true,
-      langKey: 'zh-cn',
-      createdBy: 'system',
-      createdDate: null,
-      lastModifiedBy: 'system',
-      lastModifiedDate: null,
-      password: null,
-      authorities: null,
-      groups: [],
-      wards: null,
-    },
-  ];
-});
-router.get('/api/mock/users/count', (ctx) => {
-  ctx.body = 2;
+  const data = [];
+  for (let index = 0; index < 50; index++) {
+    data.push(
+      Mock.mock({
+        id: index + 1,
+        'username|1': Mock.mock('@word'),
+        'nickname|1': Mock.mock('@name'),
+        'email|1': Mock.mock('@email'),
+        'avatar|1': Mock.Random.image('50x50'),
+        'activated|boolean': true,
+        'createdBy|1': Mock.mock('@name'),
+        'createdDate|1': Mock.mock('@date'),
+        roles: roles,
+      }),
+    );
+  }
+  ctx.body = result.ok({
+    total: 50,
+    per_page: 10,
+    current_page: 1,
+    last_page: 5,
+    data,
+  });
 });
 
-router.get('/api/mock/users/authorities', (ctx) => {
-  ctx.body = ['ROLE_ADMIN'];
+router.get('/api/mock/permissions/all', (ctx) => {
+  let data = permissions;
+  console.log(ctx.query.type);
+  if (ctx.query.type === 'menu') {
+    data = filter(data, (item) => item.type === 'menu');
+  }
+  ctx.body = result.ok(data);
 });
 
 router.get('/api/mock/permissions/:id', (ctx) => {
-  ctx.body = {
-    active: null,
-    icon: 'icon-healthcare',
-    id: 1,
-    key: '/premarital-care',
-    name: '婚前保健',
-    parentid: 0,
-    sort: 1,
-    type: 'menu',
-  };
-});
-router.get('/api/mock/permissions', (ctx) => {
-  ctx.body = [
-    {
-      id: 1,
-      type: 'menu',
-      key: '/premarital-care',
-      name: '婚前保健',
-      parentid: 0,
-      icon: 'icon-healthcare',
-      sort: 1,
-      active: null,
-    },
-    {
-      id: 2,
-      type: 'menu',
-      key: '/system',
-      name: '系统管理',
-      parentid: 0,
-      icon: 'icon-setting1',
-      sort: 999,
-      active: true,
-    },
-    {
-      id: 3,
-      type: 'menu',
-      key: '/system/user',
-      name: '用户管理',
-      parentid: 2,
-      icon: '',
-      sort: 3,
-      active: null,
-    },
-    {
-      id: 4,
-      type: 'menu',
-      key: '/system/menu',
-      name: '菜单管理',
-      parentid: 2,
-      icon: '',
-      sort: 4,
-      active: null,
-    },
-    {
-      id: 5,
-      type: 'menu',
-      key: '/system/role',
-      name: '角色管理',
-      parentid: 2,
-      icon: '',
-      sort: 5,
-      active: null,
-    },
-    {
-      id: 6,
-      type: 'menu',
-      key: '/system/task',
-      name: '任务管理',
-      parentid: 2,
-      icon: '',
-      sort: 6,
-      active: null,
-    },
-    {
-      id: 7,
-      type: 'menu',
-      key: '/system/audit',
-      name: '审计管理',
-      parentid: 2,
-      icon: '',
-      sort: null,
-      active: null,
-    },
-    {
-      id: 8,
-      type: 'menu',
-      key: '/system/version',
-      name: '版本管理',
-      parentid: 2,
-      icon: '',
-      sort: null,
-      active: null,
-    },
-  ];
+  const permission = get(keyBy(permissions, 'id'), ctx.params.id);
+  ctx.body = result.ok(permission);
 });
 
-router.get('/api/mock/groups', (ctx) => {
-  ctx.body = [
-    {
-      id: 1,
-      name: 'ADMIN',
-      nickname: '超级管理员',
-      groupdesc: 'master权限',
-      permissions: [
-        {
-          id: 128,
-          type: 'route',
-          key: '/workflow/edit2',
-          name: '新工作流编辑',
-          parentid: 96,
-          icon: null,
-          sort: null,
-          active: null,
-        },
-        {
-          id: 129,
-          type: 'menu',
-          key: '/highrisk-management/configuration',
-          name: '高危配置',
-          parentid: 58,
-          icon: null,
-          sort: null,
-          active: null,
-        },
-        {
-          id: 2,
-          type: 'menu',
-          key: '/system',
-          name: '系统管理',
-          parentid: 0,
-          icon: 'icon-setting1',
-          sort: 999,
-          active: true,
-        },
-        {
-          id: 130,
-          type: 'menu',
-          key: '/data-report',
-          name: '数据上报',
-          parentid: 0,
-          icon: 'icon-securitycode',
-          sort: 30,
-          active: null,
-        },
-        {
-          id: 3,
-          type: 'menu',
-          key: '/system/user',
-          name: '用户管理',
-          parentid: 2,
-          icon: '',
-          sort: 3,
-          active: null,
-        },
-        {
-          id: 131,
-          type: 'menu',
-          key: '/data-report/first-visit',
-          name: '首诊上报',
-          parentid: 130,
-          icon: null,
-          sort: null,
-          active: null,
-        },
-        {
-          id: 4,
-          type: 'menu',
-          key: '/system/menu',
-          name: '菜单管理',
-          parentid: 2,
-          icon: '',
-          sort: 4,
-          active: null,
-        },
-      ],
-    },
-  ];
+router.get('/api/mock/roles/all', (ctx) => {
+  ctx.body = result.ok(roles);
 });
+
+router.get('/api/mock/roles/:id', (ctx) => {
+  const role = get(keyBy(roles, 'id'), ctx.params.id);
+  ctx.body = result.ok(role);
+});
+
+router.get('/api/mock/tags', (ctx) => {
+  const data = [];
+  for (let index = 0; index < 99; index++) {
+    data.push(
+      Mock.mock({
+        id: index + 1,
+        'name|1': Mock.mock('@word'),
+        'sort|1-99': 1,
+      }),
+    );
+  }
+  ctx.body = result.ok({
+    total: 99,
+    per_page: 10,
+    current_page: 1,
+    last_page: 10,
+    data,
+  });
+});
+
+router.get('/api/mock/categories', (ctx) => {
+  const data = [];
+  for (let index = 0; index < 99; index++) {
+    data.push(
+      Mock.mock({
+        id: index + 1,
+        'name|1': Mock.mock('@word'),
+        'sort|1-99': 1,
+      }),
+    );
+  }
+  ctx.body = result.ok({
+    total: 99,
+    per_page: 10,
+    current_page: 1,
+    last_page: 10,
+    data,
+  });
+});
+
+router.get('/api/mock/articles', (ctx) => {
+  const data = [];
+  for (let index = 0; index < 99; index++) {
+    data.push(
+      Mock.mock({
+        id: index + 1,
+        'title|1': Mock.mock('@title'),
+        'description|1': Mock.mock('@sentence'),
+        'content|1': Mock.mock('@paragraph'),
+        'sort|1-99': 1,
+      }),
+    );
+  }
+  ctx.body = result.ok({
+    total: 99,
+    per_page: 10,
+    current_page: 1,
+    last_page: 10,
+    data,
+  });
+});
+
+router.result = result;
 module.exports = router;

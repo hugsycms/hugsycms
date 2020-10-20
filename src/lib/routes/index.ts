@@ -46,6 +46,15 @@ export const routesMapping =  {
   '/system/user': React.lazy(() => import('@/pages/system/users')),
   '/system/menu': React.lazy(() => import('@/pages/system/menus')),
   '/system/role': React.lazy(() => import('@/pages/system/roles')),
+
+  //
+  // demo 
+  '/demo1/list': React.lazy(() => import('@/pages/demo1/list')),
+  '/demo2/list': React.lazy(() => import('@/pages/demo2/list')),
+  '/demo3/list': React.lazy(() => import('@/pages/demo3/list')),
+  '/demo3/add': React.lazy(() => import('@/pages/demo3/edit')),
+  '/demo3/edit': React.lazy(() => import('@/pages/demo3/edit')),
+
 };
 
 

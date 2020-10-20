@@ -140,6 +140,9 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   handleDelete = (rowData: any) => async () => {
     const { baseUrl, baseTitle } = this.props;
+    // TODO: change yourself
+      message.error('预览模式，无法提交');
+    return Promise.reject('预览模式，无法提交');
     await request.delete(`${baseUrl}/${get(rowData, 'id')}`);
     message.success(`删除${baseTitle}成功`);
     this.handleSearch();
@@ -277,7 +280,7 @@ export default class BaseList extends React.Component<IProps, IState> {
   };
 
   handleSearch = async (queryParams: any = {}) => {
-    const { baseUrl, needPagination, processFromApi } = this.props;
+    const { baseUrl, processFromApi } = this.props;
     await this.setState({
       loading: true,
     });
@@ -286,12 +289,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     if (!isEmpty(query)) {
       url = `${baseUrl}${query ? `?${queryString.stringify(query)}` : ''}`;
     }
-    const dataSource = await getDataSource(url, processFromApi);
-    let total = 0;
-    if (needPagination) {
-      const { page, size, sort, ...rest } = query;
-      total = await request.get(`${baseUrl}/count?${queryString.stringify(rest)}`);
-    }
+    const { data: dataSource, total } = await getDataSource(url, processFromApi);
     this.setState({ dataSource, total, loading: false });
   };
 

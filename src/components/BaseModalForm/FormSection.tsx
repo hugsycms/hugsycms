@@ -195,7 +195,7 @@ export class FormSection extends React.Component<IProps> {
       case 'roles':
         return renderEditItem(
           formDescriptionKey,
-          <DataSelect url="/groups" valueKey="id" labelKey="nickname" mode="multiple" {...formDescriptionInputProps} />,
+          <DataSelect url="/roles" valueKey="id" labelKey="nickname" mode="multiple" {...formDescriptionInputProps} />,
           {
             customFormItemLayout,
             styles,

@@ -12,11 +12,11 @@ export default class PermissionSelect extends React.Component {
 
   async componentDidMount() {
     const { value } = this.props;
-    const nativePermissions = await request.get('/api/mock/permissions?size=1000');
+    const nativePermissions = get(await request.get('/api/mock/permissions/all'), 'data');
     const treeData = this.transferMenus(cloneDeep(nativePermissions));
     const baseOmitKeys: any[] = this.getIsNotSelectedParentKeys(nativePermissions, value);
     const omitKeys = this.omitKeysByBaseKeys(baseOmitKeys, nativePermissions);
-    this.setState({ treeData, checkedData: filter(value, key => omitKeys.indexOf(key) === -1) });
+    this.setState({ treeData, checkedData: filter(value, (key) => omitKeys.indexOf(key) === -1) });
   }
 
   handleChange = (checked: any[], e: any) => {
@@ -27,7 +27,7 @@ export default class PermissionSelect extends React.Component {
 
   transferMenus = (menus: any, parentid = 0) => {
     const temp: any = [];
-    map(menus, item => {
+    map(menus, (item) => {
       if (item.parentid === parentid) {
         item.title = item.name;
         item.key = item.id;
@@ -46,7 +46,7 @@ export default class PermissionSelect extends React.Component {
   // TODO: 目前仅过滤两层，是否可以递归？
   omitKeysByBaseKeys = (baseKeys: any[], nativePermissions: any) => {
     const nativePermissionsMapping = keyBy(nativePermissions, 'id');
-    map(baseKeys, key => {
+    map(baseKeys, (key) => {
       if (get(nativePermissionsMapping, `${key}.parentid`) !== 0) {
         baseKeys.push(get(nativePermissionsMapping, `${key}.parentid`));
       }
@@ -59,7 +59,7 @@ export default class PermissionSelect extends React.Component {
     const parentKeys = compact(
       Array.from(
         new Set(
-          map(nativePermissions, permission => {
+          map(nativePermissions, (permission) => {
             if (get(permission, 'parentid') !== 0) {
               return get(permission, 'parentid');
             }
@@ -67,9 +67,9 @@ export default class PermissionSelect extends React.Component {
         ),
       ),
     );
-    map(parentKeys, parentKey => {
+    map(parentKeys, (parentKey) => {
       if (indexOf(selectedKeys, parentKey) > -1) {
-        const childrens = filter(nativePermissions, permission => get(permission, 'parentid') === parentKey);
+        const childrens = filter(nativePermissions, (permission) => get(permission, 'parentid') === parentKey);
         const childrenKeys = keys(keyBy(childrens, 'id'));
         for (let index = 0; index < childrenKeys.length; index++) {
           const key = Number(childrenKeys[index]);

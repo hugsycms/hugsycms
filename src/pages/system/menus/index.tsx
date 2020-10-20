@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, Button, Tree, Input, Form, message, Popconfirm, InputNumber } from 'antd';
-import { getAllMenus, transferMenus, getActiveMenu, updateMenu, addMenu, deleteMenu } from './methods';
+import { getAllMenus, transferMenus, getActiveMenu, updateMenu, createMenu, deleteMenu } from './methods';
 import CustomSpin from '@/components/GeneralComponents/CustomSpin';
 import { get, isNil, isEmpty } from 'lodash';
 import ParentPermissionSelect from '@/components/selects/ParentPermissionSelect';
@@ -47,7 +47,7 @@ export default class List extends Component {
       title = '修改菜单/权限/页面成功';
       activeMenu = await updateMenu(data);
     } else {
-      activeMenu = await addMenu(data);
+      activeMenu = await createMenu(data);
     }
     this.form && this.form.setFieldsValue(activeMenu);
     const menus = transferMenus(await getAllMenus());

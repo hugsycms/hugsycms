@@ -145,12 +145,13 @@ export default class Header extends Component<IProps> {
                   trigger={['click']}
                 >
                   <div>
-                    <div className="global-container-layout_header-right-dropdown-avatar">
-                      {get(user, 'basicInfo.imageUrl') ||
-                        ((get(user, 'basicInfo.firstName') || '') as string).slice(0, 1)}
-                    </div>
+                    <img
+                      className="global-container-layout_header-right-dropdown-avatar"
+                      src={get(user, 'basicInfo.avatar')}
+                      alt="avatar"
+                    />
                     <span className="global-container-layout_header-right-dropdown-name">
-                      {get(user, 'basicInfo.firstName')}
+                      {get(user, 'basicInfo.nickname')}
                     </span>
                   </div>
                 </Dropdown>
@@ -159,7 +160,7 @@ export default class Header extends Component<IProps> {
             {resetModalVisible && (
               <ResetPasswordModal
                 visible={resetModalVisible}
-                primaryKey={get(user, 'basicInfo.login')}
+                primaryKey={get(user, 'basicInfo.username')}
                 onCancel={() => {
                   this.setState({
                     resetModalVisible: false,

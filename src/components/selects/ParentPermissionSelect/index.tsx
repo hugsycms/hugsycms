@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TreeSelect } from 'antd';
-import { map, omit } from 'lodash';
+import { get, map, omit } from 'lodash';
 import request from '@/lib/request';
 
 export default (props: any) => {
@@ -21,7 +21,7 @@ export default (props: any) => {
 
   useEffect(() => {
     (async () => {
-      const newMenus = transferMenus(await request.get('/api/mock/permissions?type.equals=menu&size=500'));
+      const newMenus = transferMenus(get(await request.get('/api/mock/permissions/all?type.equals=menu'), 'data'));
       setMenus([{ id: 0, value: 0, title: '无父级', children: newMenus }]);
     })();
   }, []);

@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Form, Modal, message } from 'antd';
-import { isFunction } from 'lodash';
+import { get, isFunction } from 'lodash';
 import DynamicForm from '@/components/BaseModalForm/DynamicForm';
 import request from '@/lib/request';
 import FormSection from './FormSection';
@@ -37,8 +37,8 @@ export default ({
         this.form = this.formRef.current;
         if (id) {
           const values = isFunction(fromApi)
-            ? fromApi(await request.get(`${url}/${primaryKey || id}`))
-            : await request.get(`${url}/${primaryKey || id}`);
+            ? fromApi(get(await request.get(`${url}/${primaryKey || id}`), 'data'))
+            : get(await request.get(`${url}/${primaryKey || id}`), 'data');
           this.form.setFieldsValue(values);
           this.setState({ data: values });
         }
@@ -50,9 +50,7 @@ export default ({
       const { id, onCancel, onSearch, onSubmit } = this.props;
       let tip = '';
       let method = '';
-
       await this.form.validateFields();
-      // console.log(this.form.getFieldsValue());return;
       const values = isFunction(toApi)
         ? toApi({ ...data, ...this.form.getFieldsValue(), id })
         : { ...data, ...this.form.getFieldsValue(), id };
@@ -70,6 +68,9 @@ export default ({
         tip = `添加${title}成功`;
         method = 'post';
       }
+      // TODO: change yourself
+      message.error('预览模式，无法提交');
+      return Promise.reject('预览模式，无法提交');
       await request[method](`${url}`, {
         ...values,
         ...fixedFormParams,

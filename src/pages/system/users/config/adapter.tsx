@@ -1,17 +1,16 @@
 import { get, map, reduce, isEmpty, omit } from 'lodash';
 import { formatTimeToStandard } from '@/utils/format';
 
-export const processFromApi = data => {
-  return map(data, item => {
+export const processFromApi = (data) => {
+  return map(data, (item) => {
     return {
       ...item,
       createdDate: formatTimeToStandard(get(item, 'createdDate')),
-      lastModifiedDate: formatTimeToStandard(get(item, 'lastModifiedDate')),
-      roles: map(get(item, 'groups'), group => get(group, 'id')),
-      role: reduce(
-        get(item, 'groups'),
+      roles: map(get(item, 'roles'), (group) => get(group, 'id')),
+      roleString: reduce(
+        get(item, 'roles'),
         (sum, group) => {
-          return `${isEmpty(sum) ? '' : sum + '、'}${get(group, 'nickname')}`;
+          return `${isEmpty(sum) ? '' : sum + '、'}${get(group, 'name')}`;
         },
         '',
       ),
@@ -19,18 +18,17 @@ export const processFromApi = data => {
   });
 };
 
-export const fromApi = item => {
+export const fromApi = (item) => {
   return {
     ...item,
     createdDate: formatTimeToStandard(get(item, 'createdDate')),
-    lastModifiedDate: formatTimeToStandard(get(item, 'lastModifiedDate')),
-    roles: map(get(item, 'groups'), group => get(group, 'id')),
+    roles: map(get(item, 'roles'), (group) => get(group, 'id')),
   };
 };
 
-export const toApi = item => {
+export const toApi = (item) => {
   return {
     ...omit(item, ['createdDate', 'lastModifiedDate', 'roles', 'role']),
-    groups: map(get(item, 'roles'), id => ({ id })),
+    roles: map(get(item, 'roles'), (id) => ({ id })),
   };
 };

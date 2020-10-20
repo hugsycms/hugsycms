@@ -11,8 +11,6 @@ import store from 'store';
 import './index.less';
 
 export class Login extends Component {
-  form: any;
-
   state = {
     loading: false,
   };
@@ -21,15 +19,20 @@ export class Login extends Component {
     const { location, history, doLogin, loginCallback } = this.props;
     this.setState({ loading: true });
     const { redirectTo } = queryString.parse(get(location, 'search'));
+    // const data = await doLogin(values);
+    // console.log(data);
+
     try {
-      await doLogin(values);
+      const { expired } = await doLogin(values);
+      console.log(expired);
       setTimeout(() => {
         message.error('登录状态已过期，请重新登录，系统将在1秒后退出');
         setTimeout(() => {
+          console.log('setTimeout logout')
           window.location.href = '/login';
           store.clearAll();
         }, 1000);
-      }, APP_CONFIG.EXPIRE_TIME * 1000);
+      }, expired * 1000);
       message.success('登录成功');
       loginCallback(true);
       history.push(redirectTo || '/');

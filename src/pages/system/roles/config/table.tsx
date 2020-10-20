@@ -5,17 +5,17 @@ import { APP_CONFIG } from '@/lib/config/constants';
 export const tableColumns = [
   {
     title: '角色代码',
-    dataIndex: 'name',
+    dataIndex: 'code',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },
   {
     title: '角色名称',
-    dataIndex: 'nickname',
+    dataIndex: 'name',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },
   {
     title: '角色描述',
-    dataIndex: 'groupdesc',
+    dataIndex: 'description',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
     render: (text: string, record: any) => {
       return (

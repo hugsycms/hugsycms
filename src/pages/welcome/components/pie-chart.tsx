@@ -19,7 +19,7 @@ export default () => {
         statistic: {
           title: false,
           content: {
-            formatter: () => '高危产妇\n123,224',
+            formatter: () => 'sum\n123,224',
           },
         },
         pieStyle: {
