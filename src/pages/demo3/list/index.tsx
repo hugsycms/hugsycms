@@ -35,23 +35,15 @@ export default class List extends BaseList {
       render: (value: any, rowData: any, index: number) => {
         return (
           <>
-            <EyeOutlined
-              className="global-table-action-icon global-table-action-view"
-              title="查看"
-              onClick={this.handleView(rowData)}
-            />
-            <EditOutlined
-              className="global-table-action-icon global-table-action-view"
-              title="编辑"
-              onClick={this.handleEdit(rowData)}
-            />
+            <EyeOutlined className="global-table-action-icon " title="查看" onClick={this.handleView(rowData)} />
+            <EditOutlined className="global-table-action-icon " title="编辑" onClick={this.handleEdit(rowData)} />
             <Popconfirm
-              title={`确定要删除这个${get(this.props, 'baseTitle')}吗?`}
+              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
               onConfirm={this.handleDelete(rowData)}
               okText="确定"
               cancelText="取消"
             >
-              <DeleteOutlined className="global-table-action-icon global-table-action-delete" title="删除" />
+              <DeleteOutlined className="global-table-action-icon " title="删除" />
             </Popconfirm>
           </>
         );

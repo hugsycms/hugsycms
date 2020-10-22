@@ -7,7 +7,7 @@ export const omitRoutes = [
     id: 1001,
     type: 'others',
     key: '/',
-    name: '首页',
+    name: 'Dashboard',
     parentid: 0,
     isMenu: false,
     active: null,
@@ -16,7 +16,7 @@ export const omitRoutes = [
     id: 1002,
     type: 'others',
     key: '/welcome',
-    name: '首页',
+    name: 'Dashboard',
     parentid: 0,
     isMenu: false,
     active: null,
@@ -36,7 +36,7 @@ export const omitRoutes = [
 // 路由列表
 export const routesMapping =  {
   //
-  // 首页
+  // Dashboard
   '/': React.lazy(() => import('@/pages/welcome')),
   '/welcome': React.lazy(() => import('@/pages/welcome')),
   '/503': React.lazy(() => import('@/pages/welcome/503')),

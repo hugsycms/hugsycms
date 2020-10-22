@@ -11,7 +11,7 @@ axios.interceptors.request.use((config: any) => {
 
   // 不是登录并且没有 token 且不是 mock 接口，跳转到登录页面
   if (!(['/api/authenticate', '/api/desklogin'].indexOf(url) > -1) && !token && !startsWith(url, '/api/mock')) {
-    message.error('未登录，请先登录');
+    message.error('Please login first');
     window.location.href = '/login';
     return config;
   }
@@ -36,7 +36,7 @@ axios.interceptors.response.use(
     switch (get(error, 'response.status')) {
       case 401:
         if (window.location.pathname !== '/login') {
-          message.error('登录已超时，请重新登录');
+          message.error('Timeout, please login again');
           store.clearAll();
           window.location.href = '/login';
         }
@@ -44,11 +44,11 @@ axios.interceptors.response.use(
       case 400:
         return Promise.reject(error.response);
       case 503:
-        message.error('服务器内部发生错误, 请联系系统管理员及时处理');
+        message.error('System error');
         // window.location.href = '/503';
         return Promise.reject(error.response);
       default:
-        message.error('发生错误');
+        message.error('System error');
         // notification.error({
         //   description: get(error, 'response.data.detail'),
         //   message: '发生错误',

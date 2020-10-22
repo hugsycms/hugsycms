@@ -41,10 +41,10 @@ export default class List extends Component {
 
   handleSubmit = async (data) => {
     const id = get(data, 'id');
-    let title = '新增菜单/权限/页面成功';
+    let title = 'Succeeded';
     let activeMenu = {};
     if (id) {
-      title = '修改菜单/权限/页面成功';
+      title = 'Failed';
       activeMenu = await updateMenu(data);
     } else {
       activeMenu = await createMenu(data);
@@ -69,21 +69,10 @@ export default class List extends Component {
     });
   };
 
-  renderTitle = () => {
-    return (
-      <div className="menus-list-card__title">
-        <div>菜单/权限/页面列表</div>
-        <Button size="small" type="primary" onClick={this.handleAddMenu}>
-          添加菜单/权限/页面
-        </Button>
-      </div>
-    );
-  };
-
-  renderMenuDetail = () => {
+  renderPermissionDetail = () => {
     const { activeMenu } = this.state;
     return (
-      <Card title="菜单详情" size="small" bordered={false}>
+      <Card title="Permission Detail" size="small" bordered={false}>
         <Form
           className="menus-list-detail"
           ref={(refNode) => {
@@ -95,37 +84,35 @@ export default class List extends Component {
         >
           {!isNil(activeMenu) ? (
             <>
-              <Form.Item name="id" label="菜单ID">
+              <Form.Item name="id" label="Menu ID">
                 <Input disabled />
               </Form.Item>
-              <Form.Item name="parentid" label="父级菜单">
+              <Form.Item name="parentid" label="Paraent">
                 <ParentPermissionSelect />
               </Form.Item>
-              <Form.Item name="name" label="菜单名称">
+              <Form.Item name="name" label="Name">
                 <Input />
               </Form.Item>
-              <Form.Item name="type" label="菜单类型">
+              <Form.Item name="type" label="Type">
                 <PermissionTypeSelect />
               </Form.Item>
-              <Form.Item name="key" label="菜单路径">
+              <Form.Item name="key" label="Path">
                 <Input />
               </Form.Item>
-              <Form.Item name="icon" label="菜单图标">
+              <Form.Item name="icon" label="Icon">
                 {/* <Input addonBefore={<CustomIcon type={this.form.getFieldValue('icon')} />} /> */}
                 <IconSelect />
               </Form.Item>
-              <Form.Item name="sort" label="菜单排序">
+              <Form.Item name="sort" label="Sort">
                 <InputNumber />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  保存
+                  Save
                 </Button>
                 <Popconfirm
-                  title="确定删除这个菜单?"
+                  title="Are you sure delete the menu?"
                   onConfirm={this.handleDeleteMenu}
-                  okText="确定"
-                  cancelText="取消"
                   disabled={isNil(activeMenu) || isEmpty(activeMenu)}
                 >
                   <Button
@@ -134,13 +121,13 @@ export default class List extends Component {
                     danger
                     disabled={isNil(activeMenu) || isEmpty(activeMenu)}
                   >
-                    删除
+                    Delete
                   </Button>
                 </Popconfirm>
               </Form.Item>
             </>
           ) : (
-            <p>在左侧选择一个菜单</p>
+            <p>Please choose a menu in right</p>
           )}
         </Form>
       </Card>
@@ -153,11 +140,11 @@ export default class List extends Component {
       <Row gutter={[8, 0]} className="menus-list">
         <Col span={8}>
           <Card
-            title="菜单/权限/页面列表"
+            title="Permission List"
             size="small"
             extra={
               <Button type="link" size="small" ghost icon={<CustomIcon type="icon-add" />} onClick={this.handleAddMenu}>
-                添加菜单/权限/页面
+                Create
               </Button>
             }
             bordered={false}
@@ -165,7 +152,7 @@ export default class List extends Component {
             {loading ? <CustomSpin /> : <Tree treeData={menus} onSelect={this.handleMenuSelect} />}
           </Card>
         </Col>
-        <Col span={16}>{this.renderMenuDetail()}</Col>
+        <Col span={16}>{this.renderPermissionDetail()}</Col>
       </Row>
     );
   }

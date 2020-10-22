@@ -10,12 +10,11 @@ import { EditOutlined, DeleteOutlined } from '@/components/GeneralComponents/Cus
 import CustomSpin from '@/components/GeneralComponents/CustomSpin';
 import request from '@/lib/request';
 import MenuPermissionCard from './components/MenuPermissionCard';
-import './index.less';
 
 export default class Roles extends BaseList {
   static defaultProps = {
     baseUrl: '/api/mock/roles/all',
-    baseTitle: '角色',
+    baseTitle: 'role',
     needPagination: false,
     showQuery: false,
     tableColumns,
@@ -37,7 +36,7 @@ export default class Roles extends BaseList {
   roleColumns = [
     ...(this.props.tableColumns as Array<any>),
     {
-      title: '操作',
+      title: 'Actions',
       align: 'center',
       width: 156,
       render: (value: any, rowData: any) => {
@@ -49,17 +48,20 @@ export default class Roles extends BaseList {
               icon={<EditOutlined className="global-table-action-icon" />}
               onClick={this.handleEdit(rowData)}
             >
-              编辑
+              Edit
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={`确定要删除这个${get(this.props, 'baseTitle')}吗?`}
+              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
               onConfirm={this.handleDelete(rowData)}
-              okText="确定"
-              cancelText="取消"
             >
-              <Button type="link" size="small" icon={<DeleteOutlined className="global-table-action-icon" />}>
-                删除
+              <Button
+                className="global-table-action-delete"
+                type="link"
+                size="small"
+                icon={<DeleteOutlined className="global-table-action-icon" />}
+              >
+                Delete
               </Button>
             </Popconfirm>
           </>
@@ -123,7 +125,7 @@ export default class Roles extends BaseList {
         {loading ? (
           <CustomSpin />
         ) : (
-          <Row gutter={[8, 0]} className="role-wrap">
+          <Row gutter={[8, 0]}>
             <Col span={14}>
               <div>
                 <RoleTable

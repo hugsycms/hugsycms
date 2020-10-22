@@ -4,17 +4,17 @@ import { APP_CONFIG } from '@/lib/config/constants';
 
 export const tableColumns = [
   {
-    title: '角色代码',
+    title: 'Role code',
     dataIndex: 'code',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },
   {
-    title: '角色名称',
+    title: 'Role name',
     dataIndex: 'name',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },
   {
-    title: '角色描述',
+    title: 'Role description',
     dataIndex: 'description',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
     render: (text: string, record: any) => {

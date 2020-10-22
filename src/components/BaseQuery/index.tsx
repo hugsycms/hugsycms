@@ -31,30 +31,14 @@ export default class BaseQuery extends DynamicForm<IProps, IState> {
     onSearch && onSearch(values);
   };
 
-  // renderResetBtn = () => (
-  //   <Form.Item>
-  //     <Button icon={<RedoOutlined />} onClick={this.handleReset}>
-  //       重置
-  //     </Button>
-  //   </Form.Item>
-  // );
-
-  // renderSearchBtn = () => (
-  //   <Form.Item>
-  //     <Button type="primary" icon={<SearchOutlined />} htmlType="submit">
-  //       查询
-  //     </Button>
-  //   </Form.Item>
-  // );
-
   renderBtn = () => (
     <Form.Item colon={false} label=" ">
       <>
-        <Button icon={<RedoOutlined />} onClick={this.handleReset}>
-          重置
+        <Button size="small" icon={<RedoOutlined />} onClick={this.handleReset}>
+          Reset
         </Button>
-        <Button type="primary" icon={<SearchOutlined />} htmlType="submit">
-          查询
+        <Button size="small" type="primary" icon={<SearchOutlined />} htmlType="submit">
+          Submit
         </Button>
       </>
     </Form.Item>
@@ -66,8 +50,6 @@ export default class BaseQuery extends DynamicForm<IProps, IState> {
       <div ref={queryRef} className="global-query-form">
         <Form ref={this.formRef} layout="inline" onFinish={this.handleSearch} {...rest}>
           {this.renderContent()}
-          {/* {this.renderResetBtn()}
-          {this.renderSearchBtn()} */}
           {this.renderBtn()}
         </Form>
       </div>

@@ -5,24 +5,24 @@ import { map, keyBy } from 'lodash';
 export const typeMapping = [
   {
     value: 'menu',
-    title: '菜单',
+    label: 'Menu',
   },
   {
-    value: 'route',
-    title: '页面',
+    value: 'page',
+    label: 'Page',
   },
   {
     value: 'function',
-    title: '具体功能',
+    label: 'Function',
   },
 ];
 
 export const typeMappingByValue = keyBy(typeMapping, 'value');
 
 export default (props: any) => (
-  <Select style={{ width: 150 }} placeholder="请选择类型" allowClear {...props}>
-    {map(typeMapping, status => (
-      <Select.Option value={status.value}>{status.title}</Select.Option>
+  <Select style={{ width: 150 }} placeholder="please select type" allowClear {...props}>
+    {map(typeMapping, (status) => (
+      <Select.Option value={status.value}>{status.label}</Select.Option>
     ))}
   </Select>
 );

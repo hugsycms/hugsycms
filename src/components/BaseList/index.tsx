@@ -108,19 +108,17 @@ export default class BaseList extends React.Component<IProps, IState> {
       return (
         <>
           <Button type="link" size="small" onClick={this.handleEdit(rowData)}>
-            <EditOutlined className="global-table-action-icon global-table-action-view" />
-            编辑
+            <EditOutlined className="global-table-action-icon" />
+            Edit
           </Button>
           <Divider type="vertical" />
           <Popconfirm
-            title={`确定要删除这个${get(this.props, 'baseTitle')}吗?`}
+            title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
             onConfirm={this.handleDelete(rowData)}
-            okText="确定"
-            cancelText="取消"
           >
-            <Button type="link" size="small">
-              <DeleteOutlined className="global-table-action-icon global-table-action-delete" />
-              删除
+            <Button className="global-table-action-delete" type="link" size="small">
+              <DeleteOutlined className="global-table-action-icon" />
+              Delete
             </Button>
           </Popconfirm>
         </>
@@ -141,7 +139,7 @@ export default class BaseList extends React.Component<IProps, IState> {
   handleDelete = (rowData: any) => async () => {
     const { baseUrl, baseTitle } = this.props;
     // TODO: change yourself
-      message.error('预览模式，无法提交');
+    message.error('预览模式，无法提交');
     return Promise.reject('预览模式，无法提交');
     await request.delete(`${baseUrl}/${get(rowData, 'id')}`);
     message.success(`删除${baseTitle}成功`);
@@ -423,6 +421,7 @@ export default class BaseList extends React.Component<IProps, IState> {
                 total,
                 showTotal: () => `${window.t('baselist.total', { total })}`,
                 pageSize: get(defaultQuery, 'size'),
+                size: 'small',
                 defaultCurrent: 1,
                 onChange: this.handlePageChange,
                 onShowSizeChange: this.handlePageChange,

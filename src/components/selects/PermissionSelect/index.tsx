@@ -100,6 +100,6 @@ export default class PermissionSelect extends React.Component {
         />
       );
     }
-    return <span>权限加载中...</span>;
+    return <span>loading...</span>;
   }
 }

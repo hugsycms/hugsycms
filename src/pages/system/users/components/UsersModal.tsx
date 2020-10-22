@@ -5,7 +5,7 @@ import { toApi, fromApi } from '../config/adapter';
 export default generateModalForm({
   formDescriptions,
   url: '/api/users',
-  title: '用户',
+  title: 'user',
   toApi,
   fromApi,
 });

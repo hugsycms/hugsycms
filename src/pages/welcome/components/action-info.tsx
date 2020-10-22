@@ -5,13 +5,15 @@ import { formatTimeToStandard } from '@/utils/format';
 
 export default (props) => {
   return (
-    <Card className="statistics-card" title="更新动态" extra={<a>查看更多</a>}>
+    <Card className="statistics-card" title="Info" extra={<a>More +</a>}>
       <Timeline>
-        <Timeline.Item>{formatTimeToStandard(moment().subtract(1, 'days'))} 小王登录系统</Timeline.Item>
-        <Timeline.Item>{formatTimeToStandard(moment().subtract(2, 'days'))} 小明添加了一条预约记录</Timeline.Item>
-        <Timeline.Item>{formatTimeToStandard(moment().subtract(3, 'days'))} 张三退出系统</Timeline.Item>
-        <Timeline.Item>{formatTimeToStandard(moment().subtract(4, 'days'))} 张三登录系统</Timeline.Item>
-        <Timeline.Item>{formatTimeToStandard(moment().subtract(5, 'days'))} 李四登录系统</Timeline.Item>
+        <Timeline.Item>{formatTimeToStandard(moment().subtract(1, 'days'))} admin login system</Timeline.Item>
+        <Timeline.Item>{formatTimeToStandard(moment().subtract(2, 'days'))} admin logout system</Timeline.Item>
+        <Timeline.Item>
+          {formatTimeToStandard(moment().subtract(3, 'days'))} admin create user named 'demo01'
+        </Timeline.Item>
+        <Timeline.Item>{formatTimeToStandard(moment().subtract(4, 'days'))} demo01 login system</Timeline.Item>
+        <Timeline.Item>{formatTimeToStandard(moment().subtract(5, 'days'))} demo02 login system</Timeline.Item>
       </Timeline>
     </Card>
   );

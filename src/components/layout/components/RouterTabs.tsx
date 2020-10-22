@@ -1,7 +1,6 @@
 import React from 'react';
 import { map, get, last, compact, isEmpty } from 'lodash';
 import { Dropdown, Menu } from 'antd';
-import { CaretDownOutlined, DownOutlined } from '@/components/GeneralComponents/CustomIcon';
 import { CustomIcon } from '@/components/GeneralComponents/CustomIcon';
 import { connect } from 'react-redux';
 import TabButton, { TabIProps } from './TabButton';
@@ -72,7 +71,7 @@ export class RouterTabs extends React.Component<IProps> {
             this.handleClick('/');
           }}
         >
-          首页
+          Dashboard
         </Menu.Item>
         {map(get(tabs, 'tabs')?.slice(1), (tab, index) => {
           return (
@@ -88,7 +87,7 @@ export class RouterTabs extends React.Component<IProps> {
         })}
         <Menu.Divider />
         <Menu.Item key="close" onClick={this.handleCloseAllTab}>
-          关闭所有
+          Close All
         </Menu.Item>
       </Menu>
     );

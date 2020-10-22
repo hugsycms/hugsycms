@@ -62,10 +62,10 @@ export default ({
         return;
       }
       if (id) {
-        tip = `修改${title}成功`;
+        tip = `Update ${title} Success`;
         method = 'put';
       } else {
-        tip = `添加${title}成功`;
+        tip = `Create ${title} Success`;
         method = 'post';
       }
       // TODO: change yourself
@@ -92,7 +92,7 @@ export default ({
           visible={visible}
           onCancel={onCancel}
           onOk={this.handleSubmit}
-          title={id ? `修改${title}` : `添加${title}`}
+          title={id ? `Update ${title}` : `Create ${title}`}
         >
           <Form ref={this.formRef} {...formItemLayout}>
             {this.renderEditContent()}

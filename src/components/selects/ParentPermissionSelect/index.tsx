@@ -22,7 +22,7 @@ export default (props: any) => {
   useEffect(() => {
     (async () => {
       const newMenus = transferMenus(get(await request.get('/api/mock/permissions/all?type.equals=menu'), 'data'));
-      setMenus([{ id: 0, value: 0, title: '无父级', children: newMenus }]);
+      setMenus([{ id: 0, value: 0, title: 'No Paraent', children: newMenus }]);
     })();
   }, []);
 

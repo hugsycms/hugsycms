@@ -6,7 +6,7 @@ const initState = {
   activeKey: '/',
   tabs: [
     {
-      title: '首页',
+      title: 'Dashboard',
       key: '/',
       path: '/',
       search: '',
@@ -16,7 +16,7 @@ const initState = {
   ],
   tabsMapping: {
     '/': {
-      title: '首页',
+      title: 'Dashboard',
       key: '/',
       path: '/',
       search: '',
@@ -78,7 +78,7 @@ export default (state = initState, action: any) => {
         activeKey: '/',
         tabs: [
           {
-            title: '首页',
+            title: 'Dashboard',
             key: '/',
             path: '/',
             search: '',
@@ -88,7 +88,7 @@ export default (state = initState, action: any) => {
         ],
         tabsMapping: {
           '/': {
-            title: '首页',
+            title: 'Dashboard',
             key: '/',
             path: '/',
             search: '',

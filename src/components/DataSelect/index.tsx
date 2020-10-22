@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Select } from 'antd';
 import { SelectProps } from 'antd/lib/select';
 import request from '@/lib/request';
+import { get } from 'lodash';
 
 interface IProps extends SelectProps<any> {
   labelKey?: string;
@@ -15,10 +16,11 @@ export default (props: IProps) => {
   const Option = Select.Option;
   const [options, setOptions] = useState<{ [x: string]: any }>(dataSource);
   useEffect(() => {
-    url &&
-      request[method](`/api/mock/${url}`).then((r) => {
-        setOptions(r);
+    if (url) {
+      request[method](`/api/mock/${url}`).then((result) => {
+        setOptions(get(result, 'data'));
       });
+    }
   }, []);
 
   return (

@@ -11,8 +11,8 @@ export default class Query extends BaseQuery {
   renderContent = () => {
     return (
       <Fragment>
-        {this.renderEditItem('login', <Input placeholder="请输入账号" />)}
-        {this.renderEditItem('firstName', <Input placeholder="请输入姓名" />)}
+        {this.renderEditItem('username', <Input size="small" placeholder="please input username" />)}
+        {this.renderEditItem('nickname', <Input size="small" placeholder="please input nickname" />)}
       </Fragment>
     );
   };

@@ -1,63 +1,54 @@
 export const modalFormDescriptions = {
-  // id: {
-  //   key: 'id',
-  //   label: '编号',
-  //   inputType: 'id',
-  //   inputProps: {
-  //     disabled: true,
-  //   },
-  // },
-  login: {
-    key: 'login',
-    label: '登录账号',
-    rules: [{ required: true, message: '登录账号是必填项' }],
+  id: {
+    key: 'id',
+    label: 'ID',
+    inputType: 'id',
+    inputProps: {
+      disabled: true,
+    },
+  },
+  username: {
+    key: 'username',
+    label: 'Username',
+    rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: '请输入登录账号',
+      placeholder: 'Please enter username',
     },
   },
   password: {
     key: 'password',
-    label: '登录密码',
+    label: 'Password',
     inputType: 'password',
     inputProps: {
-      placeholder: '请输入登录密码',
+      placeholder: 'Please enter password',
     },
   },
-  // imageUrl: {
-  //   key: 'imageUrl',
-  //   label: '头像',
-  //   rules: [{ required: true, message: '头像是必填项' }],
-  //   inputType: 'input',
-  //   inputProps: {
-  //     placeholder: '请输入头像',
-  //   },
-  // },
-  firstName: {
-    key: 'firstName',
-    label: '姓名',
-    rules: [{ required: true, message: '姓名是必填项' }],
+  nickname: {
+    key: 'nickname',
+    label: 'Nickname',
+    rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: '请输入姓名',
+      placeholder: 'Please enter nickname',
     },
   },
-  // email: {
-  //   key: 'email',
-  //   label: '邮箱',
-  //   rules: [{ required: true, message: '邮箱是必填项' }],
-  //   inputType: 'input',
-  //   inputProps: {
-  //     placeholder: '请输入邮箱',
-  //   },
-  // },
+  email: {
+    key: 'email',
+    label: 'Email',
+    inputType: 'input',
+    rules: [{ required: true }],
+    inputProps: {
+      placeholder: 'Please enter email',
+    },
+  },
   roles: {
     key: 'roles',
-    label: '角色',
-    rules: [{ required: true, message: '角色是必选项' }],
+    label: 'Role',
+    rules: [{ required: true }],
     inputType: 'roles',
     inputProps: {
-      placeholder: '请选择角色',
+      placeholder: 'Please enter role',
     },
   },
 };
@@ -65,23 +56,23 @@ export const modalFormDescriptions = {
 export const resetFormDescriptions = {
   password: {
     key: 'password',
-    label: '登录密码',
+    label: 'Password',
     inputType: 'password',
-    rules: [{ required: true, message: '密码是必填项' }],
+    rules: [{ required: true }],
     inputProps: {
-      placeholder: '请输入登录密码',
+      placeholder: 'Please enter password',
     },
   },
 };
 
 export const queryFormDescriptions = {
-  login: {
-    key: 'login',
-    label: '账号',
+  username: {
+    key: 'username',
+    label: 'Username',
   },
-  firstName: {
-    key: 'firstName',
-    label: '姓名',
+  nickname: {
+    key: 'nickname',
+    label: 'Nickname',
   },
 };
 

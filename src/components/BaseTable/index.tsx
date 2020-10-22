@@ -22,6 +22,7 @@ import {
   FilterOutlined,
   // ExportOutlined,
   PlusOutlined,
+  ExportOutlined,
   // DownOutlined,
   // UpOutlined,
 } from '@/components/GeneralComponents/CustomIcon';
@@ -62,10 +63,10 @@ export default class BaseTable extends Component<IProps, IState> {
     this.state = {
       searchText: '',
       searchedColumn: '',
-      size: 'middle',
+      size: 'small',
       columns: props.columns,
       checkedColumns,
-      queryVisible: true,
+      queryVisible: false,
       queryHeight: 0,
     };
   }
@@ -204,8 +205,8 @@ export default class BaseTable extends Component<IProps, IState> {
     const { onAdd, baseTitle } = this.props;
     if (onAdd) {
       return (
-        <Button icon={<PlusOutlined />} type="primary" onClick={onAdd}>
-          新增
+        <Button icon={<PlusOutlined />} size="small" type="primary" onClick={onAdd}>
+          Create
         </Button>
       );
     }
@@ -270,22 +271,8 @@ export default class BaseTable extends Component<IProps, IState> {
 
     return (
       <div className="global-base-table_title-operations-right-config">
-        {/* {queryVisible ? (
-          <DownOutlined
-            className="global-base-table_title-operations-right-config__icon"
-            onClick={this.handleQueryClick}
-            title="收起"
-          />
-        ) : (
-          <UpOutlined
-            className="global-base-table_title-operations-right-config__icon"
-            onClick={this.handleQueryClick}
-            title="展开"
-          />
-        )} */}
         <Divider type="vertical" />
-
-        <Tooltip title="刷新">
+        <Tooltip title="Refresh">
           <RedoOutlined
             className="global-base-table_title-operations-right-config__icon"
             onClick={() => {
@@ -298,39 +285,41 @@ export default class BaseTable extends Component<IProps, IState> {
           overlay={
             <Menu selectedKeys={[size]}>
               <Menu.Item key="small" onClick={this.updateTableSize('small')}>
-                紧凑
+                Size
               </Menu.Item>
               <Menu.Item key="middle" onClick={this.updateTableSize('middle')}>
-                中等
+                Middle
               </Menu.Item>
               <Menu.Item key="default" onClick={this.updateTableSize('default')}>
-                偏大
+                Large
               </Menu.Item>
             </Menu>
           }
         >
-          <Tooltip title="间距">
+          <Tooltip title="Padding">
             <ColumnHeightOutlined className="global-base-table_title-operations-right-config__icon" />
           </Tooltip>
         </Dropdown>
-        {/* <Dropdown
+        <Dropdown
           trigger={['click']}
           overlay={
             <Menu>
-              <Menu.Item>导出选中</Menu.Item>
-              <Menu.Item>导出本页</Menu.Item>
-              <Menu.Item>导出全部</Menu.Item>
+              <Menu.Item>Export Selected</Menu.Item>
+              <Menu.Item>Export Current Page</Menu.Item>
+              <Menu.Item>Export All</Menu.Item>
             </Menu>
           }
         >
-          <ExportOutlined className="global-base-table_title-operations-right-config__icon" />
-        </Dropdown> */}
+          <Tooltip title="Export">
+            <ExportOutlined className="global-base-table_title-operations-right-config__icon" />
+          </Tooltip>
+        </Dropdown>
         <Popover
           overlayClassName="global-base-table_title-operations-right-config__columns"
           content={this.renderColumnsConfig()}
           trigger="click"
         >
-          <Tooltip title="列展示">
+          <Tooltip title="Columns">
             <SettingOutlined className="global-base-table_title-operations-right-config__icon" />
           </Tooltip>
         </Popover>
@@ -352,14 +341,8 @@ export default class BaseTable extends Component<IProps, IState> {
           <div className="global-base-table_title-operations-left">
             {showQuery && (
               <Button type="link" size="small" icon={<FilterOutlined />} onClick={this.handleQueryClick}>
-                <div style={{ display: 'inline-flex', marginLeft: '5px' }}>
-                  筛选
-                  {queryVisible ? (
-                    <CustomIcon type="icon-down" style={{ fontSize: '22px' }} />
-                  ) : (
-                    <CustomIcon type="icon-dropdown" style={{ fontSize: '22px' }} />
-                  )}
-                </div>
+                Filter
+                {queryVisible ? <CustomIcon type="icon-down" /> : <CustomIcon type="icon-right" />}
               </Button>
             )}
             {this.renderOtherActions()}
@@ -372,29 +355,19 @@ export default class BaseTable extends Component<IProps, IState> {
         <Divider style={{ margin: 0, paddingBottom: 8 }} />
         <div className="global-base-table_title-query">
           {queryVisible && showQuery && <Query onSearch={onSearch} />}
-          {/* <Query onSearch={onSearch} style={{ height: queryVisible && showQuery ? 'auto' : 0 }} /> */}
         </div>
       </div>
     );
   };
 
   render() {
-    const {
-      className,
-      otherTableProps,
-      containerProps,
-      pagination = {},
-      scroll,
-      components,
-      style,
-      ...rest
-    } = this.props;
+    const { className, otherTableProps, containerProps, scroll, components, style, ...rest } = this.props;
     const { columns, size } = this.state;
     const mergedColumns = this.mergedColumns(columns);
 
     // 默认y轴滚动高度
     const thead = size === 'small' ? 31 : size === 'middle' ? 39 : 55;
-    const tfoot = 48; 
+    const tfoot = 48;
     const yScroll = get(containerProps, 'height') - this.queryRef?.clientHeight - thead - tfoot;
 
     return (
@@ -402,11 +375,9 @@ export default class BaseTable extends Component<IProps, IState> {
         {this.renderTitle()}
         <Table
           size={size}
-          bordered
+          bordered={false}
           {...otherTableProps}
           {...rest}
-          // TODO pagination根据size变化时，显示缺陷
-          pagination={{ ...pagination, size: 'middle' }}
           components={{
             header: {
               cell: ResizableTitle,

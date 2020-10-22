@@ -24,19 +24,6 @@ export default class MenuPermissionCard extends React.PureComponent<IProps> {
     this.setState({ checkedData });
   };
 
-  renderTitle = () => {
-    const { role } = this.props;
-
-    return (
-      <div className={'role-permission-card__header'}>
-        <div>菜单/权限</div>
-        <Button type="primary" onClick={this.handleSaveMenu} disabled={isEmpty(role)}>
-          保存
-        </Button>
-      </div>
-    );
-  };
-
   render() {
     const { role } = this.props;
 
@@ -44,10 +31,10 @@ export default class MenuPermissionCard extends React.PureComponent<IProps> {
       <div className="role-permission-card">
         <Card
           size="small"
-          title="菜单/权限"
+          title="Pemissions"
           extra={
-            <Button type="primary" onClick={this.handleSaveMenu} disabled={isEmpty(role)}>
-              保存
+            <Button size="small" type="primary" onClick={this.handleSaveMenu} disabled={isEmpty(role)}>
+              Save
             </Button>
           }
         >

@@ -14,8 +14,9 @@ import ResetPasswordModal from './components/ResetPasswordModal';
 export default class List extends BaseList {
   static defaultProps = {
     baseUrl: '/api/mock/users',
-    baseTitle: '用户',
+    baseTitle: 'user',
     needPagination: true,
+    needChecked: true,
     processFromApi,
     showAdd: true,
     showQuery: true,
@@ -45,7 +46,7 @@ export default class List extends BaseList {
   columns = [
     ...(this.props.tableColumns as Array<any>),
     {
-      title: '活跃状态',
+      title: 'Activated',
       dataIndex: 'activated',
       showSorter: false,
       showFilter: false,
@@ -57,7 +58,7 @@ export default class List extends BaseList {
       },
     },
     {
-      title: '操作',
+      title: 'Actions',
       align: 'center',
       showSorter: false,
       showFilter: false,
@@ -72,7 +73,7 @@ export default class List extends BaseList {
               icon={<EditOutlined className="global-table-action-icon" />}
               onClick={this.handleEdit(rowData)}
             >
-              编辑
+              Edit
             </Button>
             <Divider type="vertical" />
             <Button
@@ -81,17 +82,20 @@ export default class List extends BaseList {
               icon={<RedoOutlined className="global-table-action-icon" />}
               onClick={this.handleResetEdit(rowData)}
             >
-              重置
+              Reset
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={`确定要删除这个${get(this.props, 'baseTitle')}吗?`}
+              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
               onConfirm={this.handleDelete(rowData)}
-              okText="确定"
-              cancelText="取消"
             >
-              <Button type="link" size="small" icon={<DeleteOutlined className="global-table-action-icon" />}>
-                删除
+              <Button
+                className="global-table-action-delete"
+                type="link"
+                size="small"
+                icon={<DeleteOutlined className="global-table-action-icon" />}
+              >
+                Delete
               </Button>
             </Popconfirm>
           </>

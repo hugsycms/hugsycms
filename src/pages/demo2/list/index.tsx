@@ -85,7 +85,7 @@ export default class List extends BaseList {
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={`确定要删除这个${get(this.props, 'baseTitle')}吗?`}
+              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
               onConfirm={this.handleDelete(rowData)}
               okText="确定"
               cancelText="取消"
