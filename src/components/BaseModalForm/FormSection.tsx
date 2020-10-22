@@ -11,6 +11,7 @@ import DataSelect from '@/components/DataSelect';
 import CascaderAddress from '@/components/selects/CascaderAddress';
 import NormalSelect from '@/components/selects/NormalSelect';
 import CountrySelect from '@/components/selects/CountrySelect';
+import CustomEditor from '@/components/GeneralComponents/CustomEditor';
 import { formDescriptionsFromApi, formDescriptionsWithoutSectionApi } from '@/utils/adapter';
 import request from '@/lib/request';
 
@@ -195,7 +196,13 @@ export class FormSection extends React.Component<IProps> {
       case 'roles':
         return renderEditItem(
           formDescriptionKey,
-          <DataSelect url="roles/all" valueKey="id" labelKey="nickname" mode="multiple" {...formDescriptionInputProps} />,
+          <DataSelect
+            url="roles/all"
+            valueKey="id"
+            labelKey="nickname"
+            mode="multiple"
+            {...formDescriptionInputProps}
+          />,
           {
             customFormItemLayout,
             styles,
@@ -228,6 +235,11 @@ export class FormSection extends React.Component<IProps> {
         });
       case 'upload_file':
         return renderEditItem(formDescriptionKey, <UploadFile config={formDescription} form={form} />, {
+          customFormItemLayout,
+          styles,
+        });
+      case 'editor':
+        return renderEditItem(formDescriptionKey, <CustomEditor {...formDescriptionInputProps} />, {
           customFormItemLayout,
           styles,
         });

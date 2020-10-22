@@ -11,6 +11,7 @@ import moment, { isMoment } from 'moment';
 import { formatTimeToUTC } from '@/utils/format';
 import { getDataSource } from './methods';
 import './index.less';
+import { APP_CONFIG } from '@/lib/config/constants';
 
 export interface IProps {
   // 接口 URL
@@ -82,7 +83,7 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   /* istanbul ignore next */
   actionCol = {
-    title: '操作',
+    title: 'Actions',
     dataIndex: 'operation',
     fixed: 'right',
     width: 158,
@@ -95,11 +96,11 @@ export default class BaseList extends React.Component<IProps, IState> {
       if (needEditInTable && editable) {
         return (
           <>
-            <Button size="small" className="table-action-btn" onClick={this.handleItemSave(rowData)}>
-              保存
+            <Button type="primary" size="small" className="table-action-btn" onClick={this.handleItemSave(rowData)}>
+              Save
             </Button>
             <Button size="small" className="table-action-btn" onClick={this.handleItemCancel(rowData)}>
-              取消
+              Cancel
             </Button>
           </>
         );
@@ -138,9 +139,11 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   handleDelete = (rowData: any) => async () => {
     const { baseUrl, baseTitle } = this.props;
-    // TODO: change yourself
-    message.error('预览模式，无法提交');
-    return Promise.reject('预览模式，无法提交');
+    if (APP_CONFIG.isDev) {
+      // TODO: change yourself
+      message.error('Preview mode, unable to submit');
+      return Promise.reject('Preview mode, unable to submit');
+    }
     await request.delete(`${baseUrl}/${get(rowData, 'id')}`);
     message.success(`删除${baseTitle}成功`);
     this.handleSearch();
@@ -184,8 +187,12 @@ export default class BaseList extends React.Component<IProps, IState> {
   };
 
   handleItemCancel = (rowData: any) => () => {
+    const { dataSource, editKey } = this.state;
+    const form = this.form as FormInstance;
+    form.resetFields();
     this.setState({
-      id: undefined,
+      editKey: undefined,
+      dataSource: typeof editKey === 'string' ? dataSource.slice(1, dataSource.length) : dataSource,
     });
   };
 
@@ -214,11 +221,30 @@ export default class BaseList extends React.Component<IProps, IState> {
     }
   };
 
-  handleAdd = () => {
-    this.setState({
-      visible: true,
-      editable: true,
-    });
+  handleAdd = async () => {
+    const { needEditInTable } = this.props;
+    if (needEditInTable) {
+      const { dataSource, editKey } = this.state;
+      if (!isNil(editKey)) {
+        message.error('Please save last record');
+        return;
+      }
+      const mockKey = new Date().toString();
+      await this.setState({
+        editKey: mockKey,
+        dataSource: [
+          {
+            editKey: mockKey,
+          },
+          ...dataSource,
+        ],
+      });
+    } else {
+      this.setState({
+        visible: true,
+        editable: true,
+      });
+    }
   };
 
   handleCancel = () => {

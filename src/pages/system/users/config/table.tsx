@@ -40,7 +40,7 @@ export const tableColumns = [
   },
   {
     title: 'Created at',
-    dataIndex: 'createdDate',
+    dataIndex: 'createdAt',
     width: APP_CONFIG.CELL_WIDTH_LARGE,
     render: (value: string) => formatTimeToStandard(value),
   },

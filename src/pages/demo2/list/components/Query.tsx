@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import BaseQuery from '@/components/BaseQuery';
 import { Input } from 'antd';
 import { queryFormDescriptions as formDescriptions } from '../config/form';
@@ -9,11 +9,6 @@ export default class Query extends BaseQuery {
   });
 
   renderContent = () => {
-    return (
-      <Fragment>
-        {this.renderEditItem('login', <Input size="small" placeholder="请输入账号" />)}
-        {this.renderEditItem('firstName', <Input size="small" placeholder="请输入姓名" />)}
-      </Fragment>
-    );
+    return <>{this.renderEditItem('name', <Input placeholder="请输入名称" />)}</>;
   };
 }

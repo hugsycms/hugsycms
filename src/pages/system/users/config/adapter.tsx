@@ -5,7 +5,7 @@ export const processFromApi = (data) => {
   return map(data, (item) => {
     return {
       ...item,
-      createdDate: formatTimeToStandard(get(item, 'createdDate')),
+      createdAt: formatTimeToStandard(get(item, 'createdAt')),
       roles: map(get(item, 'roles'), (group) => get(group, 'id')),
       roleString: reduce(
         get(item, 'roles'),
@@ -21,14 +21,14 @@ export const processFromApi = (data) => {
 export const fromApi = (item) => {
   return {
     ...item,
-    createdDate: formatTimeToStandard(get(item, 'createdDate')),
+    createdAt: formatTimeToStandard(get(item, 'createdAt')),
     roles: map(get(item, 'roles'), (group) => get(group, 'id')),
   };
 };
 
 export const toApi = (item) => {
   return {
-    ...omit(item, ['createdDate', 'lastModifiedDate', 'roles', 'role']),
+    ...omit(item, ['createdAt', 'lastModifiedDate', 'roles', 'role']),
     roles: map(get(item, 'roles'), (id) => ({ id })),
   };
 };

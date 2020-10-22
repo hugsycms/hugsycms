@@ -33,10 +33,10 @@ export default class BaseEditPanel<P extends IProps = {}> extends React.Componen
     const id = get(this.props, 'id') || get(routerQuery, 'id');
     // TODO: 上线的时候，考虑把配置文件放在项目中，而不是通过接口获取
     const formDescriptions = formDescriptionsFromApi(
-      await request.get(`/api/mock/form-descriptions?moduleName=${moduleName}`),
+      get(await request.get(`/api/mock/form-descriptions?moduleName=${moduleName}`), 'data'),
     );
     const formDescriptionsWithoutSection = formDescriptionsWithoutSectionApi(formDescriptions);
-    const data = id ? fromApi(await request.get(`${baseUrl}/${id}`), formDescriptionsWithoutSection) : {};
+    const data = id ? fromApi(get(await request.get(`${baseUrl}/${id}`), 'data'), formDescriptionsWithoutSection) : {};
     this.setState({ formDescriptions, formDescriptionsWithoutSection, data });
   }
 

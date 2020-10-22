@@ -5,9 +5,9 @@ import BaseEditPanel from '@/components/BaseEditPanel';
 
 export default class AdmissionPanel extends BaseEditPanel {
   static defaultProps = {
-    baseUrl: '/api/admissions',
-    moduleName: 'admission',
-    title: '入院登记',
+    baseUrl: '/api/mock/articles',
+    moduleName: 'article',
+    title: '文章管理',
     toApi,
     fromApi,
     Form,

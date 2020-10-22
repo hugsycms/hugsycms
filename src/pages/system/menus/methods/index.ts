@@ -1,3 +1,4 @@
+import { APP_CONFIG } from '@/lib/config/constants';
 import request from '@/lib/request';
 import { message } from 'antd';
 import { map, isEmpty, get } from 'lodash';
@@ -11,21 +12,27 @@ export const getActiveMenu = async (id) => {
 };
 
 export const createMenu = async (data) => {
-  // TODO: change yourself
-      message.error('预览模式，无法提交');
-  return Promise.reject('预览模式，无法提交');
+  if (APP_CONFIG.isDev) {
+    // TODO: change yourself
+    message.error('Preview mode, unable to submit');
+    return Promise.reject('Preview mode, unable to submit');
+  }
 };
 
 export const updateMenu = async (data) => {
-  // TODO: change yourself
-      message.error('预览模式，无法提交');
-  return Promise.reject('预览模式，无法提交');
+  if (APP_CONFIG.isDev) {
+    // TODO: change yourself
+    message.error('Preview mode, unable to submit');
+    return Promise.reject('Preview mode, unable to submit');
+  }
 };
 
 export const deleteMenu = async (id) => {
-  // TODO: change yourself
-      message.error('预览模式，无法提交');
-  return Promise.reject('预览模式，无法提交');
+  if (APP_CONFIG.isDev) {
+    // TODO: change yourself
+    message.error('Preview mode, unable to submit');
+    return Promise.reject('Preview mode, unable to submit');
+  }
 };
 
 export const transferMenus = (menus, parentid = 0) => {

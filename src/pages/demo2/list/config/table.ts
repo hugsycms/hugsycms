@@ -1,33 +1,22 @@
-import { formatTimeToStandard } from '@/utils/format';
 import { APP_CONFIG } from '@/lib/config/constants';
+import { formatTimeToStandard } from '@/utils/format';
 
 export const tableColumns = [
   {
     title: 'ID',
     dataIndex: 'id',
+    editable: false,
     width: APP_CONFIG.CELL_WIDTH_SMALL,
   },
   {
-    title: 'Title',
-    dataIndex: 'title',
-    width: APP_CONFIG.CELL_WIDTH_LARGE,
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-    ellipsis: true,
-    width: APP_CONFIG.CELL_WIDTH_LARGE,
-  },
-  {
-    title: 'Content',
-    dataIndex: 'content',
-    ellipsis: true,
-    width: APP_CONFIG.CELL_WIDTH_LARGE,
+    title: 'Tag name',
+    dataIndex: 'name',
+    editable: true,
   },
   {
     title: 'Sort',
     dataIndex: 'sort',
-    width: APP_CONFIG.CELL_WIDTH_SMALL,
+    editable: true,
   },
   {
     title: 'Created at',

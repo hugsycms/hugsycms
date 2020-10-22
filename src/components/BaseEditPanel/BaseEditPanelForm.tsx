@@ -121,7 +121,7 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
   renderResetBtn = () => {
     return (
       <Button htmlType="reset" icon={<RedoOutlined />} onClick={this.handleReset}>
-        重置
+        Reset
       </Button>
     );
   };
@@ -129,7 +129,7 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
   renderSubmitBtn = () => {
     return (
       <Button type="primary" icon={<FileTextOutlined />} htmlType="submit" onClick={debounce(this.handleFinish)}>
-        保存
+        Submit
       </Button>
     );
   };

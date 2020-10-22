@@ -4,6 +4,7 @@ import { get, isFunction } from 'lodash';
 import DynamicForm from '@/components/BaseModalForm/DynamicForm';
 import request from '@/lib/request';
 import FormSection from './FormSection';
+import { APP_CONFIG } from '@/lib/config/constants';
 
 export default ({
   formDescriptions,
@@ -68,9 +69,11 @@ export default ({
         tip = `Create ${title} Success`;
         method = 'post';
       }
-      // TODO: change yourself
-      message.error('预览模式，无法提交');
-      return Promise.reject('预览模式，无法提交');
+      if (APP_CONFIG.isDev) {
+        // TODO: change yourself
+        message.error('Preview mode, unable to submit');
+        return Promise.reject('Preview mode, unable to submit');
+      }
       await request[method](`${url}`, {
         ...values,
         ...fixedFormParams,

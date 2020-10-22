@@ -56,7 +56,7 @@ const permissions = [
     id: 7,
     type: 'menu',
     key: '/demo1/list',
-    name: 'Model Edit',
+    name: 'Categories',
     parentid: 6,
     icon: '',
     sort: 5,
@@ -66,7 +66,7 @@ const permissions = [
     id: 8,
     type: 'menu',
     key: '/demo2/list',
-    name: 'Table Edit',
+    name: 'Tags',
     parentid: 6,
     icon: '',
     sort: 5,
@@ -76,7 +76,7 @@ const permissions = [
     id: 9,
     type: 'menu',
     key: '/demo3/list',
-    name: 'Page Edit',
+    name: 'Articles',
     parentid: 6,
     icon: '',
     sort: 5,
@@ -86,7 +86,7 @@ const permissions = [
     id: 10,
     type: 'page',
     key: '/demo3/add',
-    name: 'Page Edit-add',
+    name: 'Articles Create',
     parentid: 6,
     icon: '',
     sort: 5,
@@ -96,7 +96,7 @@ const permissions = [
     id: 11,
     type: 'page',
     key: '/demo3/edit',
-    name: 'Page Edit-update',
+    name: 'Articles Update',
     parentid: 6,
     icon: '',
     sort: 5,
@@ -147,7 +147,7 @@ router.get('/api/mock/users/admin', (ctx) => {
     avatar: Mock.Random.image('30x30'),
     activated: true,
     createdBy: 'admin',
-    createdDate: null,
+    'createdAt|1': Mock.mock('@date'),
     roles: [
       {
         id: 1,
@@ -209,7 +209,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             id: 7,
             type: 'menu',
             key: '/demo1/list',
-            name: 'Model Edit',
+            name: 'Categories',
             parentid: 6,
             icon: '',
             sort: 5,
@@ -219,7 +219,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             id: 8,
             type: 'menu',
             key: '/demo2/list',
-            name: 'Table Edit',
+            name: 'Tags',
             parentid: 6,
             icon: '',
             sort: 5,
@@ -229,7 +229,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             id: 9,
             type: 'menu',
             key: '/demo3/list',
-            name: 'Page Edit',
+            name: 'Articles',
             parentid: 6,
             icon: '',
             sort: 5,
@@ -239,7 +239,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             id: 9,
             type: 'page',
             key: '/demo3/add',
-            name: 'Page Edit-add',
+            name: 'Articles Create',
             parentid: 6,
             icon: '',
             sort: 5,
@@ -249,7 +249,7 @@ router.get('/api/mock/users/admin', (ctx) => {
             id: 9,
             type: 'page',
             key: '/demo3/edit',
-            name: 'Page Edit-update',
+            name: 'Articles Update',
             parentid: 6,
             icon: '',
             sort: 5,
@@ -273,7 +273,7 @@ router.get('/api/mock/users', (ctx) => {
         'avatar|1': Mock.Random.image('30x30'),
         'activated|boolean': true,
         'createdBy|1': Mock.mock('@name'),
-        'createdDate|1': Mock.mock('@date'),
+        'createdAt|1': Mock.mock('@date'),
         roles: roles,
       }),
     );
@@ -289,7 +289,6 @@ router.get('/api/mock/users', (ctx) => {
 
 router.get('/api/mock/permissions/all', (ctx) => {
   let data = permissions;
-  console.log(ctx.query.type);
   if (ctx.query.type === 'menu') {
     data = filter(data, (item) => item.type === 'menu');
   }
@@ -318,6 +317,8 @@ router.get('/api/mock/tags', (ctx) => {
         id: index + 1,
         'name|1': Mock.mock('@word'),
         'sort|1-99': 1,
+        createdBy: 'admin',
+        'createdAt|1': Mock.mock('@date'),
       }),
     );
   }
@@ -338,6 +339,8 @@ router.get('/api/mock/categories', (ctx) => {
         id: index + 1,
         'name|1': Mock.mock('@word'),
         'sort|1-99': 1,
+        createdBy: 'admin',
+        'createdAt|1': Mock.mock('@date'),
       }),
     );
   }
@@ -360,6 +363,8 @@ router.get('/api/mock/articles', (ctx) => {
         'description|1': Mock.mock('@sentence'),
         'content|1': Mock.mock('@paragraph'),
         'sort|1-99': 1,
+        createdBy: 'admin',
+        'createdAt|1': Mock.mock('@date'),
       }),
     );
   }
@@ -370,6 +375,196 @@ router.get('/api/mock/articles', (ctx) => {
     last_page: 10,
     data,
   });
+});
+
+router.get('/api/mock/articles/:id', (ctx) => {
+  const data = Mock.mock({
+    id: ctx.params.id,
+    'title|1': Mock.mock('@title'),
+    'description|1': Mock.mock('@sentence'),
+    'content|1': Mock.mock('@paragraph'),
+    'sort|1-99': 1,
+    createdBy: 'admin',
+    'createdAt|1': Mock.mock('@date'),
+  });
+  ctx.body = result.ok(data);
+});
+
+router.get('/api/mock/tags/:id', (ctx) => {
+  const data = Mock.mock({
+    id: ctx.params.id,
+    'name|1': Mock.mock('@word'),
+    'sort|1-99': 1,
+    createdBy: 'admin',
+    'createdAt|1': Mock.mock('@date'),
+  });
+  ctx.body = result.ok(data);
+});
+
+router.get('/api/mock/categories/:id', (ctx) => {
+  const data = Mock.mock({
+    id: ctx.params.id,
+    'name|1': Mock.mock('@word'),
+    'sort|1-99': 1,
+    createdBy: 'admin',
+    'createdAt|1': Mock.mock('@date'),
+  });
+  ctx.body = result.ok(data);
+});
+
+router.get('/api/mock/form-descriptions', (ctx) => {
+  ctx.body = result.ok([
+    {
+      id: 102,
+      moduleName: 'article',
+      name: 'Article',
+      flag: 'article-edit',
+      sort: 3,
+      createdTime: null,
+      updatedTime: null,
+      deletedTime: null,
+      fields: [
+        {
+          id: 1,
+          key: 'id',
+          label: 'ID',
+          sort: 1,
+          inputType: 'input',
+          tranferRules: null,
+          specialConfig: null,
+          inputProps: '{"disabled": true}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 2,
+          key: 'title',
+          label: 'Title',
+          sort: 1,
+          inputType: 'input',
+          tranferRules: null,
+          rules: '[{"required":true}]',
+          specialConfig: null,
+          inputProps: '{"placeholder": "Please entry title"}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 3,
+          key: 'description',
+          label: 'Description',
+          sort: 1,
+          inputType: 'text_area',
+          tranferRules: null,
+          rules: '[{"required":true}]',
+          specialConfig: null,
+          inputProps: '{"placeholder": "Please entry description"}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 4,
+          key: 'content',
+          label: 'Content',
+          sort: 1,
+          inputType: 'editor',
+          tranferRules: null,
+          rules: '[{"required":true}]',
+          specialConfig: null,
+          inputProps: '{"placeholder": "Please entry content"}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 5,
+          key: 'sort',
+          label: 'Sort',
+          sort: 1,
+          inputType: 'input_number',
+          tranferRules: null,
+          rules: '[{"required":true}]',
+          specialConfig: null,
+          inputProps: '{"placeholder": "Please entry sort"}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 6,
+          key: 'createdBy',
+          label: 'Created by',
+          sort: 1,
+          inputType: 'input',
+          tranferRules: null,
+          specialConfig: null,
+          inputProps: '{"disabled": true}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+        {
+          id: 7,
+          key: 'createdAt',
+          label: 'Created at',
+          sort: 1,
+          inputType: 'input',
+          tranferRules: null,
+          rules: '[{"required":true}]',
+          specialConfig: null,
+          inputProps: '{"disabled": true}',
+          span: 16,
+          offset: 0,
+          isNewRow: 1,
+          formItemLayout: '{"labelCol":{"span":8},"wrapperCol":{"span":16}}',
+          styles: null,
+          isActive: 1,
+          createdTime: '2020-05-13T04:03:29+08:00',
+          updatedTime: null,
+          deletedTime: null,
+        },
+      ],
+    },
+  ]);
 });
 
 router.result = result;

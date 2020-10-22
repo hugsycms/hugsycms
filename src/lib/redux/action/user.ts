@@ -16,7 +16,7 @@ export const initUser = (username: any) => async (dispatch: Dispatch) => {
     permissions: selfPermissions,
     permissionsMapping,
     basicInfo: {
-      ...pick(basicInfo, ['activated', 'createdBy', 'createdDate', 'email', 'username', 'id', 'avatar', 'nickname']),
+      ...pick(basicInfo, ['activated', 'createdBy', 'createdAt', 'email', 'username', 'id', 'avatar', 'nickname']),
     },
   };
   await dispatch({

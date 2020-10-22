@@ -4,6 +4,11 @@ import { APP_CONFIG } from '@/lib/config/constants';
 
 export const tableColumns = [
   {
+    title: 'ID',
+    dataIndex: 'id',
+    width: APP_CONFIG.CELL_WIDTH_SMALL,
+  },
+  {
     title: 'Role code',
     dataIndex: 'code',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
