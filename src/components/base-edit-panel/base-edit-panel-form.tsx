@@ -1,14 +1,13 @@
 import React from 'react';
-import { Form, Divider, Button, message } from 'antd';
+import { Form, Button, message } from 'antd';
 import { FileTextOutlined, RedoOutlined } from '@/components/general-components/custom-icon';
 import { get, map, isFunction, debounce } from 'lodash';
 import { FormInstance } from 'antd/lib/form';
 import DynamicForm from '@/components/base-modal-form/dynamic-form';
 import FormSection from '@/components/base-modal-form/form-section';
-import './less/base-edit-panel-form.less';
+import './base-edit-panel-form.less';
 
 const formItemLayout = {
-  // layout: 'horizontal',
   labelCol: {
     span: 10,
   },
@@ -27,7 +26,7 @@ interface IProps {
 interface IState {}
 
 export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
-  form: FormInstance | null = null;
+  form: FormInstance | any;
 
   state = {
     printModalVisible: false,
@@ -42,11 +41,9 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
     this.renderEditItem = this.generateRenderEditItem(formDescriptionsWithoutSection, {
       formItemLayout,
     });
-    // 强制渲染获取 form
     this.forceUpdate();
   }
 
-  // 可能需要从外部更新获取数据
   componentWillReceiveProps(nextProps: any) {
     this.form &&
       this.form.setFieldsValue({
@@ -56,26 +53,24 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
   }
 
   handleReset = () => {
-    const form = (this.form as unknown) as FormInstance;
-    form.resetFields();
+    this.form.resetFields();
   };
 
   handleFinish = async () => {
-    const form = (this.form as unknown) as FormInstance;
     const { onFinish, data } = this.props;
-    form &&
-      form
+    this.form &&
+      this.form
         .validateFields()
         .then(() => {
           const params = {
-            ...form.getFieldsValue(),
+            ...this.form.getFieldsValue(),
             id: get(data, 'id'),
           };
           onFinish && onFinish(params);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
           message.error(get(error, 'errorFields.0.errors.0'));
-          form.scrollToField(get(error, 'errorFields.0.name.0'));
+          this.form.scrollToField(get(error, 'errorFields.0.name.0'));
         });
   };
 
@@ -87,9 +82,6 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
     const { data } = this.props;
     return (
       <>
-        {/* <Divider key={`${get(section, 'flag')}-divider`} orientation="left">
-          {get(section, 'name')}
-        </Divider> */}
         <span className="base-edit-panel-form_section_title" key={`${get(section, 'flag')}-divider`}>
           {get(section, 'name')}
         </span>

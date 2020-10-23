@@ -7,20 +7,22 @@ import {
   fromApi as defaultFromApi,
   toApi as defaultToApi,
 } from '@/utils/adapter';
+import { History } from 'history';
 import { message } from 'antd';
-import './less/index.less';
+import './index.less';
 
 export interface IProps {
+  history: History;
   routerQuery?: any;
   moduleName?: string;
   title?: string;
   baseUrl?: string;
   fromApi?: any;
   toApi?: any;
-  Form?: any;
+  Form: any;
 }
 
-export default class BaseEditPanel<P extends IProps = {}> extends React.Component<IProps & P> {
+export default class BaseEditPanel<P extends IProps> extends React.Component<IProps & P> {
   state = {
     data: {},
     formDescriptionsWithoutSection: [],
@@ -29,9 +31,10 @@ export default class BaseEditPanel<P extends IProps = {}> extends React.Componen
 
   async componentDidMount() {
     const { routerQuery, moduleName, baseUrl, fromApi = defaultFromApi } = this.props;
-    // 优先从 props 里面获取id，因为可能作为组件，被其它页面引用使用
+    // base edit panel can used as component in other page.
+    // so get id from props first.
     const id = get(this.props, 'id') || get(routerQuery, 'id');
-    // TODO: 上线的时候，考虑把配置文件放在项目中，而不是通过接口获取
+    // get form config.
     const formDescriptions = formDescriptionsFromApi(
       get(await request.get(`/api/mock/form-descriptions?moduleName=${moduleName}`), 'data'),
     );
@@ -51,24 +54,22 @@ export default class BaseEditPanel<P extends IProps = {}> extends React.Componen
       formDescriptionsWithoutSection,
     );
     if (get(values, 'id')) {
-      await request.put(baseUrl, params);
-      message.success(`修改${title}成功`);
+      await request.put(baseUrl as string, params);
+      message.success(`Update ${title} success`);
     } else {
-      await request.post(baseUrl, params);
-      message.success(`新增${title}成功`);
+      await request.post(baseUrl as string, params);
+      message.success(`Create ${title} success`);
     }
   };
 
   /* istanbul ignore next */ render() {
-    const { Form, printTemplate = '', printResource = '', history } = this.props;
+    const { Form, history } = this.props;
     const { formDescriptions, formDescriptionsWithoutSection, data } = this.state;
     return (
       <div className="base-edit-panel">
         <Form
           key={get(data, 'id') || Math.random()}
           printId={get(data, 'id')}
-          printResource={printResource}
-          printTemplate={printTemplate}
           data={data}
           onFinish={this.handleSubmit}
           formDescriptions={formDescriptions}

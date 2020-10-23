@@ -11,7 +11,7 @@ import Sider from './components/layout/sider';
 import RouterTabs from './components/layout/components/router-tabs';
 import { updateTabs } from '@/lib/redux/action/tabs';
 import { updateCollapsed } from '@/lib/redux/action/system';
-import queryString from '@/components/base-list/node_modules/query-string';
+import queryString from 'query-string';
 import ErrorBoundary from './lib/error-boundary';
 import NoPermission from '@/pages/system/exception/403';
 import { KeepAlive } from 'react-keep-alive-pro';

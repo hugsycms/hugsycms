@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import classnames from '@/components/base-table/node_modules/classnames';
+import React from 'react';
+import classnames from 'classnames';
 import { CloseOutlined } from '@/components/general-components/custom-icon';
-import './index.less';
+import './tab-button.less';
 
 export interface TabIProps {
   title: string;

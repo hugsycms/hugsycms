@@ -1,6 +1,6 @@
 import React from 'react';
 import request from '@/lib/request';
-import { get, isFunction, map, keyBy, set, isNil, isEmpty, isNaN } from 'lodash';
+import { get, isFunction, map, keyBy, set, isNil, isEmpty } from 'lodash';
 import { message, Popconfirm, Button, Form, Divider } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@/components/general-components/custom-icon';
 import queryString from 'query-string';

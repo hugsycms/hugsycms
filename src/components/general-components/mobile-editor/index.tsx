@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
-import ImageResize from '@/components/general-components/custom-editor/node_modules/quill-image-resize-module';
+import ImageResize from 'quill-image-resize-module';
 import { get } from 'lodash';
 import './index.less';
-import '@/components/general-components/custom-editor/node_modules/react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 import { Upload } from 'antd';
 import { APP_CONFIG } from '@/lib/config/constants';
 import store from 'store';

@@ -112,14 +112,12 @@ export class RouterTabs extends React.Component<IProps> {
             );
           })}
         </div>
-        {/* <div className="routertabs-separator" /> */}
         <Dropdown
           className="routertabs-dropdown"
           overlayClassName="routertabs-overlay"
           overlay={this.renderTabMenu}
           trigger={['click']}
         >
-          {/* <DownOutlined title="展开" /> */}
           <CustomIcon type="icon-down" style={{ fontSize: '18px' }} />
         </Dropdown>
       </div>
