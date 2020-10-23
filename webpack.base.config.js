@@ -38,7 +38,7 @@ const themeVariables = lessToJS(
 process.env.WITH_THEME && otherPlugins.push(themePlugin);
 
 module.exports = {
-  entry: ['@babel/polyfill', 'core-js/stable', './src/Entry.tsx'],
+  entry: ['@babel/polyfill', 'core-js/stable', './src/entry.tsx'],
   output: {
     filename: 'js/vendor.[hash].js',
     path: path.join(__dirname, '/dist'),

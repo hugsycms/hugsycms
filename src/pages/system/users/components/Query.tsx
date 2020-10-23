@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import BaseQuery from '@/components/BaseQuery';
+import BaseQuery from '@/components/base-query';
 import { Input } from 'antd';
 import { queryFormDescriptions as formDescriptions } from '../config/form';
 

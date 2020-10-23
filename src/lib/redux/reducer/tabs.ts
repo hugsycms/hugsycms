@@ -1,6 +1,6 @@
 import { REDUX_CONFIG } from '@/lib/config/constants';
 import { get, map, keyBy, compact, last } from 'lodash';
-import { TabIProps } from '@/components/layout/components/TabButton';
+import { TabIProps } from '@/components/layout/components/tab-button';
 
 const initState = {
   activeKey: '/',

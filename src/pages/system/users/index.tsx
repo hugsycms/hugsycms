@@ -1,15 +1,15 @@
 import React from 'react';
-import Table from './components/Table';
-import Query from './components/Query';
-import UsersModal from './components/UsersModal';
+import Table from './components/table';
+import Query from './components/query';
+import UsersModal from './components/users-modal';
 import { tableColumns } from './config/table';
 import { processFromApi, toApi } from './config/adapter';
 import { Popconfirm, Switch, Button, message, Divider } from 'antd';
-import { EditOutlined, DeleteOutlined, RedoOutlined } from '@/components/GeneralComponents/CustomIcon';
+import { EditOutlined, DeleteOutlined, RedoOutlined } from '@/components/general-components/custom-icon';
 import { get } from 'lodash';
-import BaseList from '@/components/BaseList';
+import BaseList from '@/components/base-list';
 import request from '@/lib/request';
-import ResetPasswordModal from './components/ResetPasswordModal';
+import ResetPasswordModal from './components/reset-password-modal';
 
 export default class List extends BaseList {
   static defaultProps = {

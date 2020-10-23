@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from './components/Table';
-import Query from './components/Query';
+import Table from './components/table';
+import Query from './components/query';
 import { tableColumns } from './config/table';
-import BaseList from '@/components/BaseList';
+import BaseList from '@/components/base-list';
 
 export default class List extends BaseList {
   static defaultProps = {

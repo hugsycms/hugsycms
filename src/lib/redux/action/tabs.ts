@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { REDUX_CONFIG } from '@/lib/config/constants';
-import { TabIProps } from '@/components/layout/components/TabButton';
+import { TabIProps } from '@/components/layout/components/tab-button';
 
 export const updateTabs = (tab: TabIProps) => (dispatch: Dispatch) => {
   dispatch({

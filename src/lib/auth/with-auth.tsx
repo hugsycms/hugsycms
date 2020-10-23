@@ -4,7 +4,7 @@ import store from 'store';
 import { doLogout } from '@/components/layout/reducer';
 import { APP_CONFIG } from '../config/constants';
 import { withRouter } from 'react-router-dom';
-import CustomSpin from '@/components/GeneralComponents/CustomSpin';
+import CustomSpin from '@/components/general-components/custom-spin';
 import { initUser } from '../redux/action/user';
 import { isEqual, get, isEmpty } from 'lodash';
 

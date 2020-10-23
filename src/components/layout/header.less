@@ -15,59 +15,20 @@
     align-items: center;
     overflow: hidden;
 
-    &-logo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        display: inline-block;
-        vertical-align: middle;
-        width: 45px;
-        height: 45px;
-        position: relative;
-      }
-
-      &-title {
-        margin-left: 5px;
-        font-size: 18px;
-        letter-spacing: 1px;
-        color: @global-container-layout-header-logo-color;
-        font-weight: bold;
-      }
-      &-toggle {
-        font-size: 16px;
-        cursor: pointer;
-        color: @global-container-layout-header-toggle-color;
-      }
+    &-title {
+      margin-left: 5px;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: @global-container-layout-header-logo-color;
+      font-weight: bold;
     }
 
     &-toggle {
       font-size: 16px;
       cursor: pointer;
-      color: @global-container-layout-header-toggle-color;
-      // color: #888;
-
-      button {
+      .ant-btn-text {
+        color: @global-container-layout-header-toggle-color;
         padding: 7px 10px !important;
-      }
-    }
-
-    .ant-divider {
-      // border-left-color: @global-container-layout-header-name-color;
-    }
-
-    &-logo__collapsed {
-      width: 64px;
-      box-shadow: 1px 0 6px rgba(0, 21, 41, 0.25);
-      // display: inline-flex;
-      // justify-content: center;
-      // align-self: center;
-
-      img {
-        // margin: 0 0 0 8px;
-      }
-      .global-container-layout_header-left-logo-toggle {
-        margin: 0 8px 0 0;
       }
     }
   }
@@ -79,7 +40,7 @@
       display: flex;
       align-items: center;
       margin-left: 24px;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
 
       &-name {

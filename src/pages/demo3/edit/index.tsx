@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from './components/Form';
+import Form from './components/form';
 import { toApi, fromApi } from './config/adapter';
-import BaseEditPanel from '@/components/BaseEditPanel';
+import BaseEditPanel from '@/components/base-edit-panel';
 
 export default class AdmissionPanel extends BaseEditPanel {
   static defaultProps = {

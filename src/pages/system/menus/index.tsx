@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, Button, Tree, Input, Form, message, Popconfirm, InputNumber } from 'antd';
 import { getAllMenus, transferMenus, getActiveMenu, updateMenu, createMenu, deleteMenu } from './methods';
-import CustomSpin from '@/components/GeneralComponents/CustomSpin';
+import CustomSpin from '@/components/general-components/custom-spin';
 import { get, isNil, isEmpty } from 'lodash';
-import ParentPermissionSelect from '@/components/selects/ParentPermissionSelect';
-import PermissionTypeSelect from '@/components/selects/PermissionTypeSelect';
-import IconSelect from '@/components/GeneralComponents/IconSelect';
-import { CustomIcon } from '@/components/GeneralComponents/CustomIcon';
+import ParentPermissionSelect from '@/components/selects/parent-permission-select';
+import PermissionTypeSelect from '@/components/selects/permission-type-select';
+import IconSelect from '@/components/general-components/icon-select';
+import { PlusOutlined } from '@/components/general-components/custom-icon';
 import './index.less';
 
 export default class List extends Component {
@@ -143,7 +143,7 @@ export default class List extends Component {
             title="Permission List"
             size="small"
             extra={
-              <Button type="link" size="small" ghost icon={<CustomIcon type="icon-add" />} onClick={this.handleAddMenu}>
+              <Button icon={<PlusOutlined />} size="small" type="primary" onClick={this.handleAddMenu}>
                 Create
               </Button>
             }

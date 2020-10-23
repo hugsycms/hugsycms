@@ -2,7 +2,7 @@ import React from 'react';
 import Query from './components/query';
 import ModalForm from './components/modal';
 import { tableColumns } from './config/table';
-import BaseList from '@/components/BaseList';
+import BaseList from '@/components/base-list';
 
 export default class List extends BaseList {
   static defaultProps = {

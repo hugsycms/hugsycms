@@ -1,10 +1,11 @@
 import generateModalForm from '@/components/base-modal-form';
 import { modalFormDescriptions as formDescriptions } from '../config/form';
-import { fromApi } from '../config/adapter';
+import { toApi, fromApi } from '../config/adapter';
 
 export default generateModalForm({
   formDescriptions,
-  url: '/api/mock/categories',
-  title: 'tag',
+  url: '/api/users',
+  title: 'user',
+  toApi,
   fromApi,
 });

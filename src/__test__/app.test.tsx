@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { App as TargetComponent } from '../App';
+import { App as TargetComponent } from '../app';
 import { shallow } from 'enzyme';
 
 describe('src > APP', () => {

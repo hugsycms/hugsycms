@@ -1,10 +1,9 @@
 import React from 'react';
 import { Menu, Layout } from 'antd';
-import { UnorderedListOutlined, CustomIcon } from '@/components/GeneralComponents/CustomIcon';
+import { UnorderedListOutlined, CustomIcon } from '@/components/general-components/custom-icon';
 import { map, get, isEmpty, concat, filter, sortBy, keyBy } from 'lodash';
 import { omitRoutes } from '@/lib/routes';
 import { updateTabs } from '@/lib/redux/action/tabs';
-import { APP_CONFIG } from '@/lib/config/constants';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import './sider.less';

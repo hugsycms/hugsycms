@@ -48,7 +48,7 @@ const permissions = [
     key: '/demo',
     name: 'Demos',
     parentid: 0,
-    icon: 'icon-unorderedlist',
+    icon: 'icon-appstore',
     sort: 5,
     active: null,
   },

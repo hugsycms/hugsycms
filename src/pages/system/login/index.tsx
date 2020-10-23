@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, message, notification } from 'antd';
-import { LockOutlined, UserOutlined } from '@/components/GeneralComponents/CustomIcon';
+import { LockOutlined, UserOutlined } from '@/components/general-components/custom-icon';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogin } from './reducer';
 import { get } from 'lodash';
 import { withRouter } from 'react-router-dom';
-import queryString from 'query-string';
+import queryString from '@/components/base-list/node_modules/query-string';
 import { connect } from 'react-redux';
 import store from 'store';
 import './index.less';

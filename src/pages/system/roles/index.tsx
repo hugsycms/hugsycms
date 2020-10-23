@@ -1,15 +1,15 @@
 import React from 'react';
-import RoleTable from './components/RoleTable';
-import RolesModal from './components/RolesModal';
+import RoleTable from './components/role-table';
+import RolesModal from './components/role-modal';
 import { tableColumns } from './config/table';
 import { Popconfirm, Button, Row, Col, message, Divider } from 'antd';
 import { get } from 'lodash';
 import { processFromApi, toApi } from './config/adapter';
-import BaseList from '@/components/BaseList';
-import { EditOutlined, DeleteOutlined } from '@/components/GeneralComponents/CustomIcon';
-import CustomSpin from '@/components/GeneralComponents/CustomSpin';
+import BaseList from '@/components/base-list';
+import { EditOutlined, DeleteOutlined } from '@/components/general-components/custom-icon';
+import CustomSpin from '@/components/general-components/custom-spin';
 import request from '@/lib/request';
-import MenuPermissionCard from './components/MenuPermissionCard';
+import MenuPermissionCard from './components/permission-card';
 
 export default class Roles extends BaseList {
   static defaultProps = {

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Layout, Dropdown, message, Menu, Select, Divider, Button } from 'antd';
 import { isUndefined, get } from 'lodash';
 import store from 'store';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@/components/GeneralComponents/CustomIcon';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@/components/general-components/custom-icon';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogout } from './reducer';
-import ResetPasswordModal from './components/ResetPasswordModal';
-import CustomSpin from '../GeneralComponents/CustomSpin';
+import ResetPasswordModal from './components/reset-password-modal';
+import CustomSpin from '../general-components/custom-spin';
 import light from '@/assets/less/light';
 import dark from '@/assets/less/dark';
 import { width } from './sider';
@@ -43,6 +43,7 @@ export default class Header extends Component<IProps> {
         type="text"
         shape="round"
         size="large"
+        className=""
         icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
         onClick={onToggle}
       ></Button>
@@ -94,7 +95,7 @@ export default class Header extends Component<IProps> {
             <div className="global-container-layout_header-left" style={{ minWidth: collapsed ? width : '' }}>
               <div className="global-container-layout_header-left-toggle">{this.renderTrigger()}</div>
               <Divider type="vertical" />
-              <span className="global-container-layout_header-left-logo-title">{APP_CONFIG.TITLE}</span>
+              <span className="global-container-layout_header-left-title">{APP_CONFIG.TITLE}</span>
             </div>
             <div className="global-container-layout_header-right">
               {!isUndefined(get(user, 'basicInfo')) && (

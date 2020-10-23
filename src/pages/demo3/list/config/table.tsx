@@ -28,6 +28,8 @@ export const tableColumns = [
     title: 'Sort',
     dataIndex: 'sort',
     width: APP_CONFIG.CELL_WIDTH_SMALL,
+    sortType: 'number',
+    showSorter: true,
   },
   {
     title: 'Created at',

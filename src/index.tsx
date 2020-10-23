@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+import App from './app';
 import { Provider } from 'react-redux';
 import reduxStore from '@/lib/redux';
 import { Route, BrowserRouter } from 'react-router-dom';

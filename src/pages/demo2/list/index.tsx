@@ -1,6 +1,6 @@
 import Query from './components/query';
 import { tableColumns } from './config/table';
-import BaseList from '@/components/BaseList';
+import BaseList from '@/components/base-list';
 
 export default class List extends BaseList {
   static defaultProps = {
