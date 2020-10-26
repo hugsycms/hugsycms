@@ -63,16 +63,16 @@ export default ({
         return;
       }
       if (id) {
-        tip = `Update ${title} Success`;
+        tip = window.t('common.update-success', { title });
         method = 'put';
       } else {
-        tip = `Create ${title} Success`;
+        tip = window.t('common.create-success', { title });
         method = 'post';
       }
       if (APP_CONFIG.isDev) {
         // TODO: change yourself
-        message.error('Preview mode, unable to submit');
-        return Promise.reject('Preview mode, unable to submit');
+        message.error(window.t('common.preview-mode-tip'));
+        return Promise.reject(window.t('common.preview-mode-tip'));
       }
       await request[method](`${url}`, {
         ...values,
@@ -95,7 +95,7 @@ export default ({
           visible={visible}
           onCancel={onCancel}
           onOk={this.handleSubmit}
-          title={id ? `Update ${title}` : `Create ${title}`}
+          title={id ? `${window.t('common.update')} ${title}` : `${window.t('common.create')} ${title}`}
         >
           <Form ref={this.formRef} {...formItemLayout}>
             {this.renderEditContent()}

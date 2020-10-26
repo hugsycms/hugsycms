@@ -13,17 +13,50 @@ import { Translation } from 'react-i18next';
 import 'document.contains';
 import './global.less';
 import store from 'store';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 const singlePages = ['/login', '/single'];
 
 export default class Index extends React.Component {
-  state = {
-    isRenderApp: false,
-    language: 'en_US',
-    languagePackage: enUS,
-  };
-
   keepAliveProviderRef: any;
+
+  constructor(props) {
+    super(props);
+    const language = store.get('language') || 'en_US';
+    const resources = {
+      en_US: {
+        translation: require('@/lib/config/language/en_US.json'),
+      },
+      zh_CN: {
+        translation: require('@/lib/config/language/zh_CN.json'),
+      },
+    };
+    i18n.use(initReactI18next).init({
+      resources,
+      lng: language,
+      keySeparator: false,
+      interpolation: {
+        escapeValue: false,
+      },
+    });
+    let languagePackage = enUS;
+    switch (language) {
+      case 'en_US':
+        languagePackage = enUS;
+        break;
+      case 'zh_CN':
+        languagePackage = zhCN;
+        break;
+      default:
+        break;
+    }
+    this.state = {
+      isRenderApp: false,
+      language,
+      languagePackage,
+    };
+  }
 
   componentDidMount() {
     if (singlePages.indexOf(window.location.pathname) === -1) {
@@ -42,33 +75,12 @@ export default class Index extends React.Component {
     return null;
   }
 
-  handleChangeLanguage = (targetLanguage: string, i18n: any) => {
-    let { languagePackage } = this.state;
-    console.log(targetLanguage);
-    switch (targetLanguage) {
-      case 'en_US':
-        languagePackage = enUS;
-        break;
-      case 'zh_CN':
-        languagePackage = zhCN;
-        break;
-      default:
-        break;
-    }
-    i18n.changeLanguage(targetLanguage);
-    store.set('language', targetLanguage);
-    this.setState({
-      language: targetLanguage,
-      languagePackage,
-    });
-  };
-
   /* istanbul ignore next */ render() {
     const { isRenderApp, language, languagePackage } = this.state;
     return (
       <Provider store={reduxStore}>
         <Translation>
-          {(t, { i18n }) => {
+          {(t) => {
             window.t = t;
             return (
               <ConfigProvider locale={languagePackage}>
@@ -94,15 +106,7 @@ export default class Index extends React.Component {
                         );
                       }}
                     />
-                    {isRenderApp && (
-                      <App
-                        onChangeLanguage={(targetLanguage: string) => {
-                          this.handleChangeLanguage(targetLanguage, i18n);
-                        }}
-                        language={language}
-                        keepAliveProviderRef={this.keepAliveProviderRef}
-                      />
-                    )}
+                    {isRenderApp && <App language={language} keepAliveProviderRef={this.keepAliveProviderRef} />}
                   </KeepAliveProvider>
                 </BrowserRouter>
               </ConfigProvider>

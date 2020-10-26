@@ -9,11 +9,11 @@ export const modalFormDescriptions = {
   },
   username: {
     key: 'username',
-    label: 'Username',
+    label: window.t('system.user.username'),
     rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please enter username',
+      placeholder: window.t('system.user.username-placeholder'),
     },
   },
   password: {
@@ -26,11 +26,11 @@ export const modalFormDescriptions = {
   },
   nickname: {
     key: 'nickname',
-    label: 'Nickname',
+    label: window.t('system.user.nickname'),
     rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please enter nickname',
+      placeholder: window.t('system.user.nickname-placeholder'),
     },
   },
   email: {
@@ -68,11 +68,11 @@ export const resetFormDescriptions = {
 export const queryFormDescriptions = {
   username: {
     key: 'username',
-    label: 'Username',
+    label: window.t('system.user.username'),
   },
   nickname: {
     key: 'nickname',
-    label: 'Nickname',
+    label: window.t('system.user.nickname'),
   },
 };
 

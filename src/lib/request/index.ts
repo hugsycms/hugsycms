@@ -11,7 +11,7 @@ axios.interceptors.request.use((config: any) => {
 
   // 不是登录并且没有 token 且不是 mock 接口，跳转到登录页面
   if (!(['/api/authenticate', '/api/desklogin'].indexOf(url) > -1) && !token && !startsWith(url, '/api/mock')) {
-    message.error('Please login first');
+    message.error(window.t('common.no-login-tip'));
     window.location.href = '/login';
     return config;
   }
@@ -36,7 +36,6 @@ axios.interceptors.response.use(
     switch (get(error, 'response.status')) {
       case 401:
         if (window.location.pathname !== '/login') {
-          message.error('Timeout, please login again');
           store.clearAll();
           window.location.href = '/login';
         }
@@ -44,11 +43,10 @@ axios.interceptors.response.use(
       case 400:
         return Promise.reject(error.response);
       case 503:
-        message.error('System error');
-        // window.location.href = '/503';
+        message.error(window.t('common.no-login-tip'));
         return Promise.reject(error.response);
       default:
-        message.error('System error');
+        message.error(window.t('common.no-login-tip'));
         // notification.error({
         //   description: get(error, 'response.data.detail'),
         //   message: '发生错误',

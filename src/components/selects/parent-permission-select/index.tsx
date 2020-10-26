@@ -3,6 +3,11 @@ import { TreeSelect } from 'antd';
 import { get, map, omit } from 'lodash';
 import request from '@/lib/request';
 
+export const formatMenu = (permission) => ({
+  ...permission,
+  name: window.t(permission.name),
+});
+
 export default (props: any) => {
   const [menus, setMenus] = useState();
 
@@ -21,8 +26,10 @@ export default (props: any) => {
 
   useEffect(() => {
     (async () => {
-      const newMenus = transferMenus(get(await request.get('/api/mock/permissions/all?type.equals=menu'), 'data'));
-      setMenus([{ id: 0, value: 0, title: 'No Paraent', children: newMenus }]);
+      const newMenus = transferMenus(
+        map(get(await request.get('/api/mock/permissions/all?type.equals=menu'), 'data'), formatMenu),
+      );
+      setMenus([{ id: 0, value: 0, title: window.t('common.no-paraents-tip'), children: newMenus }]);
     })();
   }, []);
 

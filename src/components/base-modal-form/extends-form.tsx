@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Form, Modal, message } from 'antd';
 import { isFunction } from 'lodash';
 import DynamicForm from '@/components/base-modal-form/dynamic-form';
@@ -61,10 +61,10 @@ export default class ExtendsForm extends DynamicForm {
       ? toApi({ ...data, ...this.form.getFieldsValue(), id })
       : { ...data, ...this.form.getFieldsValue(), id };
     if (id) {
-      tip = `修改${title}成功`;
+      tip = window.t('common.update-success', { title });
       method = 'put';
     } else {
-      tip = `添加${title}成功`;
+      tip = window.t('common.create-success', { title });
       method = 'post';
     }
     await request[method](`/${url}`, {
@@ -96,7 +96,7 @@ export default class ExtendsForm extends DynamicForm {
         visible={visible}
         onCancel={onCancel}
         onOk={this.handleSubmit}
-        title={id ? `修改${title}` : `添加${title}`}
+        title={id ? `Update ${title}` : `Create ${title}`}
       >
         <Form ref={this.formRef} {...formItemLayout}>
           {this.renderEditContent()}

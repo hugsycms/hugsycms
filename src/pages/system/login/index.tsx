@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, message, notification } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@/components/general-components/custom-icon';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogin } from './reducer';
@@ -19,25 +19,21 @@ export class Login extends Component {
     const { location, history, doLogin, loginCallback } = this.props;
     this.setState({ loading: true });
     const { redirectTo } = queryString.parse(get(location, 'search'));
-    // const data = await doLogin(values);
-    // console.log(data);
-
     try {
       const { expired } = await doLogin(values);
       console.log(expired);
       setTimeout(() => {
-        message.error('登录状态已过期，请重新登录，系统将在1秒后退出');
+        message.error(window.t('common.expired-login-tip'));
         setTimeout(() => {
-          console.log('setTimeout logout')
           window.location.href = '/login';
           store.clearAll();
         }, 1000);
       }, expired * 1000);
-      message.success('登录成功');
+      message.success(window.t('common.login-tip'));
       loginCallback(true);
       history.push(redirectTo || '/');
     } catch (error) {
-      message.error('账号密码不匹配，请重试');
+      message.error(window.t('common.login-failed-tip'));
       loginCallback(false);
       this.setState({ loading: false });
     }
@@ -59,14 +55,14 @@ export class Login extends Component {
         </header>
         <main className="login-main">
           <div className="login-main-center">
-            <h2 className="login-main-center-title">系统登录</h2>
+            <h2 className="login-main-center-title">{window.t('login.tip')}</h2>
             <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
               <Form.Item
                 name="username"
                 rules={[
                   {
                     required: true,
-                    message: '请输入用户名!',
+                    message: window.t('login.please-entry-username'),
                   },
                 ]}
               >
@@ -74,7 +70,7 @@ export class Login extends Component {
                   allowClear
                   size="large"
                   prefix={<UserOutlined className="login-main-center-icon" />}
-                  placeholder="请输入用户名"
+                  placeholder={window.t('login.please-entry-username')}
                 />
               </Form.Item>
               <Form.Item
@@ -82,7 +78,7 @@ export class Login extends Component {
                 rules={[
                   {
                     required: true,
-                    message: '请输入密码！',
+                    message: window.t('login.please-entry-password'),
                   },
                 ]}
               >
@@ -90,7 +86,7 @@ export class Login extends Component {
                   allowClear
                   size="large"
                   prefix={<LockOutlined className="login-main-center-icon" />}
-                  placeholder="请输入密码"
+                  placeholder={window.t('login.please-entry-password')}
                 />
               </Form.Item>
               <div style={{ height: '18px' }} />
@@ -103,7 +99,7 @@ export class Login extends Component {
                   htmlType="submit"
                   style={{ fontSize: '18px', fontWeight: 'bold' }}
                 >
-                  登 录
+                  {window.t('login.login')}
                 </Button>
               </Form.Item>
             </Form>

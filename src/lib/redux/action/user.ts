@@ -10,7 +10,17 @@ export const initUser = (username: any) => async (dispatch: Dispatch) => {
     reduce(get(basicInfo, 'roles'), (sum, group) => concat(sum as [], get(group, 'permissions') as []), []),
     omitRoutes,
   );
-  const permissionsMapping = keyBy(concat(selfPermissions, omitRoutes), 'key');
+  const permissionsMapping = keyBy(
+    map(concat(selfPermissions, omitRoutes), (item) => {
+      console.log(item.name);
+      console.log(window.t(item.name));
+      return {
+        ...item,
+        name: window.t(item.name),
+      };
+    }),
+    'key',
+  );
   selfPermissions = values(permissionsMapping);
   const user = {
     permissions: selfPermissions,

@@ -53,7 +53,7 @@ export default (props: any) => {
           Authorization: `Bearer ${store.get(APP_CONFIG.TOKEN)}`,
         }}
       >
-        {fileList.length < 1 && '+ 点击上传'}
+        {fileList.length < 1 && '+ Click upload'}
       </Upload>
     </ImgCrop>
   );

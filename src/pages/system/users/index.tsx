@@ -73,7 +73,7 @@ export default class List extends BaseList {
               icon={<EditOutlined className="global-table-action-icon" />}
               onClick={this.handleEdit(rowData)}
             >
-              Edit
+              {window.t('common.edit')}
             </Button>
             <Divider type="vertical" />
             <Button
@@ -82,11 +82,11 @@ export default class List extends BaseList {
               icon={<RedoOutlined className="global-table-action-icon" />}
               onClick={this.handleResetEdit(rowData)}
             >
-              Reset
+              {window.t('common.reset')}
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
+              title={window.t('common.delete-tip', {title: this.props.baseTitle})}
               onConfirm={this.handleDelete(rowData)}
             >
               <Button
@@ -95,7 +95,7 @@ export default class List extends BaseList {
                 size="small"
                 icon={<DeleteOutlined className="global-table-action-icon" />}
               >
-                Delete
+                {window.t('common.delete')}
               </Button>
             </Popconfirm>
           </>
@@ -140,7 +140,7 @@ export default class List extends BaseList {
           activated: !get(rowData, 'activated'),
         }),
       );
-      message.success('切换用户状态成功');
+      message.success(window.t('common.action-success'));
     } catch (error) {
       console.log(error);
     }
@@ -178,24 +178,19 @@ export default class List extends BaseList {
   };
 
   handleSubmit = async (data) => {
-    try {
-      let tip = '';
-      let method = '';
-      if (data.id) {
-        tip = '修改用户成功';
-        method = 'put';
-      } else {
-        tip = '添加用户成功';
-        method = 'post';
-      }
-      await request[method]('/api/users', data);
-      message.success(tip);
-      this.handleCancel();
-      this.handleQuerySearch();
-    } catch (error) {
-      if (error.status === 400) {
-        message.error('该用户名已存在，请重新输入');
-      }
+    const { baseTitle } = this.props;
+    let tip = '';
+    let method = '';
+    if (data.id) {
+      tip = window.t('common.update-success', { title: baseTitle });
+      method = 'put';
+    } else {
+      tip = window.t('common.create-success', { title: baseTitle });
+      method = 'post';
     }
+    await request[method]('/api/users', data);
+    message.success(tip);
+    this.handleCancel();
+    this.handleQuerySearch();
   };
 }

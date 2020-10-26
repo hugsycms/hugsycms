@@ -49,7 +49,7 @@ export default class ResetPasswordModal extends DynamicForm<IProps> {
       login: get(data, 'login'),
       password: this.form.getFieldValue('password'),
     });
-    message.success('重置密码成功');
+    message.success(window.t('common.action-success'));
     onCancel();
     onSearch();
   };

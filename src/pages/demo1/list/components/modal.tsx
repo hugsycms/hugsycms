@@ -5,6 +5,6 @@ import { fromApi } from '../config/adapter';
 export default generateModalForm({
   formDescriptions,
   url: '/api/mock/categories',
-  title: 'tag',
+  title: window.t('category.base-title'),
   fromApi,
 });

@@ -161,38 +161,6 @@ export class FormSection extends React.Component<IProps> {
           customFormItemLayout,
           styles,
         });
-      case 'validdate':
-        return renderEditItem(
-          formDescriptionKey,
-          <DataSelect
-            dataSource={[
-              { id: 30, name: '30天' },
-              { id: 60, name: '60天' },
-              { id: 90, name: '90天' },
-              { id: 280, name: '一个孕周' },
-            ]}
-            valueKey="id"
-            labelKey="name"
-          />,
-          {
-            customFormItemLayout,
-            styles,
-          },
-        );
-      case 'product':
-        return get(formDescription, 'viewOnly')
-          ? renderEditItem(
-              formDescriptionKey,
-              <span>{get(keyBy(products, 'id'), `${get(data, formDescriptionPath)}.name`)}</span>,
-            )
-          : renderEditItem(
-              formDescriptionKey,
-              <DataSelect url="/products" valueKey="id" labelKey="name" {...formDescriptionInputProps} />,
-              {
-                customFormItemLayout,
-                styles,
-              },
-            );
       case 'roles':
         return renderEditItem(
           formDescriptionKey,

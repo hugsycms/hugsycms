@@ -27,12 +27,11 @@ export default class Header extends Component<IProps> {
 
   componentDidMount() {
     this.handleChangeTheme(store.get('theme') || 'default');
-    this.handleChangeLanguage(store.get('language') || 'en_US');
   }
 
   handleLogout = () => {
     doLogout();
-    message.success('退出登录成功');
+    message.success(window.t('common.logout-tip'));
     window.location.href = '/login';
   };
 
@@ -50,9 +49,9 @@ export default class Header extends Component<IProps> {
     );
   };
 
-  handleChangeLanguage = (language) => {
-    const { onChangeLanguage } = this.props;
-    onChangeLanguage && onChangeLanguage(language);
+  handleChangeLanguage = (language: string) => {
+    store.set('language', language);
+    window.location.reload();
   };
 
   handleChangeTheme = (theme: string) => {

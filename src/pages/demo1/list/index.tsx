@@ -7,7 +7,7 @@ import BaseList from '@/components/base-list';
 export default class List extends BaseList {
   static defaultProps = {
     baseUrl: '/api/mock/categories',
-    baseTitle: 'category',
+    baseTitle: window.t('category.base-title'),
     needPagination: true,
     showAdd: true,
     showQuery: true,

@@ -52,7 +52,7 @@ export default class Roles extends BaseList {
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
+              title={window.t('common.delete-tip', {title: this.props.baseTitle})}
               onConfirm={this.handleDelete(rowData)}
             >
               <Button
@@ -97,7 +97,7 @@ export default class Roles extends BaseList {
     const { baseUrl } = this.props;
     try {
       await request.put(baseUrl as string, toApi({ ...activeRole, authorities: checkedData }));
-      message.success('保存 API 权限成功');
+      message.success(window.t('common.action-success'));
       await this.handleSearch();
     } catch (error) {
       console.log(error);
@@ -109,7 +109,7 @@ export default class Roles extends BaseList {
     const { baseUrl } = this.props;
     try {
       await request.put(baseUrl as string, toApi({ ...activeRole, permissions: checkedData }));
-      message.success('保存菜单/权限成功');
+      message.success(window.t('common.action-success'));
       await this.handleSearch();
     } catch (error) {
       console.log(error);

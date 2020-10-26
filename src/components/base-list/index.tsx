@@ -12,43 +12,47 @@ import { formatTimeToUTC } from '@/utils/format';
 import { getDataSource } from './methods';
 import './index.less';
 import { APP_CONFIG } from '@/lib/config/constants';
+import { Dimensions } from 'react-container-dimensions';
 
 export interface IProps {
-  // 接口 URL
+  // api url.
   baseUrl: string;
-  // 唯一 key，通常取 id
+  // unique key.
   rowKey: string;
-  // 左上角标题
+  // title.
   baseTitle: string;
-  // 列表配置
+  // table columns config.
   tableColumns: any[];
-  // Table 组件
+  // Table Component.
   Table: any;
-  // 是否需要分页
+  // if need pagination.
   needPagination?: boolean;
-  // 需要 多选
+  // if need checked.
   needChecked?: boolean;
-  // 表格是否可编辑
+  // if need edit in table.
   needEditInTable?: boolean;
-  // 展示添加按钮
+  // if need show add button.
   showAdd?: boolean;
-  // 是否展示编辑列
+  // if need show action.
   showAction?: boolean;
-  // 当 BaseList 作为子组件的时候，可能需要使用，参考 nursing-record
+  // when BaseList as child component，it maybe need.
   asChildComponentQueryLabel?: string;
-  // 展示搜索功能，如果为 true，则必须传 Query 组件
+  // show query component, if is true, Query component is required.
   showQuery?: boolean;
-  // 传入的 ID
+  // id
   id?: boolean;
-  // 从接口获取数据，过滤函数
+  // multiple format data from api.
   processFromApi?: (data: object[]) => object[];
+  // format api when create or update data.
   toApi?: (data: object) => object;
-  // 其它表格属性
+  // other table props, more view https://ant.design/components/table-cn/#API.
   otherTableProps?: any;
-  // 弹窗表单
+  // model form component.
   ModalForm?: any;
-  // 搜索组件
+  // query component
   Query?: any;
+  // container props, from react-container-dimensions
+  containerProps?: Dimensions;
 }
 
 export interface IState {
@@ -97,10 +101,10 @@ export default class BaseList extends React.Component<IProps, IState> {
         return (
           <>
             <Button type="primary" size="small" className="table-action-btn" onClick={this.handleItemSave(rowData)}>
-              Save
+              {window.t('common.save')}
             </Button>
             <Button size="small" className="table-action-btn" onClick={this.handleItemCancel(rowData)}>
-              Cancel
+              {window.t('common.cancel')}
             </Button>
           </>
         );
@@ -110,16 +114,16 @@ export default class BaseList extends React.Component<IProps, IState> {
         <>
           <Button type="link" size="small" onClick={this.handleEdit(rowData)}>
             <EditOutlined className="global-table-action-icon" />
-            Edit
+            {window.t('common.edit')}
           </Button>
           <Divider type="vertical" />
           <Popconfirm
-            title={`Are you sure to delete the ${get(this.props, 'baseTitle')} ?`}
+            title={window.t('common.delete-tip', { title: this.props.baseTitle })}
             onConfirm={this.handleDelete(rowData)}
           >
             <Button className="global-table-action-delete" type="link" size="small">
               <DeleteOutlined className="global-table-action-icon" />
-              Delete
+              {window.t('common.delete')}
             </Button>
           </Popconfirm>
         </>
@@ -141,11 +145,11 @@ export default class BaseList extends React.Component<IProps, IState> {
     const { baseUrl, baseTitle } = this.props;
     if (APP_CONFIG.isDev) {
       // TODO: change yourself
-      message.error('Preview mode, unable to submit');
-      return Promise.reject('Preview mode, unable to submit');
+      message.error(window.t('common.preview-mode-tip'));
+      return Promise.reject(window.t('common.preview-mode-tip'));
     }
     await request.delete(`${baseUrl}/${get(rowData, 'id')}`);
-    message.success(`删除${baseTitle}成功`);
+    message.success(window.t('common.delete-success', { title: baseTitle }));
     this.handleSearch();
   };
 
@@ -160,10 +164,10 @@ export default class BaseList extends React.Component<IProps, IState> {
       }
     });
     let method = 'put';
-    let title = `编辑${baseTitle}成功`;
+    let title = window.t('common.update-success', { title: baseTitle });
     if (!id && showAdd && needEditInTable) {
       method = 'post';
-      title = `新增${baseTitle}成功`;
+      title = window.t('common.create-success', { title: baseTitle });
     }
     await request[method](
       baseUrl,
@@ -200,7 +204,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     const { needEditInTable, tableColumns } = this.props;
     if (needEditInTable) {
       const form = this.form as FormInstance;
-      // TODO: 通过 tableColumns 判断字段是否为时间格式，如果是，需要转换为 moment。(是否可以优化？)
+      // TODO: Judge field type is date, then transfer to moment. Can here optimizing ?
       map(rowData, (item, dataIndex) => {
         const inputType = get(keyBy(tableColumns, 'dataIndex'), `${dataIndex}.inputType`);
         if (['single_date_picker', 'single_time_picker'].indexOf(inputType) > -1) {
@@ -226,7 +230,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     if (needEditInTable) {
       const { dataSource, editKey } = this.state;
       if (!isNil(editKey)) {
-        message.error('Please save last record');
+        message.error(window.t('common.please-save-last-record-first'));
         return;
       }
       const mockKey = new Date().toString();
@@ -257,27 +261,14 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   handleFieldsChange = () => {};
 
-  // 查询组件，点击查询，由于 api 采用接口 Criteria 风格，子组件可能需要重写 handleQuerySearch
+  // if something is different, can override handleQuerySearch.
   handleQuerySearch = (data: object = {}) => {
     let queryData = {};
     map(data, (value: any, key: any) => {
-      if (typeof value === 'number') {
-        queryData = {
-          ...queryData,
-          [`${key}.equals`]: value,
-        };
-        return;
-      }
       if (!isNil(value) && !isEmpty(value)) {
-        let k = '';
-        if (key.includes('.')) {
-          k = key;
-        } else {
-          k = `${key}.contains`;
-        }
         queryData = {
           ...queryData,
-          [k]: value,
+          [key]: value,
         };
       }
     });
@@ -288,7 +279,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     const { asChildComponentQueryLabel = '', id: propsId } = this.props;
     const { defaultQuery } = this.state;
 
-    // TODO: 有可能作为页面的子组件， propsId 是 BaseList 作为子组件从 props 传入的
+    // Because base list component maybe can as a child component, so can receive id from props.
     const query: object = propsId
       ? {
           ...defaultQuery,
@@ -333,6 +324,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     );
   };
 
+  // Can override the function.
   handleRowSelected = (selectedRowKeys, selectedRows): any => {};
 
   getColumns = () => {
@@ -408,6 +400,7 @@ export default class BaseList extends React.Component<IProps, IState> {
     );
   };
 
+  // Can override the function, the function return some form item should be hidden.
   renderHiddenItem = () => <></>;
 
   /* istanbul ignore next */
@@ -445,7 +438,7 @@ export default class BaseList extends React.Component<IProps, IState> {
               needPagination && {
                 position: ['bottomCenter'],
                 total,
-                showTotal: () => `${window.t('baselist.total', { total })}`,
+                showTotal: () => `${window.t('common.total', { total })}`,
                 pageSize: get(defaultQuery, 'size'),
                 size: 'small',
                 defaultCurrent: 1,

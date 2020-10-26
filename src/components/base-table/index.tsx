@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Input,
-  Space,
-  InputNumber,
-  Table,
-  Dropdown,
-  Menu,
-  Checkbox,
-  Popover,
-  Divider,
-  Tooltip,
-  Upload,
-} from 'antd';
+import { Button, Input, Space, InputNumber, Table, Dropdown, Menu, Checkbox, Popover, Divider, Tooltip } from 'antd';
 import {
   CustomIcon,
   SearchOutlined,
@@ -20,11 +7,8 @@ import {
   SettingOutlined,
   ColumnHeightOutlined,
   FilterOutlined,
-  // ExportOutlined,
   PlusOutlined,
   ExportOutlined,
-  // DownOutlined,
-  // UpOutlined,
 } from '@/components/general-components/custom-icon';
 import { TableProps } from 'antd/lib/table';
 import { map, get, set, compact, indexOf } from 'lodash';
@@ -34,8 +18,7 @@ import { FilterDropdownProps } from 'antd/lib/table/interface';
 import { ResizableTitle } from './resizeable';
 import './index.less';
 
-// 不限定默认格子宽度
-const TABLE_CELL_WIDTH = 200;
+const DEFAULT_TABLE_CELL_WIDTH = 200;
 
 interface IProps extends TableProps<any> {
   onAdd?: () => void;
@@ -116,7 +99,7 @@ export default class BaseTable extends Component<IProps, IState> {
       ref: (node: any) => {
         this.searchInput = node;
       },
-      placeholder: `请输入${title}`,
+      placeholder: window.t('common.please-entry', { title }),
       // size: 'small',
       style: { width: 188, marginBottom: 8, display: 'block' },
       onPressEnter: () => this.handleSearch(selectedKeys, confirm, dataIndex),
@@ -147,10 +130,10 @@ export default class BaseTable extends Component<IProps, IState> {
             icon={<SearchOutlined />}
             style={{ width: 90 }}
           >
-            查询
+            {window.t('common.submit')}
           </Button>
           <Button onClick={() => this.handleReset(clearFilters)} style={{ width: 90 }}>
-            重置
+            {window.t('common.reset')}
           </Button>
         </Space>
       </div>
@@ -174,7 +157,7 @@ export default class BaseTable extends Component<IProps, IState> {
       const cellHeaderAction = {};
       if (showResize) {
         set(cellHeaderAction, 'onHeaderCell', (column) => ({
-          width: width || TABLE_CELL_WIDTH,
+          width: width || DEFAULT_TABLE_CELL_WIDTH,
           onResize: this.handleResize(index),
         }));
       }
@@ -196,17 +179,17 @@ export default class BaseTable extends Component<IProps, IState> {
         align: 'center',
         ...column,
         ...cellHeaderAction,
-        width: width || TABLE_CELL_WIDTH,
+        width: width || DEFAULT_TABLE_CELL_WIDTH,
       };
     });
   };
 
   renderAdd = () => {
-    const { onAdd, baseTitle } = this.props;
+    const { onAdd } = this.props;
     if (onAdd) {
       return (
         <Button icon={<PlusOutlined />} size="small" type="primary" onClick={onAdd}>
-          Create
+          {window.t('common.create')}
         </Button>
       );
     }
@@ -240,7 +223,6 @@ export default class BaseTable extends Component<IProps, IState> {
         queryVisible: !queryVisible,
       },
       () => {
-        // 为了刷新 ref 强制渲染
         this.forceUpdate();
       },
     );
@@ -267,12 +249,12 @@ export default class BaseTable extends Component<IProps, IState> {
   };
 
   renderTableConfig = () => {
-    const { queryVisible, size } = this.state;
+    const { size } = this.state;
 
     return (
       <div className="global-base-table_title-operations-right-config">
         <Divider type="vertical" />
-        <Tooltip title="Refresh">
+        <Tooltip title={window.t('common.refresh')}>
           <RedoOutlined
             className="global-base-table_title-operations-right-config__icon"
             onClick={() => {
@@ -285,18 +267,18 @@ export default class BaseTable extends Component<IProps, IState> {
           overlay={
             <Menu selectedKeys={[size]}>
               <Menu.Item key="small" onClick={this.updateTableSize('small')}>
-                Small
+                {window.t('common.small')}
               </Menu.Item>
               <Menu.Item key="middle" onClick={this.updateTableSize('middle')}>
-                Middle
+                {window.t('common.middle')}
               </Menu.Item>
               <Menu.Item key="default" onClick={this.updateTableSize('default')}>
-                Large
+                {window.t('common.large')}
               </Menu.Item>
             </Menu>
           }
         >
-          <Tooltip title="Padding">
+          <Tooltip title={window.t('common.padding')}>
             <ColumnHeightOutlined className="global-base-table_title-operations-right-config__icon" />
           </Tooltip>
         </Dropdown>
@@ -304,13 +286,13 @@ export default class BaseTable extends Component<IProps, IState> {
           trigger={['click']}
           overlay={
             <Menu>
-              <Menu.Item>Export Selected</Menu.Item>
-              <Menu.Item>Export Current Page</Menu.Item>
-              <Menu.Item>Export All</Menu.Item>
+              <Menu.Item>{window.t('common.export-selected')}</Menu.Item>
+              <Menu.Item>{window.t('common.export-current-page')}</Menu.Item>
+              <Menu.Item>{window.t('common.export-all')}</Menu.Item>
             </Menu>
           }
         >
-          <Tooltip title="Export">
+          <Tooltip title={window.t('common.export')}>
             <ExportOutlined className="global-base-table_title-operations-right-config__icon" />
           </Tooltip>
         </Dropdown>
@@ -319,7 +301,7 @@ export default class BaseTable extends Component<IProps, IState> {
           content={this.renderColumnsConfig()}
           trigger="click"
         >
-          <Tooltip title="Columns">
+          <Tooltip title={window.t('common.column')}>
             <SettingOutlined className="global-base-table_title-operations-right-config__icon" />
           </Tooltip>
         </Popover>
@@ -328,7 +310,7 @@ export default class BaseTable extends Component<IProps, IState> {
   };
 
   renderTitle = () => {
-    const { baseTitle, Query, showQuery, onSearch } = this.props;
+    const { Query, showQuery, onSearch } = this.props;
     const { queryVisible } = this.state;
     return (
       <div
@@ -341,7 +323,7 @@ export default class BaseTable extends Component<IProps, IState> {
           <div className="global-base-table_title-operations-left">
             {showQuery && (
               <Button type="link" size="small" icon={<FilterOutlined />} onClick={this.handleQueryClick}>
-                Filter
+                {window.t('common.filter')}
                 {queryVisible ? <CustomIcon type="icon-down" /> : <CustomIcon type="icon-right" />}
               </Button>
             )}
@@ -365,7 +347,6 @@ export default class BaseTable extends Component<IProps, IState> {
     const { columns, size } = this.state;
     const mergedColumns = this.mergedColumns(columns);
 
-    // 默认y轴滚动高度
     const thead = size === 'small' ? 31 : size === 'middle' ? 39 : 55;
     const tfoot = 48;
     const yScroll = get(containerProps, 'height') - this.queryRef?.clientHeight - thead - tfoot;

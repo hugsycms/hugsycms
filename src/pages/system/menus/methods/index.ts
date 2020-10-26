@@ -1,37 +1,38 @@
+import { formatMenu } from '@/components/selects/parent-permission-select';
 import { APP_CONFIG } from '@/lib/config/constants';
 import request from '@/lib/request';
 import { message } from 'antd';
 import { map, isEmpty, get } from 'lodash';
 
 export const getAllMenus = async () => {
-  return get(await request.get('/api/mock/permissions/all'), 'data');
+  return map(get(await request.get('/api/mock/permissions/all'), 'data'), formatMenu);
 };
 
 export const getActiveMenu = async (id) => {
-  return get(await request.get(`/api/mock/permissions/${id}`), 'data');
+  return formatMenu(get(await request.get(`/api/mock/permissions/${id}`), 'data'));
 };
 
 export const createMenu = async (data) => {
   if (APP_CONFIG.isDev) {
     // TODO: change yourself
-    message.error('Preview mode, unable to submit');
-    return Promise.reject('Preview mode, unable to submit');
+    message.error(window.t('common.preview-mode-tip'));
+    return Promise.reject(window.t('common.preview-mode-tip'));
   }
 };
 
 export const updateMenu = async (data) => {
   if (APP_CONFIG.isDev) {
     // TODO: change yourself
-    message.error('Preview mode, unable to submit');
-    return Promise.reject('Preview mode, unable to submit');
+    message.error(window.t('common.preview-mode-tip'));
+    return Promise.reject(window.t('common.preview-mode-tip'));
   }
 };
 
 export const deleteMenu = async (id) => {
   if (APP_CONFIG.isDev) {
     // TODO: change yourself
-    message.error('Preview mode, unable to submit');
-    return Promise.reject('Preview mode, unable to submit');
+    message.error(window.t('common.preview-mode-tip'));
+    return Promise.reject(window.t('common.preview-mode-tip'));
   }
 };
 

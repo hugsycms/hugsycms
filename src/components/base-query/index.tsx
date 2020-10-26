@@ -35,10 +35,10 @@ export default class BaseQuery extends DynamicForm<IProps, IState> {
     <Form.Item colon={false} label=" ">
       <>
         <Button size="small" icon={<RedoOutlined />} onClick={this.handleReset}>
-          Reset
+          {window.t('common.reset')}
         </Button>
         <Button size="small" type="primary" icon={<SearchOutlined />} htmlType="submit">
-          Submit
+          {window.t('common.submit')}
         </Button>
       </>
     </Form.Item>

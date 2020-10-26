@@ -71,7 +71,7 @@ export class RouterTabs extends React.Component<IProps> {
             this.handleClick('/');
           }}
         >
-          Dashboard
+          {window.t('menu.dashboard')}
         </Menu.Item>
         {map(get(tabs, 'tabs')?.slice(1), (tab, index) => {
           return (

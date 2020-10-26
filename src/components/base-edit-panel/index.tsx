@@ -55,10 +55,10 @@ export default class BaseEditPanel<P extends IProps> extends React.Component<IPr
     );
     if (get(values, 'id')) {
       await request.put(baseUrl as string, params);
-      message.success(`Update ${title} success`);
+      message.success(window.t('common.update-success', { title }));
     } else {
       await request.post(baseUrl as string, params);
-      message.success(`Create ${title} success`);
+      message.success(window.t('common.create-success', { title }));
     }
   };
 
