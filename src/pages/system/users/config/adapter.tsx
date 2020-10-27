@@ -22,7 +22,7 @@ export const fromApi = (item) => {
   return {
     ...item,
     createdAt: formatTimeToStandard(get(item, 'createdAt')),
-    roles: map(get(item, 'roles'), (group) => get(group, 'id')),
+    roles: map(get(item, 'roles'), (role) => get(role, 'id')),
   };
 };
 

@@ -42,6 +42,9 @@ axios.interceptors.response.use(
         return Promise.reject(error.response);
       case 400:
         return Promise.reject(error.response);
+      case 404:
+        message.error(window.t('common.not-found-tip'));
+        return Promise.reject(error.response);
       case 503:
         message.error(window.t('common.no-login-tip'));
         return Promise.reject(error.response);

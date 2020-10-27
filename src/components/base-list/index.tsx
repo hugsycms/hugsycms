@@ -87,7 +87,7 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   /* istanbul ignore next */
   actionCol = {
-    title: 'Actions',
+    title: window.t('common.action'),
     dataIndex: 'operation',
     fixed: 'right',
     width: 158,

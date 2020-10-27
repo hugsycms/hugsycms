@@ -12,8 +12,6 @@ export const initUser = (username: any) => async (dispatch: Dispatch) => {
   );
   const permissionsMapping = keyBy(
     map(concat(selfPermissions, omitRoutes), (item) => {
-      console.log(item.name);
-      console.log(window.t(item.name));
       return {
         ...item,
         name: window.t(item.name),

@@ -14,7 +14,7 @@ import MenuPermissionCard from './components/permission-card';
 export default class Roles extends BaseList {
   static defaultProps = {
     baseUrl: '/api/mock/roles/all',
-    baseTitle: 'role',
+    baseTitle: window.t('system.roles.title'),
     needPagination: false,
     showQuery: false,
     tableColumns,
@@ -22,21 +22,20 @@ export default class Roles extends BaseList {
     showAdd: false,
   };
 
-  state = {
-    dataSource: [],
-    menuDataSource: [],
-    visible: false,
-    editable: false,
-    id: undefined,
-    loading: true,
-    defaultCheckedMenu: [],
-    activeRole: {},
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...this.state,
+      menuDataSource: [],
+      defaultCheckedMenu: [],
+      activeRole: {},
+    };
+  }
 
   roleColumns = [
     ...(this.props.tableColumns as Array<any>),
     {
-      title: 'Actions',
+      title: window.t('common.action'),
       align: 'center',
       width: 156,
       render: (value: any, rowData: any) => {
@@ -48,11 +47,11 @@ export default class Roles extends BaseList {
               icon={<EditOutlined className="global-table-action-icon" />}
               onClick={this.handleEdit(rowData)}
             >
-              Edit
+              {window.t('common.edit')}
             </Button>
             <Divider type="vertical" />
             <Popconfirm
-              title={window.t('common.delete-tip', {title: this.props.baseTitle})}
+              title={window.t('common.delete-tip', { title: this.props.baseTitle })}
               onConfirm={this.handleDelete(rowData)}
             >
               <Button
@@ -61,7 +60,7 @@ export default class Roles extends BaseList {
                 size="small"
                 icon={<DeleteOutlined className="global-table-action-icon" />}
               >
-                Delete
+                {window.t('common.delete')}
               </Button>
             </Popconfirm>
           </>
@@ -71,7 +70,7 @@ export default class Roles extends BaseList {
   ];
 
   handleSearch = async () => {
-    const { baseUrl, needPagination } = this.props;
+    const { baseUrl } = this.props;
     const data = get(await request.get(baseUrl), 'data');
     const dataSource = processFromApi(data);
     this.setState({ dataSource, total: 0, loading: false });

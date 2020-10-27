@@ -87,7 +87,7 @@ export class RouterTabs extends React.Component<IProps> {
         })}
         <Menu.Divider />
         <Menu.Item key="close" onClick={this.handleCloseAllTab}>
-          Close All
+          {window.t('common.close-all')}
         </Menu.Item>
       </Menu>
     );

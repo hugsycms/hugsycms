@@ -9,46 +9,47 @@ export const modalFormDescriptions = {
   },
   username: {
     key: 'username',
-    label: window.t('system.user.username'),
+    label: window.t('system.users.username'),
     rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: window.t('system.user.username-placeholder'),
+      placeholder: window.t('system.users.username-placeholder'),
     },
   },
   password: {
     key: 'password',
-    label: 'Password',
+    label: window.t('system.users.password'),
+    rules: [{ required: true }],
     inputType: 'password',
     inputProps: {
-      placeholder: 'Please enter password',
+      placeholder: window.t('system.users.password-placeholder'),
     },
   },
   nickname: {
     key: 'nickname',
-    label: window.t('system.user.nickname'),
+    label: window.t('system.users.nickname'),
     rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: window.t('system.user.nickname-placeholder'),
+      placeholder: window.t('system.users.nickname-placeholder'),
     },
   },
   email: {
     key: 'email',
-    label: 'Email',
+    label: window.t('system.users.email'),
     inputType: 'input',
     rules: [{ required: true }],
     inputProps: {
-      placeholder: 'Please enter email',
+      placeholder: window.t('system.users.email-placeholder'),
     },
   },
   roles: {
     key: 'roles',
-    label: 'Role',
+    label: window.t('system.users.roles'),
     rules: [{ required: true }],
     inputType: 'roles',
     inputProps: {
-      placeholder: 'Please enter role',
+      placeholder: window.t('system.users.roles-placeholder'),
     },
   },
 };
@@ -56,11 +57,11 @@ export const modalFormDescriptions = {
 export const resetFormDescriptions = {
   password: {
     key: 'password',
-    label: 'Password',
+    label: window.t('system.users.password'),
     inputType: 'password',
     rules: [{ required: true }],
     inputProps: {
-      placeholder: 'Please enter password',
+      placeholder: window.t('system.users.password-placeholder'),
     },
   },
 };
@@ -68,11 +69,11 @@ export const resetFormDescriptions = {
 export const queryFormDescriptions = {
   username: {
     key: 'username',
-    label: window.t('system.user.username'),
+    label: window.t('system.users.username'),
   },
   nickname: {
     key: 'nickname',
-    label: window.t('system.user.nickname'),
+    label: window.t('system.users.nickname'),
   },
 };
 

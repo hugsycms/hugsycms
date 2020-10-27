@@ -4,8 +4,8 @@ import { toApi, fromApi } from '../config/adapter';
 
 export default generateModalForm({
   formDescriptions,
-  url: '/api/users',
-  title: 'user',
+  url: '/api/mock/users',
+  title: window.t('system.users.title'),
   toApi,
   fromApi,
 });

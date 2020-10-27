@@ -9,20 +9,20 @@ export const modalFormDescriptions = {
   },
   name: {
     key: 'name',
-    label: 'Category name',
-    rules: [{ required: true, message: 'Please entry category name' }],
+    label: window.t('category.name'),
+    rules: [{ required: true, message: window.t('category.name-placeholder') }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please entry category name',
+      placeholder: window.t('category.name-placeholder'),
     },
   },
   sort: {
     key: 'sort',
-    label: 'Sort',
+    label: window.t('common.sort'),
     rules: [{ required: true }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please entry category sort',
+      placeholder: window.t('common.sort-placeholder'),
     },
   },
 };
@@ -30,7 +30,7 @@ export const modalFormDescriptions = {
 export const queryFormDescriptions = {
   name: {
     key: 'name',
-    label: 'Name',
+    label: window.t('category.name'),
   },
 };
 

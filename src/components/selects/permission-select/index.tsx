@@ -2,6 +2,7 @@ import React from 'react';
 import { Tree } from 'antd';
 import { map, isEmpty, get, concat, filter, compact, keys, keyBy, cloneDeep, indexOf } from 'lodash';
 import request from '@/lib/request';
+import { formatMenu } from '../parent-permission-select';
 
 export default class PermissionSelect extends React.Component {
   state = {
@@ -12,7 +13,7 @@ export default class PermissionSelect extends React.Component {
 
   async componentDidMount() {
     const { value } = this.props;
-    const nativePermissions = get(await request.get('/api/mock/permissions/all'), 'data');
+    const nativePermissions = map(get(await request.get('/api/mock/permissions/all'), 'data'), formatMenu);
     const treeData = this.transferMenus(cloneDeep(nativePermissions));
     const baseOmitKeys: any[] = this.getIsNotSelectedParentKeys(nativePermissions, value);
     const omitKeys = this.omitKeysByBaseKeys(baseOmitKeys, nativePermissions);
@@ -43,7 +44,7 @@ export default class PermissionSelect extends React.Component {
     return temp;
   };
 
-  // TODO: 目前仅过滤两层，是否可以递归？
+  // TODO: At present, there are only two filtering layers. Can recursion be used?
   omitKeysByBaseKeys = (baseKeys: any[], nativePermissions: any) => {
     const nativePermissionsMapping = keyBy(nativePermissions, 'id');
     map(baseKeys, (key) => {
@@ -100,6 +101,6 @@ export default class PermissionSelect extends React.Component {
         />
       );
     }
-    return <span>loading...</span>;
+    return <span>{window.t('common.loading')}...</span>;
   }
 }

@@ -9,29 +9,29 @@ export const modalFormDescriptions = {
   },
   name: {
     key: 'name',
-    label: 'Role name',
-    rules: [{ required: true }],
+    label: window.t('system.roles.name'),
+    rules: [{ required: true, message: window.t('system.roles.name') }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please entry role name',
+      placeholder: window.t('system.roles.name'),
     },
   },
   code: {
     key: 'code',
-    label: 'Role code',
-    rules: [{ required: true }],
+    label: window.t('system.roles.code'),
+    rules: [{ required: true, message: window.t('system.roles.code') }],
     inputType: 'input',
     inputProps: {
-      placeholder: 'Please entry role code',
+      placeholder: window.t('system.roles.code'),
     },
   },
   description: {
     key: 'description',
-    label: 'Role description',
-    rules: [{ required: true }],
+    label: window.t('system.roles.description'),
+    rules: [{ required: true, message: window.t('system.roles.description') }],
     inputType: 'text_area',
     inputProps: {
-      placeholder: 'Please entry role description',
+      placeholder: window.t('system.roles.description'),
     },
   },
 };

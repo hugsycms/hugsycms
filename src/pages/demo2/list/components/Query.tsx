@@ -9,6 +9,6 @@ export default class Query extends BaseQuery {
   });
 
   renderContent = () => {
-    return <>{this.renderEditItem('name', <Input placeholder="请输入名称" />)}</>;
+    return <>{this.renderEditItem('name', <Input placeholder={window.t('tag.name-placeholder')} />)}</>;
   };
 }

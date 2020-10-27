@@ -29,7 +29,7 @@ export default (props: any) => {
       const newMenus = transferMenus(
         map(get(await request.get('/api/mock/permissions/all?type.equals=menu'), 'data'), formatMenu),
       );
-      setMenus([{ id: 0, value: 0, title: window.t('common.no-paraents-tip'), children: newMenus }]);
+      setMenus([{ id: 0, value: 0, title: window.t('common.no-parents-tip'), children: newMenus }]);
     })();
   }, []);
 

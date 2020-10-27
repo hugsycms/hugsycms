@@ -31,10 +31,10 @@ export default class MenuPermissionCard extends React.PureComponent<IProps> {
       <div className="role-permission-card">
         <Card
           size="small"
-          title="Pemissions"
+          title={window.t('system.roles.permission')}
           extra={
             <Button size="small" type="primary" onClick={this.handleSaveMenu} disabled={isEmpty(role)}>
-              Save
+              {window.t('common.save')}
             </Button>
           }
         >

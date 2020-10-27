@@ -5,7 +5,7 @@ import BaseList from '@/components/base-list';
 export default class List extends BaseList {
   static defaultProps = {
     baseUrl: '/api/mock/tags',
-    baseTitle: 'tags',
+    baseTitle: window.t('tag.base-title'),
     needPagination: true,
     needEditInTable: true,
     showAction: true,

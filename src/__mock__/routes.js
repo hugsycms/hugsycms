@@ -186,6 +186,21 @@ router.get('/api/mock/users', (ctx) => {
   });
 });
 
+router.get('/api/mock/users/:username', (ctx) => {
+  const data = Mock.mock({
+    id: 1,
+    'username|1': Mock.mock('@word'),
+    'nickname|1': Mock.mock('@name'),
+    'email|1': Mock.mock('@email'),
+    'avatar|1': Mock.Random.image('30x30'),
+    'activated|boolean': true,
+    'createdBy|1': Mock.mock('@name'),
+    'createdAt|1': Mock.mock('@date'),
+    roles: roles,
+  });
+  ctx.body = result.ok(data);
+});
+
 router.get('/api/mock/permissions/all', (ctx) => {
   let data = permissions;
   if (ctx.query.type === 'menu') {

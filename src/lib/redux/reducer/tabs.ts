@@ -1,12 +1,12 @@
 import { REDUX_CONFIG } from '@/lib/config/constants';
-import { get, map, keyBy, compact, last } from 'lodash';
+import { get, map, keyBy, compact, last, set } from 'lodash';
 import { TabIProps } from '@/components/layout/components/tab-button';
 
 const initState = {
   activeKey: '/',
   tabs: [
     {
-      title: 'Dashboard',
+      title: 'menu.dashboard',
       key: '/',
       path: '/',
       search: '',
@@ -16,7 +16,7 @@ const initState = {
   ],
   tabsMapping: {
     '/': {
-      title: 'Dashboard',
+      title: 'menu.dashboard',
       key: '/',
       path: '/',
       search: '',
@@ -30,9 +30,10 @@ export default (state = initState, action: any) => {
   let newTabs = get(state, 'tabs') as any[];
   let newTabsMapping = get(state, 'tabsMapping') as any;
   let tab: TabIProps;
-  // 新增 TAB
+  // add tab
   switch (action.type) {
     case REDUX_CONFIG.ADD_TAB:
+      set(newTabs, '0.title', window.t('menu.dashboard'));
       tab = get(action, 'payload.data') as TabIProps;
       if (get(newTabsMapping, tab.key)) {
         newTabs = map(newTabs, (item: TabIProps) => {
@@ -54,7 +55,7 @@ export default (state = initState, action: any) => {
         tabs: newTabs,
         tabsMapping: newTabsMapping,
       };
-    // 删除 TAB
+    // delete tab
     case REDUX_CONFIG.DELETE_TAB:
       const key = get(action, 'payload.data.key');
       newTabs = compact(
@@ -72,13 +73,13 @@ export default (state = initState, action: any) => {
         tabs: newTabs,
         tabsMapping: newTabsMapping,
       };
-    // 关闭所有 TAB
+    // close all tab
     case REDUX_CONFIG.DELETE_ALL_TAB:
       return {
         activeKey: '/',
         tabs: [
           {
-            title: 'Dashboard',
+            title: 'menu.dashboard',
             key: '/',
             path: '/',
             search: '',
@@ -88,7 +89,7 @@ export default (state = initState, action: any) => {
         ],
         tabsMapping: {
           '/': {
-            title: 'Dashboard',
+            title: 'menu.dashboard',
             key: '/',
             path: '/',
             search: '',

@@ -72,7 +72,7 @@ export default class List extends Component {
   renderPermissionDetail = () => {
     const { activeMenu } = this.state;
     return (
-      <Card title="Permission Detail" size="small" bordered={false}>
+      <Card title={window.t('system.menu.permission-detail')} size="small" bordered={false}>
         <Form
           className="menus-list-detail"
           ref={(refNode) => {
@@ -84,31 +84,30 @@ export default class List extends Component {
         >
           {!isNil(activeMenu) ? (
             <>
-              <Form.Item name="id" label="Menu ID">
+              <Form.Item name="id" label={window.t('system.menu.permission-id')}>
                 <Input disabled />
               </Form.Item>
-              <Form.Item name="parentid" label="Paraent">
+              <Form.Item name="parentid" label={window.t('system.menu.permission-parent')}>
                 <ParentPermissionSelect />
               </Form.Item>
-              <Form.Item name="name" label="Name">
+              <Form.Item name="name" label={window.t('system.menu.permission-name')}>
                 <Input />
               </Form.Item>
-              <Form.Item name="type" label="Type">
+              <Form.Item name="type" label={window.t('system.menu.permission-type')}>
                 <PermissionTypeSelect />
               </Form.Item>
-              <Form.Item name="key" label="Path">
+              <Form.Item name="key" label={window.t('system.menu.permission-path')}>
                 <Input />
               </Form.Item>
-              <Form.Item name="icon" label="Icon">
-                {/* <Input addonBefore={<CustomIcon type={this.form.getFieldValue('icon')} />} /> */}
+              <Form.Item name="icon" label={window.t('system.menu.permission-icon')}>
                 <IconSelect />
               </Form.Item>
-              <Form.Item name="sort" label="Sort">
+              <Form.Item name="sort" label={window.t('system.menu.permission-sort')}>
                 <InputNumber />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Save
+                  {window.t('common.save')}
                 </Button>
                 <Popconfirm
                   title="Are you sure delete the menu?"
@@ -121,13 +120,13 @@ export default class List extends Component {
                     danger
                     disabled={isNil(activeMenu) || isEmpty(activeMenu)}
                   >
-                    Delete
+                    {window.t('common.delete')}
                   </Button>
                 </Popconfirm>
               </Form.Item>
             </>
           ) : (
-            <p>Please choose a menu in right</p>
+            <p>{window.t('system.menu.choose-tip')}</p>
           )}
         </Form>
       </Card>
@@ -140,11 +139,11 @@ export default class List extends Component {
       <Row gutter={[8, 0]} className="menus-list">
         <Col span={8}>
           <Card
-            title="Permission List"
+            title={window.t('system.menu.permission-list')}
             size="small"
             extra={
               <Button icon={<PlusOutlined />} size="small" type="primary" onClick={this.handleAddMenu}>
-                Create
+                {window.t('common.create')}
               </Button>
             }
             bordered={false}

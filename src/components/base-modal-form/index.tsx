@@ -1,10 +1,11 @@
 import React from 'react';
 import { Form, Modal, message } from 'antd';
-import { get, isFunction } from 'lodash';
+import { isFunction } from 'lodash';
 import DynamicForm from '@/components/base-modal-form/dynamic-form';
 import request from '@/lib/request';
 import FormSection from './form-section';
 import { APP_CONFIG } from '@/lib/config/constants';
+import { getDataDetail } from '../base-list/methods';
 
 export default ({
   formDescriptions,
@@ -37,9 +38,8 @@ export default ({
       setTimeout(async () => {
         this.form = this.formRef.current;
         if (id) {
-          const values = isFunction(fromApi)
-            ? fromApi(get(await request.get(`${url}/${primaryKey || id}`), 'data'))
-            : get(await request.get(`${url}/${primaryKey || id}`), 'data');
+          const values = await getDataDetail(`${url}/${primaryKey || id}`, fromApi);
+          console.log(values);
           this.form.setFieldsValue(values);
           this.setState({ data: values });
         }

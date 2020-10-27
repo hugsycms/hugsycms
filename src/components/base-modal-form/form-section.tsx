@@ -60,9 +60,7 @@ export class FormSection extends React.Component<IProps> {
 
     switch (inputType) {
       case 'id':
-        return <span></span>;
-      case 'subdevice_id':
-        return id && renderEditItem(formDescriptionKey, <Input {...formDescriptionInputProps} />);
+        return renderEditItem(formDescriptionKey, <Input {...formDescriptionInputProps} />);
       case 'radio':
         return renderEditItem(
           formDescriptionKey,
@@ -164,13 +162,7 @@ export class FormSection extends React.Component<IProps> {
       case 'roles':
         return renderEditItem(
           formDescriptionKey,
-          <DataSelect
-            url="roles/all"
-            valueKey="id"
-            labelKey="nickname"
-            mode="multiple"
-            {...formDescriptionInputProps}
-          />,
+          <DataSelect url="roles/all" valueKey="id" labelKey="name" mode="multiple" {...formDescriptionInputProps} />,
           {
             customFormItemLayout,
             styles,

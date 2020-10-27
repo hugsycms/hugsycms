@@ -9,23 +9,23 @@ export const tableColumns = [
     width: APP_CONFIG.CELL_WIDTH_SMALL,
   },
   {
-    title: 'Category name',
+    title: window.t('category.name'),
     dataIndex: 'name',
     editable: true,
   },
   {
-    title: 'Sort',
+    title: window.t('common.sort'),
     dataIndex: 'sort',
     editable: true,
   },
   {
-    title: 'Created at',
+    title: window.t('common.created-at'),
     dataIndex: 'createdAt',
     width: APP_CONFIG.CELL_WIDTH_LARGE,
     render: (value: string) => formatTimeToStandard(value),
   },
   {
-    title: 'Created by',
+    title: window.t('common.created-by'),
     dataIndex: 'createdBy',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },

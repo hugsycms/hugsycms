@@ -1,7 +1,7 @@
 export const queryFormDescriptions = {
   name: {
     key: 'name',
-    label: 'Name',
+    label: window.t('tag.name'),
   },
 };
 

@@ -10,12 +10,12 @@ export const tableColumns = [
     width: APP_CONFIG.CELL_WIDTH_SMALL,
   },
   {
-    title: 'Username',
+    title: window.t('system.users.username'),
     dataIndex: 'username',
     width: APP_CONFIG.CELL_WIDTH_SMALL,
   },
   {
-    title: 'Avatar',
+    title: window.t('system.users.avatar'),
     dataIndex: 'avatar',
     key: 'avatar',
     width: APP_CONFIG.CELL_WIDTH_SMALL,
@@ -24,28 +24,28 @@ export const tableColumns = [
     },
   },
   {
-    title: 'Nickname',
+    title: window.t('system.users.nickname'),
     dataIndex: 'nickname',
     width: APP_CONFIG.CELL_WIDTH_LARGE,
   },
   {
-    title: 'Email',
+    title: window.t('system.users.email'),
     dataIndex: 'email',
     key: 'email',
   },
   {
-    title: 'Roles',
+    title: window.t('system.users.roles'),
     dataIndex: 'roleString',
     width: APP_CONFIG.CELL_WIDTH_LARGE,
   },
   {
-    title: 'Created at',
+    title: window.t('common.created-at'),
     dataIndex: 'createdAt',
     width: APP_CONFIG.CELL_WIDTH_LARGE,
     render: (value: string) => formatTimeToStandard(value),
   },
   {
-    title: 'Created by',
+    title: window.t('common.created-by'),
     dataIndex: 'createdBy',
     width: APP_CONFIG.CELL_WIDTH_MIDDLE,
   },

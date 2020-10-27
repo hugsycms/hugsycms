@@ -9,6 +9,6 @@ export default class Query extends BaseQuery {
   });
 
   renderContent = () => {
-    return <>{this.renderEditItem('title', <Input size="small" placeholder="please entry title" />)}</>;
+    return <>{this.renderEditItem('title', <Input size="small" placeholder={window.t('article.title')} />)}</>;
   };
 }

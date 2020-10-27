@@ -13,11 +13,11 @@ export default class Query extends BaseQuery {
       <>
         {this.renderEditItem(
           'username',
-          <Input size="small" placeholder={window.t('system.user.username-placeholder')} />,
+          <Input size="small" placeholder={window.t('system.users.username-placeholder')} />,
         )}
         {this.renderEditItem(
           'nickname',
-          <Input size="small" placeholder={window.t('system.user.nickname-placeholder')} />,
+          <Input size="small" placeholder={window.t('system.users.nickname-placeholder')} />,
         )}
       </>
     );
