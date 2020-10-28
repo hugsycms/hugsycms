@@ -43,6 +43,10 @@
   "common.created-by": "创建者",
   "common.sort": "排序值",
   "common.sort-placeholder": "请输入排序值",
+  "common.theme.dark": "暗黑模式",
+  "common.theme.default": "默认模式",
+  "common.change-password": "修改密码",
+  "common.logout": "退出登录",
 
   "components.permission-type-select.placeholder": "请选择类型",
   "components.permission-type-select.menu": "菜单",
@@ -65,8 +69,11 @@
 
   "system.roles.permission": "权限",
   "system.roles.name": "角色名称",
+  "system.roles.name-placeholder": "请输入角色名称",
   "system.roles.code": "角色代码",
+  "system.roles.code-placeholder": "请输入角色代码",
   "system.roles.description": "角色描述",
+  "system.roles.description-placeholder": "请输入角色描述",
   "system.roles.title": "角色",
 
   "system.menu.permission-list": "权限列表",

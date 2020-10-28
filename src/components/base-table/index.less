@@ -1,18 +1,6 @@
 @import '../../assets/less/variables.less';
 
 .global-base-table {
-  background: #ffffff;
-  // .ant-spin-nested-loading,
-  // .ant-spin-container {
-  //   height: 100%;
-  //   .ant-table {
-  //     padding-bottom: 4px;
-  //     .ant-table-container,
-  //     .ant-table-body {
-  //       height: 100%;
-  //     }
-  //   }
-  // }
   .ant-spin-container .ant-table-bordered .ant-table-container {
     margin: 0 8px;
     border: 1px solid @normal-border-color;
@@ -21,13 +9,6 @@
   .ant-table-thead > tr > th {
     background-color: @global-base-table-thead-bg-color;
     font-weight: 500;
-    .suffix {
-      margin-left: 4px;
-      font-weight: 400;
-      font-size: 12px;
-      font-style: normal;
-      color: @text-color-secondary;
-    }
   }
   .ant-table-thead {
     .ant-table-cell {
@@ -43,11 +24,11 @@
   }
 
   tbody {
-    & > tr:hover {
-      td {
-        background-color: #e6f6ff !important;
-      }
-    }
+    // & > tr:hover {
+    //   td {
+    //     background-color: #e6f6ff !important;
+    //   }
+    // }
 
     // & > tr:nth-child(odd) {
     //   td {
@@ -74,7 +55,7 @@
   }
 
   &_title {
-    background: #ffffff;
+    background: @table-header-bg;
   }
 
   &_title-operations {

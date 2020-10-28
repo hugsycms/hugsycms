@@ -40,11 +40,11 @@ body {
     height: 33px;
     line-height: 33px;
     padding: 0;
-    background-color: #ffffff;
+    background-color: @background-color-base;
     text-align: center;
     font-size: 12px;
     color: #999;
-    border: 1px solid #eee;
+    // border: 1px solid #eee;
     z-index: 999;
     // box-shadow: 0px -1px 0px 0px #eee;
   }
@@ -76,6 +76,12 @@ body {
 }
 
 .ant-table-container {
+  .ant-table-cell-fix-right-first::after,
+  .ant-table-cell-fix-right-last::after,
+  .ant-table-cell-fix-left-first::after,
+  .ant-table-cell-fix-left-last::after {
+    box-shadow: none;
+  }
   &::before,
   &::after {
     box-shadow: inset 5px 0 5px -5px rgba(0, 0, 0, 0.1) !important;
@@ -124,7 +130,7 @@ body {
 
 /*滚动条凹槽的颜色，还可以设置边框属性 */
 *::-webkit-scrollbar-track-piece {
-  background-color: #f8f8f8;
+  background-color: @global-scrollbar-piece-bg-color;
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
   border-radius: 2em;
@@ -136,7 +142,7 @@ body {
 }
 /*滚动条的设置*/
 *::-webkit-scrollbar-thumb {
-  background-color: #dddddd;
+  background-color: @global-scrollbar-thumb-bg-color;
   background-clip: padding-box;
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
@@ -144,5 +150,9 @@ body {
 }
 /*滚动条鼠标移上去*/
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
+  background-color: @global-scrollbar-thumb-hover-bg-color;
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: @global-scrollbar-piece-bg-color;
 }

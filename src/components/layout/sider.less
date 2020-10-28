@@ -3,161 +3,40 @@
 .global-container-layout_sider {
   overflow: hidden;
   z-index: 999;
-  // border-right: 1px solid #eee;
-  // box-shadow: 1px 1px 2px rgba(0, 21, 41, 0.125);
-
-  // .ant-layout-sider-children {
-  //   overflow-x: hidden;
-  //   overflow-y: auto;
-  //   background-color: @layout-sider-background;
-  //   position: relative;
-  //   padding-bottom: 32px;
-
-  //   .sider-footer {
-  //     position: absolute;
-  //     width: 100%;
-  //     left: 0;
-  //     bottom: 0;
-  //     height: 32px;
-  //     line-height: 32px;
-  //     text-align: center;
-  //     border-top: 1px solid #eee;
-  //     background-color: #fff;
-  //     font-size: 12px;
-  //     color: @text-color-secondary;
-  //   }
-  // }
-
-  // .ant-menu-root {
-  //   height: 100%;
-  //   border-right: none;
-  //   color: @global-container-layout-sider-color !important;
-
-  //   .ant-menu-item,
-  //   .ant-menu-submenu-title {
-  //     height: @menu-one-level-height;
-  //     line-height: @menu-one-level-height;
-  //     &:hover {
-  //       color: @global-container-layout-sider-hover-text-color;
-  //       font-weight: bold;
-  //     }
-  //   }
-
-  //   .ant-menu-submenu .ant-menu-sub .ant-menu-item {
-  //     height: @menu-item-height;
-  //   }
-  // }
+  background: @layout-sider-background;
+  .ant-menu {
+    .ant-menu-sub {
+      background: @layout-sider-sub-background;
+    }
+    .ant-menu-item:active,
+    .ant-menu-submenu-title:active {
+      background: @layout-sider-background;
+    }
+    background: @layout-sider-background;
+    color: @global-container-layout-header-name-color;
+    border-right: 0;
+    .ant-menu-item-selected {
+      background: @global-container-layout-sider-item-selected-bg-color;
+      color: @global-container-layout-sider-item-selected-color;
+    }
+    .ant-menu-submenu-title {
+      .ant-menu-submenu-arrow {
+        &::before,
+        &::after {
+          background: @global-container-layout-sider-item-selected-color;
+        }
+      }
+      &:hover {
+        .ant-menu-submenu-arrow {
+          &::before,
+          &::after {
+            background: @primary-color;
+          }
+        }
+      }
+    }
+  }
 }
-
-// .ant-menu {
-//   color: @global-container-layout-sider-color;
-//   background: @layout-sider-background;
-
-//   .ant-menu-submenu {
-//     margin-top: -4px;
-//     margin-bottom: -4px;
-
-//     & > .ant-menu {
-//       background: @layout-sider-background;
-//     }
-//   }
-//   .ant-menu-item,
-//   .ant-menu-submenu-title {
-//     display: flex;
-//     align-items: center;
-//     .anticon {
-//       font-size: @menu-icon-size !important;
-//       line-height: 0 !important;
-//     }
-
-//     &:hover {
-//       color: @global-container-layout-sider-hover-text-color;
-//       background-color: @global-container-layout-sider-hover-bg-color;
-//       font-weight: bold;
-//       .anticon {
-//         color: @global-container-layout-sider-hover-text-color !important;
-//       }
-//     }
-//   }
-//   .ant-menu-submenu-selected > .ant-menu-submenu-title {
-//     &:hover {
-//       .anticon {
-//         color: @global-container-layout-sider-hover-text-color !important;
-//       }
-//     }
-//   }
-
-//   .ant-menu-item-selected {
-//     color: @global-container-layout-sider-item-selected-color !important;
-//     .anticon {
-//       color: @global-container-layout-sider-item-selected-color !important;
-//     }
-//     &:hover {
-//       color: @global-container-layout-sider-item-selected-color !important;
-//       .anticon {
-//         color: @global-container-layout-sider-item-selected-color !important;
-//       }
-//     }
-//   }
-
-//   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected,
-//   .ant-menu-item-selected {
-//     font-weight: 600;
-//   }
-
-//   .ant-menu-item-selected {
-//     background-color: @global-container-layout-sider-item-selected-bg-color !important;
-//     &:hover {
-//       color: @global-container-layout-sider-item-selected-color !important;
-//     }
-//     .ant-menu-submenu-title {
-//       color: @global-container-layout-sider-item-selected-color !important;
-//       font-weight: 600;
-//     }
-//   }
-
-//   .ant-menu-submenu-selected {
-//     background-color: transparent !important;
-//     color: @primary-color !important;
-//   }
-
-//   .sider-toggle {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 10px;
-//     height: 56px;
-//     cursor: pointer;
-//     z-index: 9;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     // background-color: #ff0000;
-//     color: @global-container-layout-sider-color !important;
-//     font-size: 12px;
-
-//     &:hover {
-//       color: @global-container-layout-sider-hover-text-color !important;
-//     }
-//   }
-//   .sider-toggle-collapsed {
-//     left: 40px;
-//   }
-//   .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before {
-//     background-image: linear-gradient(
-//       to right,
-//       @global-container-layout-sider-color,
-//       @global-container-layout-sider-color
-//     );
-//   }
-//   .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
-//     background-image: linear-gradient(
-//       to right,
-//       @global-container-layout-sider-color,
-//       @global-container-layout-sider-color
-//     );
-//   }
-// }
 
 .custom-scrollbar {
   overflow-x: hidden !important;

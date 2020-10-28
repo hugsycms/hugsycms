@@ -41,8 +41,12 @@
   "common.action": "Actions",
   "common.created-at": "Created at",
   "common.created-by": "Created by",
-  "common.sort": "排序值",
-  "common.sort-placeholder": "请输入排序值",
+  "common.sort": "Sort",
+  "common.sort-placeholder": "Please entry sort",
+  "common.theme.dark": "Dark",
+  "common.theme.default": "Default",
+  "common.change-password": "Change Password",
+  "common.logout": "Logout",
 
   "components.permission-type-select.placeholder": "please select type",
   "components.permission-type-select.menu": "Menu",
@@ -65,7 +69,10 @@
 
   "system.roles.permission": "Permission",
   "system.roles.name": "Name",
+  "system.roles.name-placeholder": "Please entry role name",
   "system.roles.code": "Code",
+  "system.roles.code-placeholder": "Please entry code",
+  "system.roles.description-placeholder": "Please entry description",
   "system.roles.description": "Description",
   "system.roles.title": "Roles",
 
@@ -88,7 +95,7 @@
   "login.please-entry-username": "Please entry username",
   "login.please-entry-password": "Please entry password",
 
-  "menu.dashboard": "dashboard",
+  "menu.dashboard": "Dashboard",
   "menu.503": "system error",
   "menu.system": "System",
   "menu.system.users": "Users",

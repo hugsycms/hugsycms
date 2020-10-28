@@ -56,7 +56,6 @@ export default class ExtendsForm extends DynamicForm {
     let method = '';
 
     await this.form.validateFields();
-    // console.log(this.form.getFieldsValue());return;
     const values = isFunction(toApi)
       ? toApi({ ...data, ...this.form.getFieldsValue(), id })
       : { ...data, ...this.form.getFieldsValue(), id };

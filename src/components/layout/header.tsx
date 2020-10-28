@@ -7,7 +7,7 @@ import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogout } from './reducer';
 import ResetPasswordModal from './components/reset-password-modal';
 import CustomSpin from '../general-components/custom-spin';
-import light from '@/assets/less/light';
+// import light from '@/assets/less/light';
 import dark from '@/assets/less/dark';
 import { width } from './sider';
 import './header.less';
@@ -111,9 +111,8 @@ export default class Header extends Component<IProps> {
                           onChange={this.handleChangeTheme}
                           value={theme}
                         >
-                          <Select.Option value="default">默认主题</Select.Option>
-                          <Select.Option value="light">暖色主题</Select.Option>
-                          {/* <Select.Option value="dark">黑色主题</Select.Option> */}
+                          <Select.Option value="default">{window.t('common.theme.default')}</Select.Option>
+                          <Select.Option value="dark">{window.t('common.theme.dark')}</Select.Option>
                         </Select>
                       </Menu.Item>
                       <Menu.Item>
@@ -136,10 +135,10 @@ export default class Header extends Component<IProps> {
                           });
                         }}
                       >
-                        修改密码
+                        {window.t('common.change-password')}
                       </Menu.Item>
                       <Menu.Divider />
-                      <Menu.Item onClick={this.handleLogout}>退出登录</Menu.Item>
+                      <Menu.Item onClick={this.handleLogout}>{window.t('common.logout')}</Menu.Item>
                     </Menu>
                   }
                   trigger={['click']}
