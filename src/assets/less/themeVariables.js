@@ -740,4 +740,10 @@ module.exports = [
   '@tab-btn-active-color',
   '@router-tabs-overlay-border-color',
   '@router-tabs-separator-bg-color',
+  'tab-btn-active-boder-bottom-color',
+  '@global-scrollbar-piece-bg-color',
+  '@global-scrollbar-thumb-bg-color',
+  '@global-scrollbar-thumb-hover-bg-color',
+  '@layout-sider-sub-background',
+  '@tab-btn-active-boder-bottom-color'
 ];
