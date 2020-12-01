@@ -4,3 +4,4 @@ interface Window {
 }
 
 declare module 'query-string';
+declare module 'quill-image-resize-module';

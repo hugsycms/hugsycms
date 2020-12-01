@@ -83,12 +83,12 @@ export default class MobileEditor extends Component {
     const { value } = this.state;
 
     return (
-      <div className="mobile-editor">
+      <div className="editor">
         <ReactQuill
           ref={(ref) => {
             this.quillRef = ref;
           }}
-          className="mobile-editor_quill"
+          className="editor_quill"
           theme="snow"
           modules={modules}
           defaultValue={value}

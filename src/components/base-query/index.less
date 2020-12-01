@@ -1,75 +1,24 @@
 @import '../../assets/less/variables.less';
 
-.input-cover-md {
-  font-size: 14px;
-  // font-weight: 600;
-  color: @text-color;
-}
-
-.input-cover-defalut {
-  font-size: 14px;
-  // font-weight: 400;
-  color: @text-color;
-}
-
-@media (max-width: 1366px) {
-  .input-cover {
-    font-size: 14px;
-    // font-weight: 400;
-    color: @text-color;
-  }
-}
-
 .global-query-form {
   width: 100%;
   background-color: @global-query-form-bg-color;
-  
   .ant-form-inline {
-    transition: all .3s;
+    transition: all 0.3s;
   }
-
   .ant-form-item {
     margin-bottom: 8px;
-
     .ant-form-item-label {
       min-width: 85px;
-
-      label {
-        @media (min-width: 1367px) {
-          .input-cover-md;
-        }
-
-        @media (max-width: 1366px) {
-          .input-cover-defalut;
-        }
-      }
     }
-
     .ant-form-item-control {
       .ant-form-item-explain {
         display: none;
       }
-
-      input,
-      textarea,
-      .ant-select-selection-item,
-      .ant-cascader-picker-label,
-      .ant-radio-wrapper,
-      .ant-checkbox-wrapper {
-        @media (min-width: 1367px) {
-          .input-cover-md;
-        }
-
-        @media (max-width: 1366px) {
-          .input-cover-defalut;
-        }
-      }
     }
   }
-
   button {
     margin-right: 12px;
-
     span:not(.anticon) {
       margin-left: 4px;
     }

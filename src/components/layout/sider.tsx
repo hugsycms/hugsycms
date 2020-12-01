@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Layout } from 'antd';
 import { UnorderedListOutlined, CustomIcon } from '@/components/general-components/custom-icon';
-import { map, get, isEmpty, concat, filter, sortBy, keyBy } from 'lodash';
+import { map, get, isEmpty, concat, filter, sortBy, keyBy, debounce } from 'lodash';
 import { omitRoutes } from '@/lib/routes';
 import { updateTabs } from '@/lib/redux/action/tabs';
 import { connect } from 'react-redux';
@@ -11,14 +11,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 
 export const collapsedWidth = 61;
 export const width = 228;
-
-const debounce = (fn, ms = 0) => {
-  let timeoutId;
-  return function wrapper(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), ms);
-  };
-};
 
 interface IProps {
   collapsed: boolean;
@@ -130,18 +122,14 @@ export class Sider extends React.Component<IProps> {
     });
   };
 
-  handleSync = debounce((ps) => {
-    ps.update();
-  }, 600);
-
   render() {
     const { activeKey, openKeys } = this.state;
-    const { collapsed, onToggle, tabs, user } = this.props;
+    const { collapsed, onToggle } = this.props;
     const menusPermissions = this.getMenus();
     return (
       <Layout.Sider
         collapsible
-        theme="light"
+        theme="dark"
         breakpoint="lg"
         collapsed={!collapsed}
         trigger={null}
@@ -151,18 +139,23 @@ export class Sider extends React.Component<IProps> {
         onBreakpoint={onToggle}
       >
         <>
-          <PerfectScrollbar className="custom-scrollbar" options={{ suppressScrollX: true }} onSync={this.handleSync}>
+          <PerfectScrollbar
+            className="custom-scrollbar"
+            options={{ suppressScrollX: true }}
+            onSync={debounce((ps) => {
+              ps.update();
+            }, 600)}
+          >
             <Menu
               theme="light"
               mode="inline"
               selectedKeys={[activeKey]}
-              // openKeys={openKeys}
+              openKeys={openKeys}
               onOpenChange={this.handleOpenChange}
             >
               {this.renderMenu(menusPermissions)}
             </Menu>
           </PerfectScrollbar>
-          {/* <footer className="sider-footer">{APP_CONFIG.COPYRIGHT}</footer> */}
         </>
       </Layout.Sider>
     );

@@ -5,6 +5,12 @@
   z-index: 999;
   background: @layout-sider-background;
   .ant-menu {
+    background: @layout-sider-background;
+    color: @global-container-layout-header-name-color;
+    border-right: 0;
+    .ant-menu-item::after {
+      border-right: 0;
+    }
     .ant-menu-sub {
       background: @layout-sider-sub-background;
     }
@@ -12,9 +18,6 @@
     .ant-menu-submenu-title:active {
       background: @layout-sider-background;
     }
-    background: @layout-sider-background;
-    color: @global-container-layout-header-name-color;
-    border-right: 0;
     .ant-menu-item-selected {
       background: @global-container-layout-sider-item-selected-bg-color;
       color: @global-container-layout-sider-item-selected-color;
@@ -23,7 +26,7 @@
       .ant-menu-submenu-arrow {
         &::before,
         &::after {
-          background: @global-container-layout-sider-item-selected-color;
+          background: @global-container-layout-sider-item-arrow-color;
         }
       }
       &:hover {

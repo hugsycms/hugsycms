@@ -745,5 +745,12 @@ module.exports = [
   '@global-scrollbar-thumb-bg-color',
   '@global-scrollbar-thumb-hover-bg-color',
   '@layout-sider-sub-background',
-  '@tab-btn-active-boder-bottom-color'
+  '@tab-btn-active-boder-bottom-color',
+  '@global-container-layout-footer-bg-color',
+  '@global-container-layout-footer-color',
+  '@global-container-layout-footer-border',
+  '@global-container-layout-footer-box-shadow',
+  '@global-container-layout-sider-item-arrow-color',
+  '@global-query-form-bg-color',
+  '@global-edit-panel-bg-color',
 ];

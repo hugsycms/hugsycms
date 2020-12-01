@@ -37,16 +37,16 @@ body {
   }
 
   &-footer {
+    text-align: center;
+    z-index: 999;
     height: 33px;
     line-height: 33px;
     padding: 0;
-    background-color: @background-color-base;
-    text-align: center;
     font-size: 12px;
-    color: #999;
-    // border: 1px solid #eee;
-    z-index: 999;
-    // box-shadow: 0px -1px 0px 0px #eee;
+    color: @global-container-layout-footer-color;
+    background-color: @global-container-layout-footer-bg-color;
+    border: @global-container-layout-footer-border;
+    box-shadow: @global-container-layout-footer-box-shadow;
   }
 }
 
