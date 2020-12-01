@@ -1,4 +1,4 @@
-import LOGO from '@/assets/imgs/logo.png';
+import LOGO from '@/assets/imgs/logo.svg';
 
 export const APP_CONFIG = {
   isDev: true,
@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   EXPIRE_TIME: 18000,
   AUTH_NAME: 'username',
   APP_INDEX_TITLE: 'HUGSYCMS',
-  COPYRIGHT: 'Copyright © HUGSYCMS',
+  COPYRIGHT: 'Copyright © 2019-2021 HUGSYCMS',
   VERSION: 'v0.0.1',
   TITLE: 'HUGSYCMS',
   APP_INDEX_DESCRIPTION: 'HUGSYCMS',

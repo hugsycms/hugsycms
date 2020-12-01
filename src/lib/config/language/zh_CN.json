@@ -45,7 +45,7 @@
   "common.sort-placeholder": "请输入排序值",
   "common.theme.dark": "暗黑模式",
   "common.theme.default": "默认模式",
-  "common.change-password": "修改密码",
+  "common.account": "个人中心",
   "common.logout": "退出登录",
 
   "components.permission-type-select.placeholder": "请选择类型",

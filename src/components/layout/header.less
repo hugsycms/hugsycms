@@ -1,59 +1,58 @@
 @import '../../assets/less/variables.less';
 
-.global-container-layout_header {
-  width: 100%;
+.layout__header {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  padding: 0;
   border-bottom: @global-container-layout-header-border-bottom !important;
   background: @global-container-layout-header-bg-color;
-  padding-left: 12px;
-  z-index: 999;
-
   &-left {
     display: flex;
     align-items: center;
     overflow: hidden;
-
+    margin-left: 12px;
     &-title {
       margin-left: 5px;
       font-size: 18px;
       letter-spacing: 1px;
-      color: @global-container-layout-header-logo-color;
       font-weight: bold;
+      color: @global-container-layout-header-logo-color;
     }
-
     &-toggle {
       font-size: 16px;
       cursor: pointer;
       .ant-btn-text {
-        color: @global-container-layout-header-toggle-color;
         padding: 7px 10px !important;
+        color: @global-container-layout-header-toggle-color;
       }
     }
   }
   &-right {
     display: inline-flex;
-    padding: 0 12px;
-
-    &-dropdown {
-      display: flex;
-      align-items: center;
-      margin-left: 24px;
-      font-weight: 500;
+    align-items: center;
+    color: @global-container-layout-header-name-color;
+    &-self {
+      padding: 0 16px;
       cursor: pointer;
-
-      &-name {
-        color: @global-container-layout-header-name-color;
-      }
       &-avatar {
-        margin-right: 8px;
-        vertical-align: top;
-        border: 1px solid @global-container-layout-header-border-color;
-        height: 32px;
-        line-height: 30px;
-        width: 32px;
-        text-align: center;
         border-radius: 50%;
+        margin-right: 8px;
+        width: 32px;
+      }
+      &:hover {
+        background: rgba(0, 0, 0, 0.025);
+      }
+    }
+    &-theme,
+    &-language {
+      text-align: center;
+      width: 48px;
+      font-size: 20px;
+      padding: 0 8px;
+      cursor: pointer;
+      &:hover {
+        background: rgba(0, 0, 0, 0.025);
       }
     }
   }

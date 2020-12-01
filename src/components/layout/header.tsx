@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Layout, Dropdown, message, Menu, Select, Divider, Button } from 'antd';
+import { Layout, Dropdown, message, Menu, Divider, Button } from 'antd';
 import { isUndefined, get } from 'lodash';
 import store from 'store';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@/components/general-components/custom-icon';
+import {
+  BgColorsOutlined,
+  GlobalOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@/components/general-components/custom-icon';
 import { APP_CONFIG } from '@/lib/config/constants';
-import { doLogout } from './reducer';
-import ResetPasswordModal from './components/reset-password-modal';
-import CustomSpin from '../general-components/custom-spin';
-// import light from '@/assets/less/light';
+import { doLogout } from './method';
 import dark from '@/assets/less/dark';
 import { width } from './sider';
 import './header.less';
@@ -21,12 +23,10 @@ interface IProps {
 export default class Header extends Component<IProps> {
   state = {
     resetModalVisible: false,
-    theme: 'default',
-    themeProcessing: false,
   };
 
   componentDidMount() {
-    this.handleChangeTheme(store.get('theme') || 'default');
+    this.handleChangeTheme({ key: store.get('theme') || 'default' });
   }
 
   handleLogout = () => {
@@ -49,25 +49,16 @@ export default class Header extends Component<IProps> {
     );
   };
 
-  handleChangeLanguage = (language: string) => {
+  handleChangeLanguage = ({ key: language }: any) => {
     store.set('language', language);
     window.location.reload();
   };
 
-  handleChangeTheme = (theme: string) => {
-    this.setState({
-      themeProcessing: true,
-    });
+  handleChangeTheme = ({ key: theme }: any) => {
     store.set('theme', theme);
-    this.setState({
-      theme,
-    });
     switch (theme) {
       case 'default':
         document.getElementById('less:color')?.remove();
-        break;
-      case 'light':
-        window.less.modifyVars(light);
         break;
       case 'dark':
         window.less.modifyVars(dark);
@@ -76,99 +67,64 @@ export default class Header extends Component<IProps> {
         document.getElementById('less:color')?.remove();
         break;
     }
-    this.setState({
-      themeProcessing: false,
-    });
   };
 
   render() {
-    const { resetModalVisible, themeProcessing, theme } = this.state;
     const { user, collapsed } = this.props;
     const language = store.get('language') || 'en_US';
+    const theme = store.get('theme') || 'default';
     return (
-      <Layout.Header className="global-container-layout_header">
-        {themeProcessing ? (
-          <CustomSpin />
-        ) : (
-          <>
-            <div className="global-container-layout_header-left" style={{ minWidth: collapsed ? width : '' }}>
-              <div className="global-container-layout_header-left-toggle">{this.renderTrigger()}</div>
-              <Divider type="vertical" />
-              <span className="global-container-layout_header-left-title">{APP_CONFIG.TITLE}</span>
+      <Layout.Header className="layout__header">
+        <div className="layout__header-left" style={{ minWidth: collapsed ? width : '' }}>
+          <div className="layout__header-left-toggle">{this.renderTrigger()}</div>
+          <Divider type="vertical" />
+          <span className="layout__header-left-title">{APP_CONFIG.TITLE}</span>
+        </div>
+        <div className="layout__header-right">
+          {!isUndefined(get(user, 'basicInfo')) && (
+            <Dropdown
+              className="layout__header-right-self"
+              overlay={
+                <Menu>
+                  <Menu.Item onClick={() => {}}>{window.t('common.account')}</Menu.Item>
+                  <Menu.Divider />
+                  <Menu.Item onClick={this.handleLogout}>{window.t('common.logout')}</Menu.Item>
+                </Menu>
+              }
+            >
+              <div>
+                <img className="layout__header-right-self-avatar" src={get(user, 'basicInfo.avatar')} alt="avatar" />
+                <span className="layout__header-right-self-name">{get(user, 'basicInfo.nickname')}</span>
+              </div>
+            </Dropdown>
+          )}
+          <Dropdown
+            className="layout__header-right-theme"
+            overlay={
+              <Menu activeKey={theme} onClick={this.handleChangeTheme}>
+                <Menu.Item key="default">{window.t('common.theme.default')}</Menu.Item>
+                <Menu.Item key="dark">{window.t('common.theme.dark')}</Menu.Item>
+              </Menu>
+            }
+          >
+            <div>
+              <BgColorsOutlined />
             </div>
-            <div className="global-container-layout_header-right">
-              {!isUndefined(get(user, 'basicInfo')) && (
-                <Dropdown
-                  className="global-container-layout_header-right-dropdown"
-                  overlay={
-                    <Menu>
-                      <Menu.Item>
-                        <Select
-                          size="small"
-                          onClick={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                          }}
-                          onChange={this.handleChangeTheme}
-                          value={theme}
-                        >
-                          <Select.Option value="default">{window.t('common.theme.default')}</Select.Option>
-                          <Select.Option value="dark">{window.t('common.theme.dark')}</Select.Option>
-                        </Select>
-                      </Menu.Item>
-                      <Menu.Item>
-                        <Select
-                          size="small"
-                          onClick={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                          }}
-                          onChange={this.handleChangeLanguage}
-                          value={language}
-                        >
-                          <Select.Option value="en_US">English</Select.Option>
-                          <Select.Option value="zh_CN">中文</Select.Option>
-                        </Select>
-                      </Menu.Item>
-                      <Menu.Item
-                        onClick={() => {
-                          this.setState({
-                            resetModalVisible: true,
-                          });
-                        }}
-                      >
-                        {window.t('common.change-password')}
-                      </Menu.Item>
-                      <Menu.Divider />
-                      <Menu.Item onClick={this.handleLogout}>{window.t('common.logout')}</Menu.Item>
-                    </Menu>
-                  }
-                  trigger={['click']}
-                >
-                  <div>
-                    <img
-                      className="global-container-layout_header-right-dropdown-avatar"
-                      src={get(user, 'basicInfo.avatar')}
-                      alt="avatar"
-                    />
-                    <span className="global-container-layout_header-right-dropdown-name">
-                      {get(user, 'basicInfo.nickname')}
-                    </span>
-                  </div>
-                </Dropdown>
-              )}
+          </Dropdown>
+          <Dropdown
+            className="layout__header-right-language"
+            overlay={
+              <Menu activeKey={language} onClick={this.handleChangeLanguage}>
+                <Menu.Item key="en_US">🇺🇸 English</Menu.Item>
+                <Menu.Item key="zh_CN">🇨🇳 中文</Menu.Item>
+              </Menu>
+            }
+          >
+            <div>
+              <GlobalOutlined />
             </div>
-            {resetModalVisible && (
-              <ResetPasswordModal
-                visible={resetModalVisible}
-                primaryKey={get(user, 'basicInfo.username')}
-                onCancel={() => {
-                  this.setState({
-                    resetModalVisible: false,
-                  });
-                }}
-              />
-            )}
-          </>
-        )}
+          </Dropdown>
+        </div>
       </Layout.Header>
     );
   }

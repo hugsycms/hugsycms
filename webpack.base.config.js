@@ -117,7 +117,7 @@ module.exports = {
     new WebpackBar(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      favicon: './public/assets/favicon.png',
+      favicon: './public/assets/favicon.svg',
     }),
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname, 'dist', 'dll', 'manifest.json'),

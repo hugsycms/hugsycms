@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from 'store';
-import { doLogout } from '@/components/layout/reducer';
+import { doLogout } from '@/components/layout/method';
 import { APP_CONFIG } from '../config/constants';
 import { withRouter } from 'react-router-dom';
 import CustomSpin from '@/components/general-components/custom-spin';

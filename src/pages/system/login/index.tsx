@@ -21,7 +21,6 @@ export class Login extends Component {
     const { redirectTo } = queryString.parse(get(location, 'search'));
     try {
       const { expired } = await doLogin(values);
-      console.log(expired);
       setTimeout(() => {
         message.error(window.t('common.expired-login-tip'));
         setTimeout(() => {
@@ -47,15 +46,14 @@ export class Login extends Component {
     return (
       <div className="login">
         <header className="login-header">
-          <div className="login-header-logo">
-            <img alt="logo" src={APP_CONFIG.LOGO} />
-            <h1 className="login-header-logo-title">{APP_CONFIG.TITLE}</h1>
+          <div className="login-header__logo">
+            <img className="login-header__logo-icon" alt="logo" src={APP_CONFIG.LOGO} />
+            <h3 className="login-header__logo-title">{APP_CONFIG.TITLE}</h3>
           </div>
-          <div className="login-header-extra"></div>
         </header>
         <main className="login-main">
-          <div className="login-main-center">
-            <h2 className="login-main-center-title">{window.t('login.tip')}</h2>
+          <div className="login-main__block">
+            <h3 className="login-main__block-title">{window.t('login.tip')}</h3>
             <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
               <Form.Item
                 name="username"
@@ -89,15 +87,13 @@ export class Login extends Component {
                   placeholder={window.t('login.please-entry-password')}
                 />
               </Form.Item>
-              <div style={{ height: '18px' }} />
-              <Form.Item>
+              <Form.Item className="login-main__block-actions">
                 <Button
-                  className="login-main-center-login"
+                  className="login-main__block-actions_login"
                   type="primary"
                   size="large"
                   loading={loading}
                   htmlType="submit"
-                  style={{ fontSize: '18px', fontWeight: 'bold' }}
                 >
                   {window.t('login.login')}
                 </Button>
@@ -106,7 +102,7 @@ export class Login extends Component {
           </div>
         </main>
         <footer className="login-footer">
-          {APP_CONFIG.COPYRIGHT}
+          {APP_CONFIG.COPYRIGHT} &nbsp;
           {APP_CONFIG.VERSION}
         </footer>
       </div>

@@ -45,7 +45,7 @@
   "common.sort-placeholder": "Please entry sort",
   "common.theme.dark": "Dark",
   "common.theme.default": "Default",
-  "common.change-password": "Change Password",
+  "common.account": "Account",
   "common.logout": "Logout",
 
   "components.permission-type-select.placeholder": "please select type",

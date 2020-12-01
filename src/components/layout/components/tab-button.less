@@ -2,48 +2,39 @@
 
 .tab-btn {
   position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   height: 36px;
   padding: 4px 8px;
   background-color: @tab-btn-bg-color;
   color: @tab-btn-color;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  // border-radius: @border-radius-base;
-
   &:last-child {
     margin-right: 0;
   }
-
   &:last-child:after {
     display: none;
   }
-
   &:hover {
     cursor: pointer;
     color: @tab-btn-active-color;
     background-color: @tab-btn-active-bg-color;
-
     .tab-btn-close {
       visibility: visible;
     }
-
     :before {
       display: none;
     }
-
     :after {
       display: none;
     }
   }
 }
-
 .tab-btn-icon-active,
 .tab-btn-active {
   position: relative;
   background-color: @tab-btn-active-bg-color;
   color: @tab-btn-active-color;
-
   &::after {
     content: '';
     display: inline-block !important;
@@ -55,18 +46,12 @@
     background-color: @tab-btn-active-boder-bottom-color;
   }
 }
-
 .tab-btn-icon {
   width: 10px;
   height: 10px;
   background-color: @tab-btn-active-color;
   border-radius: 50%;
-
-  &.active {
-    // background-color: @primary-color;
-  }
 }
-
 .tab-btn-title {
   padding: 0 12px;
   overflow: hidden;
@@ -75,21 +60,16 @@
   word-break: break-all;
   text-align: center;
 }
-
 .tab-btn-close {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
   position: absolute;
-  right: 2px;
   cursor: pointer;
-  color: @tab-btn-active-color;
   visibility: hidden;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    // background-color: rgba(0, 0, 0, 0.08);
-  }
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  right: 2px;
+  color: @tab-btn-active-color;
 }

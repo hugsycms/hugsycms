@@ -15,6 +15,12 @@ interface IProps {
     tabsMapping?: any;
   };
   queryStr?: any;
+  updateTabs?: any;
+  deleteTab?: any;
+  deleteAllTabs?: any;
+  keepAliveProviderRef?: any;
+  history?: any;
+  location?: any;
   path?: string;
 }
 
