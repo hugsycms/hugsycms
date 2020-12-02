@@ -1,6 +1,6 @@
 {
   "name": "hugsyCMS",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a CMS build by Reactjs",
   "main": "index.js",
   "scripts": {
