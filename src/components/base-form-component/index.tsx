@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 import { Input, DatePicker, Checkbox, InputNumber, TimePicker, Radio } from 'antd';
-import NormalSelect from '../selects/normal-select';
+import NormalSelect from '@/components/general-components/normal-select';
 
 export default (props: any) => {
   const render = () => {

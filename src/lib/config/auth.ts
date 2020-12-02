@@ -7,8 +7,3 @@ export const getAccountInfo = async (data: any) => {
   const result = await axios.get(`/api/mock/users/${username}`);
   return isServer ? get(result, 'data') : result;
 };
-
-export const throwNotLoggin = () => {
-  const newError = new Error('未登录');
-  return newError;
-};

@@ -433,7 +433,8 @@ export default class BaseList extends React.Component<IProps, IState> {
           <Table
             otherTableProps={otherTableProps}
             containerProps={containerProps}
-            loading={loading}
+            // TODO: there is global loading
+            // loading={loading}
             pagination={
               needPagination && {
                 position: ['bottomCenter'],

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card } from 'antd';
 import { get, isEmpty } from 'lodash';
-import PermissionSelect from '@/components/selects/permission-select';
+import PermissionSelect from '@/components/general-components/permission-select';
 import './index.less';
 
 interface IProps {

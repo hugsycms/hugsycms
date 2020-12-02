@@ -1,16 +1,12 @@
 import React from 'react';
 import { Input, InputNumber, Radio, Row, Col, DatePicker } from 'antd';
-import { map, get, keyBy, isNil, isEmpty } from 'lodash';
-import PermissionSelect from '@/components/selects/permission-select';
-import ParentPermissionSelect from '../selects/parent-permission-select';
-import PermissionTypeSelect from '../selects/permission-type-select';
+import { map, get, isNil, isEmpty } from 'lodash';
 import UploadFile from '@/components/general-components/upload-file';
-import MobileEditor from '@/components/general-components/mobile-editor';
 import ImageUploadPreview from '@/components/general-components/image-upload-preview';
-import DataSelect from '@/components/data-select';
-import CascaderAddress from '@/components/selects/cascader-address';
-import NormalSelect from '@/components/selects/normal-select';
-import CountrySelect from '@/components/selects/country-select';
+import DataSelect from '@/components/general-components/data-select';
+import CascaderAddress from '@/components/general-components/cascader-address';
+import NormalSelect from '@/components/general-components/normal-select';
+import CountrySelect from '@/components/general-components/country-select';
 import CustomEditor from '@/components/general-components/custom-editor';
 import { formDescriptionsFromApi, formDescriptionsWithoutSectionApi } from '@/utils/adapter';
 import request from '@/lib/request';
@@ -47,7 +43,7 @@ export class FormSection extends React.Component<IProps> {
   };
 
   renderItem = (formDescription: any) => {
-    const { renderEditItem, id, data, products, events, form } = this.props;
+    const { renderEditItem, data, form } = this.props;
     const {
       inputType,
       formItemLayout: customFormItemLayout,
@@ -78,6 +74,21 @@ export class FormSection extends React.Component<IProps> {
           customFormItemLayout: get(formDescription, 'formItemLayout') || {},
           styles: get(formDescription, 'styles'),
         });
+      case 'input':
+        return renderEditItem(formDescriptionKey, <Input {...formDescriptionInputProps} />, {
+          customFormItemLayout,
+          styles,
+        });
+      case 'text_area':
+        return renderEditItem(formDescriptionKey, <Input.TextArea {...formDescriptionInputProps} />, {
+          customFormItemLayout,
+          styles,
+        });
+      case 'input_number':
+        return renderEditItem(formDescriptionKey, <InputNumber min={0} {...formDescriptionInputProps} />, {
+          customFormItemLayout,
+          styles,
+        });
       case 'normal_select':
         return renderEditItem(
           formDescriptionKey,
@@ -93,64 +104,6 @@ export class FormSection extends React.Component<IProps> {
         );
       case 'country_select':
         return renderEditItem(formDescriptionKey, <CountrySelect language="zh-CN" placeholder="请选择国籍" />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'dysmenorrhea_radio':
-        return renderEditItem(
-          formDescriptionKey,
-          <Radio.Group>
-            <Radio value={true}>是</Radio>
-            <Radio value={false}>否</Radio>
-          </Radio.Group>,
-          {
-            customFormItemLayout,
-            styles,
-          },
-        );
-      case 'pregnant_radio':
-        return renderEditItem(
-          formDescriptionKey,
-          <Radio.Group>
-            <Radio value={false}>否</Radio>
-            <Radio value={true}>是</Radio>
-          </Radio.Group>,
-          {
-            customFormItemLayout,
-            styles,
-          },
-        );
-      case 'input':
-        return renderEditItem(formDescriptionKey, <Input {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'id_number_input':
-        return renderEditItem(
-          formDescriptionKey,
-          <Input {...formDescriptionInputProps} onChange={get(events, 'handleIDNumberChange')} />,
-          {
-            customFormItemLayout,
-            styles,
-          },
-        );
-      case 'text_area':
-        return renderEditItem(formDescriptionKey, <Input.TextArea {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'tree_select':
-        return renderEditItem(formDescriptionKey, <PermissionSelect {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'parent_select':
-        return renderEditItem(formDescriptionKey, <ParentPermissionSelect {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'input_number':
-        return renderEditItem(formDescriptionKey, <InputNumber min={0} {...formDescriptionInputProps} />, {
           customFormItemLayout,
           styles,
         });
@@ -173,18 +126,8 @@ export class FormSection extends React.Component<IProps> {
           customFormItemLayout,
           styles,
         });
-      case 'permission_type':
-        return renderEditItem(formDescriptionKey, <PermissionTypeSelect {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
       case 'single_date_picker':
         return renderEditItem(formDescriptionKey, <DatePicker {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
-      case 'mobile_editor':
-        return renderEditItem(formDescriptionKey, <MobileEditor config={formDescription} form={form} />, {
           customFormItemLayout,
           styles,
         });

@@ -40,7 +40,7 @@ export default (props: any) => {
       }}
     >
       <Button disabled={fileList.length > 0} icon={<UploadOutlined />}>
-        选择文件
+        {window.t('common.please-select')}
       </Button>
     </Upload>
   );

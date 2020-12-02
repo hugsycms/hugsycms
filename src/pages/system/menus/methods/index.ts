@@ -1,4 +1,4 @@
-import { formatMenu } from '@/components/selects/parent-permission-select';
+import { formatMenu } from '@/components/general-components/parent-permission-select';
 import { APP_CONFIG } from '@/lib/config/constants';
 import request from '@/lib/request';
 import { message } from 'antd';

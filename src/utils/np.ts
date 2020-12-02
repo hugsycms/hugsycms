@@ -2,7 +2,6 @@ import NP from 'number-precision';
 
 type numType = number | string;
 
-// 向下取整
 const ceil = (number: numType, precision: number | undefined) => {
   return NP.strip(number, precision);
 };

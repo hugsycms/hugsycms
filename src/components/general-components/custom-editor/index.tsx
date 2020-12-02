@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 import { get } from 'lodash';
-import './index.less';
-import 'react-quill/dist/quill.snow.css';
 import { Upload } from 'antd';
 import { APP_CONFIG } from '@/lib/config/constants';
 import store from 'store';
+import './index.less';
+import 'react-quill/dist/quill.snow.css';
 
 Quill.register('modules/ImageResize', ImageResize);
 

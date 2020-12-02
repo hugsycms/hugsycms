@@ -82,7 +82,7 @@ export default class BaseTable extends Component<IProps, IState> {
 
   handleFilter = (column: any) => (value: any, record: any) => {
     const { dataIndex } = column;
-    // TODO: 过滤的时候，可能是 checkbox，待优化
+    // TODO: just filter input now.
     return String(record[dataIndex]).toLowerCase().includes(String(value).toLowerCase());
   };
 

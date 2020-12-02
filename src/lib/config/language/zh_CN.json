@@ -35,6 +35,7 @@
   "common.expired-login-tip": "登录超时，请重新登录",
   "common.preview-mode-tip": "预览模式，无法提交",
   "common.no-parents-tip": "无父级",
+  "common.please-select": "请选择",
   "common.close-all": "关闭所有",
   "common.not-found-tip": "接口未找到",
   "common.loading": "加载中",
@@ -47,6 +48,8 @@
   "common.theme.default": "默认模式",
   "common.account": "个人中心",
   "common.logout": "退出登录",
+  "common.network-error": "网络连接异常",
+  "common.timeout": "请求超时",
 
   "components.permission-type-select.placeholder": "请选择类型",
   "components.permission-type-select.menu": "菜单",
@@ -85,7 +88,7 @@
   "system.menu.permission-path": "权限路径",
   "system.menu.permission-icon": "权限图标",
   "system.menu.permission-sort": "排序值",
-  "system.menu.choose-tip": "请在左侧选择一个权限",
+  "system.menu.select-tip": "请在左侧选择一个权限",
 
   "login.head": "登录",
   "login.username": "用户名",

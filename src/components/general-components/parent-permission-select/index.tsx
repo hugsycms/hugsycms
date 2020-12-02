@@ -36,7 +36,7 @@ export default (props: any) => {
   return (
     <TreeSelect
       treeDefaultExpandAll
-      placeholder="请选择父级菜单"
+      placeholder={window.t('common.please-select')}
       allowClear
       {...props}
       treeData={menus}

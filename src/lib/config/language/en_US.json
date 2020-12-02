@@ -35,6 +35,7 @@
   "common.expired-login-tip": "Login is expired, please login again",
   "common.preview-mode-tip": "Preview mode, unable to submit",
   "common.no-parents-tip": "No Parents",
+  "common.please-select": "Please select",
   "common.close-all": "Close all",
   "common.not-found-tip": "api not exist",
   "common.loading": "loading",
@@ -47,6 +48,8 @@
   "common.theme.default": "Default",
   "common.account": "Account",
   "common.logout": "Logout",
+  "common.network-error": "Network Error",
+  "common.timeout": "Timeout",
 
   "components.permission-type-select.placeholder": "please select type",
   "components.permission-type-select.menu": "Menu",
@@ -85,7 +88,7 @@
   "system.menu.permission-path": "Path",
   "system.menu.permission-icon": "Icon",
   "system.menu.permission-sort": "Sort",
-  "system.menu.choose-tip": "Please choose a permission in right",
+  "system.menu.select-tip": "Please select a permission in right",
 
   "login.tip": "System Login",
   "login.head": "login",

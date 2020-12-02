@@ -3,8 +3,8 @@ import { Row, Col, Card, Button, Tree, Input, Form, message, Popconfirm, InputNu
 import { getAllMenus, transferMenus, getActiveMenu, updateMenu, createMenu, deleteMenu } from './methods';
 import CustomSpin from '@/components/general-components/custom-spin';
 import { get, isNil, isEmpty } from 'lodash';
-import ParentPermissionSelect from '@/components/selects/parent-permission-select';
-import PermissionTypeSelect from '@/components/selects/permission-type-select';
+import ParentPermissionSelect from '@/components/general-components/parent-permission-select';
+import PermissionTypeSelect from '@/components/general-components/permission-type-select';
 import IconSelect from '@/components/general-components/icon-select';
 import { PlusOutlined } from '@/components/general-components/custom-icon';
 import './index.less';
@@ -126,7 +126,7 @@ export default class List extends Component {
               </Form.Item>
             </>
           ) : (
-            <p>{window.t('system.menu.choose-tip')}</p>
+            <p>{window.t('system.menu.select-tip')}</p>
           )}
         </Form>
       </Card>
