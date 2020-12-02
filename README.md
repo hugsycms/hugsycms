@@ -8,6 +8,10 @@ An out-of-box UI solution for enterprise applications as a React boilerplate.
 
 - Home Page: https://github.com/hugsycms/hugsycms
 
+## Demo
+
+- [View Demo](http://106.13.45.226:5000)
+
 ## Features
 
 - :bulb: **TypeScript**: A language for application-scale JavaScript
