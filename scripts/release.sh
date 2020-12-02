@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "正在发布版本中，请稍后..."
+echo "Publishing version, waiting..."
 
 git pull origin dev
 standard-version

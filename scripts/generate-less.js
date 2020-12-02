@@ -14,7 +14,7 @@ function getLessFilePaths(filePath) {
         const filedir = path.join(filePath, filename);
         fs.stat(filedir, function (error, stats) {
           if (error) {
-            console.warn('获取文件 stats 失败');
+            console.warn('get stats error.');
             console.warn(error);
           } else {
             const isFile = stats.isFile();

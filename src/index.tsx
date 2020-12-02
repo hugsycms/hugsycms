@@ -10,11 +10,11 @@ import Login from './pages/system/login';
 import { APP_CONFIG } from './lib/config/constants';
 import { Provider as KeepAliveProvider } from 'react-keep-alive-pro';
 import { Translation } from 'react-i18next';
-import 'document.contains';
-import './global.less';
 import store from 'store';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import 'document.contains';
+import './global.less';
 
 const singlePages = ['/login', '/single'];
 

@@ -13,5 +13,5 @@ app.use(async (ctx, next) => {
 app.use(router.routes());
 
 app.listen(MOCK_PORT, () => {
-  console.log(`mock 服务已开启，端口为: ${MOCK_PORT}`);
+  console.log(`mock server at: http://localhost:${MOCK_PORT}`);
 });

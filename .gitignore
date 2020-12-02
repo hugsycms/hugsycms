@@ -13,6 +13,5 @@ public/font*.js
 report*.json
 /.history
 coverage
-src/components/KeepAlive
 package-lock.json
 app_port

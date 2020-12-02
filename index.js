@@ -67,7 +67,7 @@ function getIPAdress() {
 if (isDev) {
   koaWebpack({
     configPath: path.join(__dirname, '.', 'webpack.dev.config.js'),
-    // 必须在此处配置 stats ，因为 koaWebpack 无法使用 webpack.dev.config 下的stats
+    // must set stats here, because koaWebpack can't use webpack.dev.config stats.
     devMiddleware: {
       stats: {
         children: false,
@@ -86,24 +86,6 @@ if (isDev) {
     },
   }).then((middleware) => {
     server.use(middleware);
-    server.listen(APP_PORT, () => {
-      console.log(`apiHostUrl: ${HOST_URL}`);
-      console.log(`App running at: http://localhost:${APP_PORT}`);
-      console.log(`- Local: http://localhost:${APP_PORT}`);
-      console.log(`- Network: http://${getIPAdress()}:${APP_PORT}`);
-      if (isDev) {
-        switch (process.platform) {
-          case 'darwin':
-            cp.exec(`open http://localhost:${APP_PORT}`);
-            break;
-          case 'win32':
-            cp.exec(`start http://localhost:${APP_PORT}`);
-            break;
-          default:
-            cp.exec(`open http://localhost:${APP_PORT}`);
-        }
-      }
-    });
   });
 } else {
   server.use(async (ctx, next) => {
@@ -115,10 +97,23 @@ if (isDev) {
     ctx.set('max-age', 7200);
     await next();
   });
-  server.listen(APP_PORT, () => {
-    console.log(`apiHostUrl: ${HOST_URL}`);
-    console.log(`App running at: http://localhost:${APP_PORT}`);
-    console.log(`- Local: http://localhost:${APP_PORT}`);
-    console.log(`- Network: http://${getIPAdress()}:${APP_PORT}`);
-  });
 }
+
+server.listen(APP_PORT, () => {
+  console.log(`ApiHostUrl: ${HOST_URL}, ApiMockUrl: ${MOCK_URL}`);
+  console.log(`App running at: http://localhost:${APP_PORT}`);
+  console.log(`- Local: http://localhost:${APP_PORT}`);
+  console.log(`- Network: http://${getIPAdress()}:${APP_PORT}`);
+  if (isDev) {
+    switch (process.platform) {
+      case 'darwin':
+        cp.exec(`open http://localhost:${APP_PORT}`);
+        break;
+      case 'win32':
+        cp.exec(`start http://localhost:${APP_PORT}`);
+        break;
+      default:
+        cp.exec(`open http://localhost:${APP_PORT}`);
+    }
+  }
+});

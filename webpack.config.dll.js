@@ -8,7 +8,7 @@ module.exports = {
   },
   mode: 'production',
   output: {
-    filename: '[name].dll.f94ae6.js',
+    filename: '[name].dll.all.js',
     path: path.resolve(__dirname, 'dist', 'dll'),
     library: '[name]_dll',
   },
@@ -20,14 +20,10 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.join(__dirname, 'public/pdfjs'),
-          to:  path.join(__dirname, 'dist/pdfjs')
-        },
-        {
           from: path.join(__dirname, 'public/lib'),
-          to:  path.join(__dirname, 'dist/lib')
+          to: path.join(__dirname, 'dist/lib'),
         },
-      ]
-    })
+      ],
+    }),
   ],
 };

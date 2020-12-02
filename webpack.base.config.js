@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const fs = require('fs');
-const lessToJS = require('less-vars-to-js');
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const lessToJS = require('less-vars-to-js');
 
 const devMode = process.env.ENVIRONMENT_MODE === 'dev' ? true : false;
 const threadLoader = require('thread-loader');
