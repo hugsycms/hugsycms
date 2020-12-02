@@ -91,7 +91,7 @@ axios.interceptors.response.use(
       case 404:
         notification.error({
           description: get(error, 'response.data.detail'),
-          message: window.t('common.no-found-tip'),
+          message: window.t('common.not-found-tip'),
         });
         return Promise.reject(error.response);
       case 503:

@@ -10,6 +10,7 @@ export const tableColumns = [
   {
     title: window.t('article.title'),
     dataIndex: 'title',
+    ellipsis: true,
     width: APP_CONFIG.CELL_WIDTH_LARGE,
   },
   {
