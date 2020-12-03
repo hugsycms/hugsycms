@@ -15,6 +15,9 @@ describe('src > APP', () => {
       tabs: {},
       tabsMapping: {},
     },
+    system: {
+      collapsed: false,
+    },
   };
 
   const render = (props: {} = {}) => shallow(<TargetComponent {...defaultProps} {...props} />);

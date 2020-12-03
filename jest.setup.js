@@ -27,6 +27,8 @@ if (typeof window !== 'undefined') {
     },
     writable: true,
   });
+
+  window.t = (key, options) => {};
 }
 
 const Enzyme = require('enzyme');

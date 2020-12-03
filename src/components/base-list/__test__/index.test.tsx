@@ -16,22 +16,11 @@ describe('src > components > BaseList', () => {
   const render = (props: {} = {}) => shallow(<TargetComponent {...defaultProps} {...props} />);
 
   describe('componentDidMount', () => {
-    it('should call initData & handleSearch', () => {
+    it('should call handleSearch', () => {
       const component = render();
-      component.instance().initData = jest.fn();
       component.instance().handleSearch = jest.fn();
       component.instance().componentDidMount();
-      expect(component.instance().initData).toBeCalled();
       expect(component.instance().handleSearch).toBeCalled();
-    });
-  });
-
-  describe('initData', () => {
-    it('should state panelHeight equals 100 ', () => {
-      const component = render();
-      document.getElementById = jest.fn().mockReturnValue({ clientHeight: 100 });
-      component.instance().initData();
-      expect(component.state('panelHeight')).toBe(100);
     });
   });
 
@@ -56,6 +45,9 @@ describe('src > components > BaseList', () => {
   describe('handleItemCancel', () => {
     it('should state.id equals undefined', () => {
       const component = render();
+      component.instance().form = {
+        resetFields: jest.fn(),
+      };
       component.instance().handleItemCancel()();
       expect(component.state('id')).toBeUndefined();
     });
@@ -86,7 +78,7 @@ describe('src > components > BaseList', () => {
       component.instance().handleSearch = jest.fn();
       component.instance().handleQuerySearch({ test: '111' });
       expect(component.instance().handleSearch).toBeCalledWith({
-        'test.contains': '111',
+        test: '111',
       });
     });
   });
