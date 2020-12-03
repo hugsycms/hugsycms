@@ -1,40 +1,46 @@
 @import '../../../assets/less/variables.less';
 
-.tab-btn {
+@tab-btn-prefix-cls: ~'tab-btn';
+
+.@{tab-btn-prefix-cls} {
   position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   height: 36px;
   padding: 4px 8px;
-  background-color: @tab-btn-bg-color;
   color: @tab-btn-color;
-  &:last-child {
-    margin-right: 0;
+  background-color: @tab-btn-bg-color;
+
+  &-title {
+    padding: 0 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    text-align: center;
   }
-  &:last-child:after {
-    display: none;
-  }
-  &:hover {
+
+  &-close {
+    position: absolute;
     cursor: pointer;
+    visibility: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    right: 2px;
     color: @tab-btn-active-color;
-    background-color: @tab-btn-active-bg-color;
-    .tab-btn-close {
-      visibility: visible;
-    }
-    :before {
-      display: none;
-    }
-    :after {
-      display: none;
-    }
   }
 }
-.tab-btn-icon-active,
-.tab-btn-active {
+
+.@{tab-btn-prefix-cls}_active {
   position: relative;
   background-color: @tab-btn-active-bg-color;
   color: @tab-btn-active-color;
+
   &::after {
     content: '';
     display: inline-block !important;
@@ -46,30 +52,26 @@
     background-color: @tab-btn-active-boder-bottom-color;
   }
 }
-.tab-btn-icon {
-  width: 10px;
-  height: 10px;
-  background-color: @tab-btn-active-color;
-  border-radius: 50%;
+
+.@{tab-btn-prefix-cls} :last-child {
+  margin-right: 0;
 }
-.tab-btn-title {
-  padding: 0 12px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
-  text-align: center;
+
+.@{tab-btn-prefix-cls} :last-child:after {
+  display: none;
 }
-.tab-btn-close {
-  position: absolute;
+
+.@{tab-btn-prefix-cls} :hover {
   cursor: pointer;
-  visibility: hidden;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  right: 2px;
   color: @tab-btn-active-color;
+  background-color: @tab-btn-active-bg-color;
+  .@{tab-btn-prefix-cls}-close {
+    visibility: visible;
+  }
+  :before {
+    display: none;
+  }
+  :after {
+    display: none;
+  }
 }

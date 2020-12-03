@@ -1,36 +1,46 @@
-.welcome {
+@welcome-prefix-cls: 'welcome-container';
+
+.@{welcome-prefix-cls} {
   height: 100%;
   overflow-y: scroll;
 
-  &-row {
-    &:first-child {
-      margin-bottom: 8px;
-    }
-    .ant-col {
-      padding: 0 4px;
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-  }
   .statistics-card {
     height: 300px;
+
     .ant-card-head {
       height: 56px;
     }
+
     .ant-card-body {
       height: calc(100% - 56px);
       overflow: auto;
     }
   }
+
   .pie-chart {
     height: 600px;
   }
+
   .tiny-area-number {
     height: 292px;
     margin-bottom: 8px;
+  }
+}
+
+.@{welcome-prefix-cls}-row {
+  &:first-child {
+    margin-bottom: 8px;
+  }
+
+  .ant-col {
+    padding: 0 4px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 }

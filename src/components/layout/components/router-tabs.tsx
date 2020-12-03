@@ -102,8 +102,8 @@ export class RouterTabs extends React.Component<IProps> {
   render() {
     const { tabs, location } = this.props;
     return (
-      <div className="routertabs">
-        <div className="routertabs-btns">
+      <div className="router-tab-container">
+        <div className="router-tab-container__items">
           {map(get(tabs, 'tabs'), (tab: TabIProps, index) => {
             return (
               <TabButton
@@ -119,8 +119,8 @@ export class RouterTabs extends React.Component<IProps> {
           })}
         </div>
         <Dropdown
-          className="routertabs-dropdown"
-          overlayClassName="routertabs-overlay"
+          className="router-tab-container__dropdown"
+          overlayClassName="router-tab-container__overlay"
           overlay={this.renderTabMenu}
           trigger={['click']}
         >

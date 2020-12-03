@@ -29,7 +29,7 @@ export default (props: any) => {
         }}
         dataSource={iconTypes}
         renderItem={(item) => (
-          <List.Item className="icon-select-dropdown__item" onClick={handleSelectIcon(item)}>
+          <List.Item className="icon-select__dropdown-item" onClick={handleSelectIcon(item)}>
             <CustomIcon type={item} />
           </List.Item>
         )}

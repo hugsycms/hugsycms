@@ -12,9 +12,9 @@ import './index.less';
 export default class Welcome extends Component {
   render() {
     return (
-      <div className="welcome">
-        <Row className="welcome-row">
-          <Col className="welcome-row-col" span={6}>
+      <div className="welcome-container">
+        <Row className="welcome-container__row">
+          <Col span={6}>
             <AreaChart />
           </Col>
           <Col span={6}>
@@ -27,8 +27,7 @@ export default class Welcome extends Component {
             <LineChart />
           </Col>
         </Row>
-
-        <Row className="welcome-row">
+        <Row className="welcome-container__row">
           <Col span={12}>
             <PieChart />
           </Col>

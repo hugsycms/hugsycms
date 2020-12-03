@@ -74,16 +74,16 @@ export default class Header extends Component<IProps> {
     const language = store.get('language') || 'en_US';
     const theme = store.get('theme') || 'default';
     return (
-      <Layout.Header className="layout__header">
-        <div className="layout__header-left" style={{ minWidth: collapsed ? width : '' }}>
-          <div className="layout__header-left-toggle">{this.renderTrigger()}</div>
+      <Layout.Header className="global-container-layout__header">
+        <div className="global-container-layout__header-left" style={{ minWidth: collapsed ? width : '' }}>
+          <div className="global-container-layout__header-left-toggle">{this.renderTrigger()}</div>
           <Divider type="vertical" />
-          <span className="layout__header-left-title">{APP_CONFIG.TITLE}</span>
+          <span className="global-container-layout__header-left-title">{APP_CONFIG.TITLE}</span>
         </div>
-        <div className="layout__header-right">
+        <div className="global-container-layout__header-right">
           {!isUndefined(get(user, 'basicInfo')) && (
             <Dropdown
-              className="layout__header-right-self"
+              className="global-container-layout__header-right-self"
               overlay={
                 <Menu>
                   <Menu.Item onClick={() => {}}>{window.t('common.account')}</Menu.Item>
@@ -93,13 +93,19 @@ export default class Header extends Component<IProps> {
               }
             >
               <div>
-                <img className="layout__header-right-self-avatar" src={get(user, 'basicInfo.avatar')} alt="avatar" />
-                <span className="layout__header-right-self-name">{get(user, 'basicInfo.nickname')}</span>
+                <img
+                  className="global-container-layout__header-right-self-avatar"
+                  src={get(user, 'basicInfo.avatar')}
+                  alt="avatar"
+                />
+                <span className="global-container-layout__header-right-self-name">
+                  {get(user, 'basicInfo.nickname')}
+                </span>
               </div>
             </Dropdown>
           )}
           <Dropdown
-            className="layout__header-right-theme"
+            className="global-container-layout__header-right-theme"
             overlay={
               <Menu activeKey={theme} onClick={this.handleChangeTheme}>
                 <Menu.Item key="default">{window.t('common.theme.default')}</Menu.Item>
@@ -112,7 +118,7 @@ export default class Header extends Component<IProps> {
             </div>
           </Dropdown>
           <Dropdown
-            className="layout__header-right-language"
+            className="global-container-layout__header-right-language"
             overlay={
               <Menu activeKey={language} onClick={this.handleChangeLanguage}>
                 <Menu.Item key="en_US">🇺🇸 English</Menu.Item>

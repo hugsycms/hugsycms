@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@/components/general-components/custom-icon';
 import { APP_CONFIG } from '@/lib/config/constants';
-import { doLogin } from './reducer';
+import { doLogin } from './methods';
 import { get } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';

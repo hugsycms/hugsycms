@@ -83,7 +83,7 @@ export default class MobileEditor extends Component {
     const { value } = this.state;
 
     return (
-      <div className="editor">
+      <div className="custom-editor">
         <ReactQuill
           ref={(ref) => {
             this.quillRef = ref;

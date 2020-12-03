@@ -8,5 +8,5 @@ interface IProps {
 }
 
 export default (props: IProps) => {
-  return <Spin style={props.style} className="spin-container" tip={props.tip || 'loading...'} />;
+  return <Spin style={props.style} className="custom-spin" tip={props.tip || 'loading...'} />;
 };

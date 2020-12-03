@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card } from 'antd';
 import { get, isEmpty } from 'lodash';
 import PermissionSelect from '@/components/general-components/permission-select';
-import './index.less';
 
 interface IProps {
   onSaveMenuPermission?: (value: any[]) => void;

@@ -1,46 +1,53 @@
 @import '../../assets/less/variables.less';
 
-.global-container-layout_sider {
+@layout-sider-prefix-cls: ~'global-container-layout__sider';
+
+.@{layout-sider-prefix-cls} {
   overflow: hidden;
   z-index: 999;
   background: @layout-sider-background;
+
+  .custom-scrollbar {
+    overflow-x: hidden !important;
+  }
+
   .ant-menu {
     background: @layout-sider-background;
     color: @global-container-layout-header-name-color;
     border-right: 0;
+
     .ant-menu-item::after {
       border-right: 0;
     }
+
     .ant-menu-sub {
       background: @layout-sider-sub-background;
     }
+
     .ant-menu-item:active,
     .ant-menu-submenu-title:active {
       background: @layout-sider-background;
     }
+
     .ant-menu-item-selected {
       background: @global-container-layout-sider-item-selected-bg-color;
       color: @global-container-layout-sider-item-selected-color;
     }
-    .ant-menu-submenu-title {
+
+    .ant-menu-submenu-title .ant-menu-submenu-arrow {
+      &::before,
+      &::after {
+        background: @global-container-layout-sider-item-arrow-color;
+      }
+    }
+
+    .ant-menu-submenu-title :hover {
       .ant-menu-submenu-arrow {
         &::before,
         &::after {
-          background: @global-container-layout-sider-item-arrow-color;
-        }
-      }
-      &:hover {
-        .ant-menu-submenu-arrow {
-          &::before,
-          &::after {
-            background: @primary-color;
-          }
+          background: @primary-color;
         }
       }
     }
   }
-}
-
-.custom-scrollbar {
-  overflow-x: hidden !important;
 }

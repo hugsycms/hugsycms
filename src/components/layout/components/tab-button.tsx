@@ -33,7 +33,7 @@ export default (props: IProps) => {
   };
 
   return (
-    <div id={tabKey} className={classnames('tab-btn', { 'tab-btn-active': isActive })} onClick={handleClickTab}>
+    <div id={tabKey} className={classnames('tab-btn', { 'tab-btn_active': isActive })} onClick={handleClickTab}>
       <div className="tab-btn-title">{title}</div>
       {closable && (
         <div onClick={handleCloseTab} className="tab-btn-close">

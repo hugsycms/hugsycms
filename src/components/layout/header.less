@@ -1,59 +1,63 @@
 @import '../../assets/less/variables.less';
 
-.layout__header {
+@layout-header-prefix-cls: ~'global-container-layout__header';
+
+.@{layout-header-prefix-cls} {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0;
   border-bottom: @global-container-layout-header-border-bottom !important;
   background: @global-container-layout-header-bg-color;
-  &-left {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    margin-left: 12px;
-    &-title {
-      margin-left: 5px;
-      font-size: 18px;
-      letter-spacing: 1px;
-      font-weight: bold;
-      color: @global-container-layout-header-logo-color;
-    }
-    &-toggle {
-      font-size: 16px;
-      cursor: pointer;
-      .ant-btn-text {
-        padding: 7px 10px !important;
-        color: @global-container-layout-header-toggle-color;
-      }
+}
+
+.@{layout-header-prefix-cls}-left {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-left: 12px;
+  &-title {
+    margin-left: 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: @global-container-layout-header-logo-color;
+  }
+  &-toggle {
+    font-size: 16px;
+    cursor: pointer;
+    .ant-btn-text {
+      padding: 7px 10px !important;
+      color: @global-container-layout-header-toggle-color;
     }
   }
-  &-right {
-    display: inline-flex;
-    align-items: center;
-    color: @global-container-layout-header-name-color;
-    &-self {
-      padding: 0 16px;
-      cursor: pointer;
-      &-avatar {
-        border-radius: 50%;
-        margin-right: 8px;
-        width: 32px;
-      }
-      &:hover {
-        background: rgba(0, 0, 0, 0.025);
-      }
+}
+
+.@{layout-header-prefix-cls}-right {
+  display: inline-flex;
+  align-items: center;
+  color: @global-container-layout-header-name-color;
+  &-self {
+    padding: 0 16px;
+    cursor: pointer;
+    &-avatar {
+      border-radius: 50%;
+      margin-right: 8px;
+      width: 32px;
     }
-    &-theme,
-    &-language {
-      text-align: center;
-      width: 48px;
-      font-size: 20px;
-      padding: 0 8px;
-      cursor: pointer;
-      &:hover {
-        background: rgba(0, 0, 0, 0.025);
-      }
+    &:hover {
+      background: rgba(0, 0, 0, 0.025);
+    }
+  }
+  &-theme,
+  &-language {
+    text-align: center;
+    width: 48px;
+    font-size: 20px;
+    padding: 0 8px;
+    cursor: pointer;
+    &:hover {
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 }

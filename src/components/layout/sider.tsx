@@ -135,7 +135,7 @@ export class Sider extends React.Component<IProps> {
         trigger={null}
         width={width}
         collapsedWidth={collapsedWidth}
-        className="global-container-layout_sider"
+        className="global-container-layout__sider"
         onBreakpoint={onToggle}
       >
         <>

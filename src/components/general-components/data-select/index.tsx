@@ -15,9 +15,10 @@ export default (props: IProps) => {
   const { valueKey = 'value', labelKey = 'label', url, method = 'get', dataSource = [] } = props;
   const Option = Select.Option;
   const [options, setOptions] = useState<{ [x: string]: any }>(dataSource);
+
   useEffect(() => {
     if (url) {
-      request[method](`/api/mock/${url}`).then((result) => {
+      request[method](`/api/mock/${url}`).then((result: any) => {
         setOptions(get(result, 'data'));
       });
     }

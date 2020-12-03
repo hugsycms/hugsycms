@@ -4,9 +4,7 @@ import { map, get, isNil, isEmpty } from 'lodash';
 import UploadFile from '@/components/general-components/upload-file';
 import ImageUploadPreview from '@/components/general-components/image-upload-preview';
 import DataSelect from '@/components/general-components/data-select';
-import CascaderAddress from '@/components/general-components/cascader-address';
 import NormalSelect from '@/components/general-components/normal-select';
-import CountrySelect from '@/components/general-components/country-select';
 import CustomEditor from '@/components/general-components/custom-editor';
 import { formDescriptionsFromApi, formDescriptionsWithoutSectionApi } from '@/utils/adapter';
 import request from '@/lib/request';
@@ -102,11 +100,6 @@ export class FormSection extends React.Component<IProps> {
             styles,
           },
         );
-      case 'country_select':
-        return renderEditItem(formDescriptionKey, <CountrySelect language="zh-CN" placeholder="请选择国籍" />, {
-          customFormItemLayout,
-          styles,
-        });
       case 'password':
         return renderEditItem(formDescriptionKey, <Input.Password {...formDescriptionInputProps} />, {
           customFormItemLayout,
@@ -121,11 +114,6 @@ export class FormSection extends React.Component<IProps> {
             styles,
           },
         );
-      case 'address':
-        return renderEditItem(formDescriptionKey, <CascaderAddress {...formDescriptionInputProps} />, {
-          customFormItemLayout,
-          styles,
-        });
       case 'single_date_picker':
         return renderEditItem(formDescriptionKey, <DatePicker {...formDescriptionInputProps} />, {
           customFormItemLayout,
