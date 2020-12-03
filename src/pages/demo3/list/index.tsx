@@ -1,5 +1,4 @@
 import React from 'react';
-import Table from './components/table';
 import Query from './components/query';
 import { tableColumns } from './config/table';
 import BaseList from '@/components/base-list';
@@ -14,7 +13,6 @@ export default class List extends BaseList {
     showAction: true,
     tableColumns,
     rowKey: 'id',
-    Table,
     Query,
     otherTableProps: {
       scroll: { x: 1596 },
