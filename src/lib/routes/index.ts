@@ -44,7 +44,7 @@ export const routesMapping =  {
   //
   // 系统管理
   '/system/user': React.lazy(() => import('@/pages/system/users')),
-  '/system/menu': React.lazy(() => import('@/pages/system/menus')),
+  '/system/menu': React.lazy(() => import('@/pages/system/permissions')),
   '/system/role': React.lazy(() => import('@/pages/system/roles')),
 
   //

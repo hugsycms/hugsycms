@@ -1,0 +1,15 @@
+@permission-container-prefix-cls: ~'permission-container';
+
+.@{permission-container-prefix-cls} {
+  height: 100%;
+
+  .ant-col,
+  .ant-card {
+    height: 100%;
+
+    .ant-card-body {
+      max-height: calc(100% - 57px);
+      overflow: auto;
+    }
+  }
+}

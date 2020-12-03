@@ -1,9 +1,11 @@
-@welcome-prefix-cls: 'welcome-container';
+@welcome-prefix-cls: ~'welcome-container';
 
 .@{welcome-prefix-cls} {
   height: 100%;
   overflow-y: scroll;
+}
 
+.@{welcome-prefix-cls}__row {
   .statistics-card {
     height: 300px;
 
@@ -25,9 +27,7 @@
     height: 292px;
     margin-bottom: 8px;
   }
-}
 
-.@{welcome-prefix-cls}-row {
   &:first-child {
     margin-bottom: 8px;
   }

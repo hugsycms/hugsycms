@@ -136,7 +136,7 @@ export default class List extends Component {
   render() {
     const { loading, menus } = this.state;
     return (
-      <Row gutter={[8, 0]} className="menus-list">
+      <Row gutter={[8, 0]} className="permission-container">
         <Col span={8}>
           <Card
             title={window.t('system.menu.permission-list')}
