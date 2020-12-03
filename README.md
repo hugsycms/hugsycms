@@ -6,6 +6,7 @@ An out-of-box UI solution for enterprise applications as a React boilerplate.
 
 </div>
 
+- English | [简体中文](./README.zh-CN.md)
 - Home Page: https://github.com/hugsycms/hugsycms
 
 ## Demo
@@ -22,12 +23,27 @@ An out-of-box UI solution for enterprise applications as a React boilerplate.
 
 ## Browsers support
 
-Modern browsers and IE11.
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| --- | --- | --- | --- | --- |
-| IE11, Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+Not support IE, safari and google browser is the best experience. | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | | --- | --- | --- | --- | --- | | Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
 
 ## Contributing
 
 Any type of contribution is welcome .
+
+- feat: feature
+- fix: fix bug
+- docs: update documentation
+- style: code style
+- refactor: refactor code
+- test: unit test
+- chore: auxiliary tool changes
+
+## README TODO
+
+- [] Introduction of theme
+- [] Introduction of i18n
+- [] Introduction of RBAC
+- [] Introduction of router
+- [] Introduction of router custom form component
+- [] Introduction of router advanced configuration
+- [] Introduction of router unit test
+- [] Introduction of router automatic deployment
