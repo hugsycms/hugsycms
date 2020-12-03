@@ -15,7 +15,6 @@ export const formDescriptionsFromApi = (data) => {
         if (key.startsWith('.')) {
           name = key.substring(1);
         }
-        // TODO: 主要也是为了兼容 key 为空的时候
         if (isEmpty(key) || isNil(key)) {
           name = get(field, 'label');
           label = '';

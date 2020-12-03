@@ -82,7 +82,7 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
     const { data } = this.props;
     return (
       <>
-        <span className="base-edit-panel-form_section_title" key={`${get(section, 'flag')}-divider`}>
+        <span className="base-edit-panel-form__section-title" key={`${get(section, 'flag')}-divider`}>
           {get(section, 'name')}
         </span>
         {this.form && (
@@ -103,7 +103,7 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
     const { formDescriptions } = this.props;
     return map(formDescriptions, (section, index) => {
       return (
-        <div className="base-edit-panel-form_section" key={index}>
+        <div className="base-edit-panel-form__section" key={index}>
           {this.renderSection(section)}
         </div>
       );
@@ -128,7 +128,7 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
 
   renderBtns = () => {
     return (
-      <div className="base-edit-panel-form_btns">
+      <div className="base-edit-panel-form__actions">
         {this.renderResetBtn()}
         {this.renderSubmitBtn()}
       </div>
@@ -137,7 +137,12 @@ export default class BaseEditPanelForm extends DynamicForm<IProps, IState> {
 
   render() {
     return (
-      <Form style={{ minWidth: '98%' }} ref={this.formRef} onValuesChange={this.handleItemChange} {...formItemLayout}>
+      <Form
+        className="base-edit-panel-form"
+        ref={this.formRef}
+        onValuesChange={this.handleItemChange}
+        {...formItemLayout}
+      >
         {this.renderEditContent()}
         {this.renderBtns()}
       </Form>

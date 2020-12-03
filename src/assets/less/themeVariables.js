@@ -727,8 +727,6 @@ module.exports = [
   '@panel-with-child-header-second-color',
   '@panel-with-child-border-bg-color',
   '@panel-with-child-border-bottom-color',
-  '@fixed-search-triger-icon-color',
-  '@fixed-search-triger-box-shadow',
   '@questionnaire-bg-color',
   '@questionnaire-border-color',
   '@questionnaire-danger-color',

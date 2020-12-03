@@ -252,11 +252,11 @@ export default class BaseTable extends Component<IProps, IState> {
     const { size } = this.state;
 
     return (
-      <div className="global-base-table_title-operations-right-config">
+      <div className="global-base-table__header-operations__right-config">
         <Divider type="vertical" />
         <Tooltip title={window.t('common.refresh')}>
           <RedoOutlined
-            className="global-base-table_title-operations-right-config__icon"
+            className="global-base-table__header-operations__right-config-icon"
             onClick={() => {
               this.props.onSearch && this.props.onSearch();
             }}
@@ -279,7 +279,7 @@ export default class BaseTable extends Component<IProps, IState> {
           }
         >
           <Tooltip title={window.t('common.padding')}>
-            <ColumnHeightOutlined className="global-base-table_title-operations-right-config__icon" />
+            <ColumnHeightOutlined className="global-base-table__header-operations__right-config-icon" />
           </Tooltip>
         </Dropdown>
         <Dropdown
@@ -293,16 +293,16 @@ export default class BaseTable extends Component<IProps, IState> {
           }
         >
           <Tooltip title={window.t('common.export')}>
-            <ExportOutlined className="global-base-table_title-operations-right-config__icon" />
+            <ExportOutlined className="global-base-table__header-operations__right-config-icon" />
           </Tooltip>
         </Dropdown>
         <Popover
-          overlayClassName="global-base-table_title-operations-right-config__columns"
+          overlayClassName="global-base-table__header-operations__right-config__columns"
           content={this.renderColumnsConfig()}
           trigger="click"
         >
           <Tooltip title={window.t('common.column')}>
-            <SettingOutlined className="global-base-table_title-operations-right-config__icon" />
+            <SettingOutlined className="global-base-table__header-operations__right-config-icon" />
           </Tooltip>
         </Popover>
       </div>
@@ -317,10 +317,10 @@ export default class BaseTable extends Component<IProps, IState> {
         ref={(queryRef) => {
           this.queryRef = queryRef;
         }}
-        className="global-base-table_title"
+        className="global-base-table__header"
       >
-        <div className="global-base-table_title-operations">
-          <div className="global-base-table_title-operations-left">
+        <div className="global-base-table__header-operations">
+          <div className="global-base-table__header-operations__left">
             {showQuery && (
               <Button type="link" size="small" icon={<FilterOutlined />} onClick={this.handleQueryClick}>
                 {window.t('common.filter')}
@@ -329,15 +329,17 @@ export default class BaseTable extends Component<IProps, IState> {
             )}
             {this.renderOtherActions()}
           </div>
-          <div className="global-base-table_title-operations-right">
+          <div className="global-base-table__header-operations__right">
             {this.renderAdd()}
             {this.renderTableConfig()}
           </div>
         </div>
-        <Divider style={{ margin: 0, paddingBottom: 8 }} />
-        <div className="global-base-table_title-query">
-          {queryVisible && showQuery && <Query onSearch={onSearch} />}
-        </div>
+        <Divider style={{ margin: 0, paddingBottom: 0 }} />
+        {queryVisible && showQuery && (
+          <div className="global-base-table__header-query">
+            <Query onSearch={onSearch} />
+          </div>
+        )}
       </div>
     );
   };

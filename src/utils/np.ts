@@ -22,7 +22,6 @@ const divide = (num1: numType, num2: numType, ...others: numType[]) => {
   return NP.divide(num1, num2, ...others);
 };
 
-// 四舍五入
 const round = (num: numType, ratio: number) => {
   return NP.round(num, ratio);
 };

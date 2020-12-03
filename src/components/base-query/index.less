@@ -1,27 +1,7 @@
 @import '../../assets/less/variables.less';
 
-.global-query-form {
+@query-form-prefix-cls: ~'global-query-form';
+
+.@{query-form-prefix-cls} {
   width: 100%;
-  background-color: @global-query-form-bg-color;
-  padding: 0 16px;
-  .ant-form-inline {
-    transition: all 0.3s;
-  }
-  .ant-form-item {
-    margin-bottom: 8px;
-    .ant-form-item-label {
-      min-width: 85px;
-    }
-    .ant-form-item-control {
-      .ant-form-item-explain {
-        display: none;
-      }
-    }
-  }
-  button {
-    margin-right: 12px;
-    span:not(.anticon) {
-      margin-left: 4px;
-    }
-  }
 }

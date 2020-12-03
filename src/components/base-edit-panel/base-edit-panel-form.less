@@ -1,37 +1,47 @@
 @import '../../assets/less/variables.less';
 
-.base-edit-panel-form_section {
-  margin-bottom: 16px;
-  border: 1px solid #d7dce7;
-  border-radius: 4px;
-  &_title {
-    font-size: 16px;
+@panel-form-prefix-cls: ~'base-edit-panel-form';
+
+.@{panel-form-prefix-cls} {
+  min-width: '98%';
+
+  &__section {
+    margin-bottom: 16px;
+    border: 1px solid #d7dce7;
+    border-radius: 4px;
+
+    .ant-divider-horizontal .ant-divider-with-text {
+      margin: 6px 0;
+    }
+  }
+
+  &__section-title {
+    display: inline-block;
     position: relative;
     top: -13px;
     left: 24px;
+    font-size: 16px;
     font-weight: 600;
-    color: @text-color;
-    display: inline-block;
     padding: 0 14px;
     background-color: @global-edit-panel-bg-color;
-  }
-  .ant-divider-horizontal.ant-divider-with-text {
-    margin: 6px 0;
-  }
-}
-.base-edit-panel-form_btns {
-  width: auto;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: row;
-  position: fixed;
-  bottom: 43px;
-  right: 30px;
-  .ant-btn {
-    margin: 0 8px;
+    color: @text-color;
   }
 
-  .ant-form-item-control-input-content {
-    text-align: center;
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 43px;
+    right: 30px;
+    width: auto;
+    padding: 1rem 0;
+
+    .ant-btn {
+      margin: 0 8px;
+    }
+
+    .ant-form-item-control-input-content {
+      text-align: center;
+    }
   }
 }

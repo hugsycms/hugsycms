@@ -5,7 +5,7 @@
   "execMap": {
     "js": "node --harmony"
   },
-  "watch": ["src/__mock__/*.js"],
+  "watch": ["__mock__/*.js"],
   "env": {
     "NODE_ENV": "development"
   },

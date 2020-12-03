@@ -1,12 +1,14 @@
 @import '../../assets/less/variables.less';
 
-.base-edit-panel {
+@edit-panel-prefix-cls: ~'base-edit-panel';
+
+.@{edit-panel-prefix-cls} {
   display: flex;
   justify-content: center;
   background: @global-edit-panel-bg-color;
-  height: 100%;
   overflow-y: scroll;
-  padding: 16px;
+  height: 100%;
+  padding: 32px 16px;
 
   .ant-form-item {
     margin-bottom: 6px;

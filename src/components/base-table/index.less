@@ -1,20 +1,87 @@
 @import '../../assets/less/variables.less';
+@base-table-prefix-cls: ~'global-base-table';
 
-.global-base-table {
+.@{base-table-prefix-cls} {
+  &__header {
+    background: @table-header-bg;
+  }
+
+  &__header-query {
+    padding: 8px 16px;
+    background-color: @global-query-form-bg-color;
+  }
+
+  &__header-operations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+
+    &__left {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 400;
+      font-size: 16px;
+      color: @global-base-table-title-color;
+
+      &-flag {
+        margin-right: 6px;
+        width: 4px;
+        height: 8px;
+        background-color: @global-base-table-flag-bg-color;
+      }
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+
+      &-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: @border-radius-base;
+        height: 100%;
+        margin-right: 8px;
+        padding: 3px 10px 3px 3px;
+        background-color: @primary-color;
+      }
+
+      &-add span {
+        display: inline-block;
+        margin: auto 0;
+      }
+
+      &-config {
+        position: relative;
+        margin-left: 10px;
+      }
+
+      &-config-icon {
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 8px;
+      }
+    }
+  }
+
   .ant-spin-container .ant-table-bordered .ant-table-container {
     margin: 0 8px;
     border: 1px solid @normal-border-color;
   }
 
   .ant-table-thead > tr > th {
-    background-color: @global-base-table-thead-bg-color;
     font-weight: 500;
+    background-color: @global-base-table-thead-bg-color;
   }
+
   .ant-table-thead {
     .ant-table-cell {
       .filter-block {
         display: none;
       }
+
       &:hover {
         .filter-block {
           display: block;
@@ -24,18 +91,6 @@
   }
 
   tbody {
-    // & > tr:hover {
-    //   td {
-    //     background-color: #e6f6ff !important;
-    //   }
-    // }
-
-    // & > tr:nth-child(odd) {
-    //   td {
-    //     background-color: #fafafa // #e6f6ff;;
-    //   }
-    // }
-
     .ant-table-cell {
       &:empty:after {
         content: '--';
@@ -46,6 +101,7 @@
       .ant-btn-link {
         padding: 0;
         color: @primary-color;
+
         .anticon + span,
         & > span + .anticon {
           margin-left: 0;
@@ -54,71 +110,9 @@
     }
   }
 
-  &_title {
-    background: @table-header-bg;
-  }
-
-  &_title-operations {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    // border-bottom: 1px solid #f5f5f5;
-    &-left {
-      display: flex;
-      font-weight: 400;
-      font-size: 16px;
-      color: @global-base-table-title-color;
-      justify-content: flex-start;
-      align-items: center;
-      &-flag {
-        width: 4px;
-        height: 8px;
-        background-color: @global-base-table-flag-bg-color;
-        margin-right: 6px;
-      }
-    }
-    &-right {
-      display: flex;
-      align-items: center;
-      &-add {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 3px 10px 3px 3px;
-        background-color: @primary-color;
-        border-radius: @border-radius-base;
-        margin-right: 8px;
-        span {
-          display: inline-block;
-          margin: auto 0;
-        }
-      }
-      &-config {
-        margin-left: 10px;
-        position: relative;
-
-        // &::before {
-        //   content: '';
-        //   width: 1px;
-        //   height: 13px;
-        //   background-color: #ccc;
-        //   position: absolute;
-        //   top: 4px;
-        //   left: -2px;
-        // }
-        &__icon {
-          font-size: 16px;
-          cursor: pointer;
-          margin: 0 8px;
-        }
-      }
-    }
-  }
   .ant-pagination {
-    margin: 8px;
     position: relative;
+    margin: 8px;
     // text-align: left;
     // width: calc(100% - 16px);
     // border-top: 1px solid #e5e8f2;
@@ -143,15 +137,5 @@
     width: 10px;
     height: 100%;
     cursor: col-resize;
-  }
-}
-
-.global-base-table_title-operations-right-config__columns {
-  .ant-checkbox-group-item {
-    display: block;
-  }
-  .ant-popover-inner-content {
-    height: 200px;
-    overflow-x: scroll;
   }
 }

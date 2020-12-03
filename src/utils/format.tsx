@@ -1,4 +1,4 @@
-import moment, { Moment, isMoment } from 'moment';
+import moment, { Moment } from 'moment';
 import { map } from 'lodash';
 
 export const formatTimeToStandard = (date: any, format = 'YYYY-MM-DD HH:mm:ss') => {
