@@ -1,5 +1,5 @@
 import React from 'react';
-import { Result, Button } from 'antd';
+import { Result } from 'antd';
 
 export default () => (
   <Result
@@ -8,7 +8,6 @@ export default () => (
     style={{
       background: 'none',
     }}
-    subTitle="抱歉，访问的页面不存在"
-    // extra={<Button type="primary">返回首页</Button>}
+    subTitle={window.t('common.404-tip')}
   />
 );

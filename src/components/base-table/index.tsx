@@ -46,7 +46,7 @@ export default class BaseTable extends Component<IProps, IState> {
     this.state = {
       searchText: '',
       searchedColumn: '',
-      size: 'small',
+      size: 'middle',
       columns: props.columns,
       checkedColumns,
       queryVisible: false,

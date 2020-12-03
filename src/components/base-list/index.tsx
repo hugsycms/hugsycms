@@ -10,9 +10,9 @@ import BaseFormComponent from '../base-form-component';
 import moment, { isMoment } from 'moment';
 import { formatTimeToUTC } from '@/utils/format';
 import { getDataSource } from './methods';
-import './index.less';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { Dimensions } from 'react-container-dimensions';
+import './index.less';
 
 export interface IProps {
   // api url.
@@ -61,7 +61,6 @@ export interface IState {
   defaultQuery: object;
   visible: boolean;
   editable: boolean;
-  loading: boolean;
   id: any;
   editKey: any;
   selectedRowKeys: any[];
@@ -82,7 +81,6 @@ export default class BaseList extends React.Component<IProps, IState> {
     editable: false,
     id: undefined,
     editKey: undefined,
-    loading: true,
   };
 
   /* istanbul ignore next */
@@ -296,16 +294,13 @@ export default class BaseList extends React.Component<IProps, IState> {
 
   handleSearch = async (queryParams: any = {}) => {
     const { baseUrl, processFromApi } = this.props;
-    await this.setState({
-      loading: true,
-    });
     const query = this.formatQuery(queryParams);
     let url = baseUrl;
     if (!isEmpty(query)) {
       url = `${baseUrl}${query ? `?${queryString.stringify(query)}` : ''}`;
     }
     const { data: dataSource, total } = await getDataSource(url, processFromApi);
-    this.setState({ dataSource, total, loading: false });
+    this.setState({ dataSource, total });
   };
 
   handlePageChange = (page: any, pageSize: any) => {
@@ -418,7 +413,7 @@ export default class BaseList extends React.Component<IProps, IState> {
       needChecked = false,
       containerProps,
     } = this.props;
-    const { dataSource, total, defaultQuery, loading, selectedRowKeys } = this.state;
+    const { dataSource, total, defaultQuery, selectedRowKeys } = this.state;
     const mergedColumns = this.getColumns();
     return (
       <div className="base-list">
@@ -433,13 +428,19 @@ export default class BaseList extends React.Component<IProps, IState> {
           <Table
             otherTableProps={otherTableProps}
             containerProps={containerProps}
-            // TODO: there is global loading
-            // loading={loading}
             pagination={
               needPagination && {
-                position: ['bottomCenter'],
+                // position: ['bottomCenter'],
                 total,
-                showTotal: () => `${window.t('common.total', { total })}`,
+                showTotal: () =>
+                  `${window.t('common.total', {
+                    begin: get(defaultQuery, 'page') * get(defaultQuery, 'size') + 1,
+                    end:
+                      get(defaultQuery, 'size') > total
+                        ? total
+                        : (get(defaultQuery, 'page') + 1) * get(defaultQuery, 'size'),
+                    total,
+                  })}`,
                 pageSize: get(defaultQuery, 'size'),
                 size: 'small',
                 defaultCurrent: 1,

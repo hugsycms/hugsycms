@@ -54,6 +54,9 @@ export const routesMapping =  {
   '/demo3/list': React.lazy(() => import('@/pages/demo3/list')),
   '/demo3/add': React.lazy(() => import('@/pages/demo3/edit')),
   '/demo3/edit': React.lazy(() => import('@/pages/demo3/edit')),
+  '/exception/403': React.lazy(() => import('@/pages/system/exception/403')),
+  '/exception/404': React.lazy(() => import('@/pages/system/exception/404')),
+  '/exception/500': React.lazy(() => import('@/pages/system/exception/500')),
 
 };
 

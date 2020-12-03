@@ -150,7 +150,7 @@ export class Sider extends React.Component<IProps> {
               theme="light"
               mode="inline"
               selectedKeys={[activeKey]}
-              openKeys={openKeys}
+              // openKeys={openKeys}
               onOpenChange={this.handleOpenChange}
             >
               {this.renderMenu(menusPermissions)}
