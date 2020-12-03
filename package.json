@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env ENVIRONMENT_MODE=dev env-cmd node index.js",
-    "mock": "cross-env env-cmd nodemon src/__mock__/index.js",
+    "mock": "cross-env env-cmd node __mock__/index.js",
+    "mock:dev": "cross-env env-cmd nodemon __mock__/index.js",
     "dev:with-theme": "cross-env WITH_THEME=true npm run dev",
     "start": "cross-env ENVIRONMENT_MODE=production env-cmd node index.js",
     "build": "cross-env WITH_THEME=true webpack --config webpack.product.config.js",
