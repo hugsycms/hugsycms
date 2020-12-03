@@ -53,6 +53,7 @@
   "common.403-tip": "Sorry, you don't have access to this page",
   "common.404-tip": "Sorry, the page you visited does not exist",
   "common.500-tip": "Sorry, the server is reporting an error",
+  "common.browser-theme-tip": "Current browser not support change theme",
 
   "components.permission-type-select.placeholder": "please select type",
   "components.permission-type-select.menu": "Menu",

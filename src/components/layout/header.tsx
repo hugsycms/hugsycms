@@ -55,6 +55,10 @@ export default class Header extends Component<IProps> {
   };
 
   handleChangeTheme = ({ key: theme }: any) => {
+    if (!window.less) {
+      message.warning(window.t('common.browser-theme-tip'));
+      return;
+    }
     store.set('theme', theme);
     switch (theme) {
       case 'default':

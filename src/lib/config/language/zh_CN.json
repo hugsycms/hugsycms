@@ -53,6 +53,7 @@
   "common.403-tip": "抱歉，没有权限访问该页面",
   "common.404-tip": "抱歉，访问的页面不存在",
   "common.500-tip": "抱歉，服务内部发生错误",
+  "common.browser-theme-tip": "当前浏览器不支持主题更换",
 
   "components.permission-type-select.placeholder": "请选择类型",
   "components.permission-type-select.menu": "菜单",
