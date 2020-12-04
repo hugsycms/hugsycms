@@ -20,7 +20,7 @@ export const tableColumns = [
     key: 'avatar',
     width: APP_CONFIG.CELL_WIDTH_SMALL,
     render: (value) => {
-      return <img src={value} alt="avatar" />;
+      return <img style={{ borderRadius: '50%' }} src={value} alt="avatar" />;
     },
   },
   {

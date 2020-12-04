@@ -52,7 +52,7 @@ export class Login extends Component {
         <main className="login-main">
           <div className="login-main__block">
             <h3 className="login-main__block-title">{window.t('login.tip')}</h3>
-            <Form onFinish={this.onFinish}>
+            <Form onFinish={this.onFinish} initialValues={[{ username: 'admin' }, { password: 'admin' }]}>
               <Form.Item
                 name="username"
                 rules={[

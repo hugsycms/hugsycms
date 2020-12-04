@@ -1,7 +1,7 @@
 import React from 'react';
 
 //
-// 绕过权限认证的菜单
+// don't need auth
 export const omitRoutes = [
   {
     id: 1001,
@@ -25,7 +25,7 @@ export const omitRoutes = [
     id: 1003,
     type: 'others',
     key: '/503',
-    name: '服务器内部错误',
+    name: 'menu.503',
     parentid: 0,
     isMenu: false,
     active: null,
@@ -33,7 +33,7 @@ export const omitRoutes = [
 ];
 
 //
-// 路由列表
+// routes
 export const routesMapping =  {
   //
   // Dashboard
@@ -42,7 +42,7 @@ export const routesMapping =  {
   '/503': React.lazy(() => import('@/pages/welcome/503')),
 
   //
-  // 系统管理
+  // system
   '/system/user': React.lazy(() => import('@/pages/system/users')),
   '/system/menu': React.lazy(() => import('@/pages/system/permissions')),
   '/system/role': React.lazy(() => import('@/pages/system/roles')),
@@ -57,7 +57,6 @@ export const routesMapping =  {
   '/exception/403': React.lazy(() => import('@/pages/system/exception/403')),
   '/exception/404': React.lazy(() => import('@/pages/system/exception/404')),
   '/exception/500': React.lazy(() => import('@/pages/system/exception/500')),
-
 };
 
 
