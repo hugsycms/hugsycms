@@ -95,7 +95,7 @@ export default {
   '@layout-sider-sub-background': '@component-background',
   '@tab-btn-active-bg-color': '#fff7e6',
   '@btn-primary-bg': '@primary-color',
-  '@global-container-layout-header-border-bottom': '1px solid @component-background',
+  '@global-container-layout-header-border-bottom': '1px solid #ffd591',
   '@tab-btn-bg-color': '@global-container-layout-header-bg-color',
   '@tab-btn-active-boder-bottom-color': '@border-color-split',
   '@table-bg': '@background-color-base',
