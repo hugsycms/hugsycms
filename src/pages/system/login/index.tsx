@@ -8,9 +8,21 @@ import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import store from 'store';
+import { History, Location } from 'history';
 import './index.less';
 
-export class Login extends Component {
+interface IProps {
+  doLogin: (data: any) => any;
+  loginCallback: (loginResult: boolean) => void;
+  history: History;
+  location: Location;
+}
+
+interface IState {
+  loading: boolean;
+}
+
+export class Login extends Component<IProps, IState> {
   state = {
     loading: false,
   };

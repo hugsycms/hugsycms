@@ -117,20 +117,13 @@ module.exports = {
     new WebpackBar(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      favicon: './public/assets/favicon.svg',
+      favicon: './public/assets/logo.png',
     }),
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname, 'dist', 'dll', 'manifest.json'),
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        '**/*',
-        '!dll',
-        '!dll/**',
-        '!lib',
-        '!lib/**',
-        '!CHANGELOG.md',
-      ],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**', '!lib', '!lib/**', '!CHANGELOG.md'],
     }),
     ...otherPlugins,
   ],

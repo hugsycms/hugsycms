@@ -1,4 +1,4 @@
-import LOGO from '@/assets/imgs/logo.svg';
+import LOGO from '@/assets/imgs/logo.png';
 
 export const APP_CONFIG = {
   isDev: true,

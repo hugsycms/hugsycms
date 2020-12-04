@@ -9,6 +9,15 @@
 - [English](./README.md) | 简体中文
 - Home Page: https://github.com/hugsycms/hugsycms
 
+## View
+
+<img src="./public/assets/1.png" >
+<img src="./public/assets/2.png" >
+<img src="./public/assets/3.png" >
+<img src="./public/assets/4.png" >
+<img src="./public/assets/5.png" >
+<img src="./public/assets/6.png" >
+
 ## Demo
 
 - [View Demo](http://106.13.45.226:5000)

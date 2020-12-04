@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import TabButton, { TabIProps } from './tab-button';
 import { withRouter } from 'react-router-dom';
 import { updateTabs, deleteTab, deleteAllTabs } from '@/lib/redux/action/tabs';
+import { History, Location } from 'history';
 import './router-tabs.less';
 
 interface IProps {
@@ -19,8 +20,8 @@ interface IProps {
   deleteTab?: any;
   deleteAllTabs?: any;
   keepAliveProviderRef?: any;
-  history?: any;
-  location?: any;
+  history: History;
+  location: Location;
   path?: string;
 }
 
