@@ -11,6 +11,7 @@ import {
 import { APP_CONFIG } from '@/lib/config/constants';
 import { doLogout } from './method';
 import dark from '@/assets/less/dark';
+import warm from '@/assets/less/warm';
 import { width } from './sider';
 import './header.less';
 
@@ -64,6 +65,9 @@ export default class Header extends Component<IProps> {
       case 'default':
         document.getElementById('less:color')?.remove();
         break;
+      case 'warm':
+        window.less.modifyVars(warm);
+        break;
       case 'dark':
         window.less.modifyVars(dark);
         break;
@@ -113,6 +117,7 @@ export default class Header extends Component<IProps> {
             overlay={
               <Menu activeKey={theme} onClick={this.handleChangeTheme}>
                 <Menu.Item key="default">{window.t('common.theme.default')}</Menu.Item>
+                <Menu.Item key="warm">{window.t('common.theme.warm')}</Menu.Item>
                 <Menu.Item key="dark">{window.t('common.theme.dark')}</Menu.Item>
               </Menu>
             }

@@ -297,7 +297,7 @@ export default class BaseTable extends Component<IProps, IState> {
           </Tooltip>
         </Dropdown>
         <Popover
-          overlayClassName="global-base-table__header-operations__right-config__columns"
+          overlayClassName="global-base-table__header-operations__right-config-columns"
           content={this.renderColumnsConfig()}
           trigger="click"
         >
