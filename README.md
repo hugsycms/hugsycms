@@ -60,3 +60,7 @@ Any type of contribution is welcome .
 - [ ] Introduction of router advanced configuration
 - [ ] Introduction of router unit test
 - [ ] Introduction of router automatic deployment
+
+## Need Help
+
+Can someone help me design a LOGO of HugsyCMS ? Thanks!
