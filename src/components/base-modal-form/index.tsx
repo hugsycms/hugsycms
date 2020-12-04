@@ -1,11 +1,38 @@
 import React from 'react';
 import { Form, Modal, message } from 'antd';
 import { isFunction } from 'lodash';
-import DynamicForm from '@/components/base-modal-form/dynamic-form';
+import DynamicForm from '@/components/base-dynamic-form/dynamic-form';
+import FormSection from '@/components/base-dynamic-form/form-section';
 import request from '@/lib/request';
-import FormSection from './form-section';
 import { APP_CONFIG } from '@/lib/config/constants';
 import { getDataDetail } from '../base-list/methods';
+
+interface IModalFormParams {
+  formDescriptions: any;
+  url: string;
+  title: string;
+  fromApi?: (data: object) => object;
+  toApi?: (data: object) => object;
+  modalProps?: object;
+  fixedFormParams?: object;
+  formItemLayout?: {
+    labelCol?: {
+      span?: number;
+    };
+    wrapperCol?: {
+      span?: number;
+    };
+  };
+}
+
+interface IProps {
+  visible: boolean;
+  id: number | string;
+  primaryKey: number | string;
+  onCancel: () => any;
+  onSearch: () => any;
+  onSubmit: (data: any) => any;
+}
 
 export default ({
   formDescriptions,
@@ -23,8 +50,8 @@ export default ({
       span: 16,
     },
   },
-}) => {
-  return class BaseModalForm extends DynamicForm {
+}: IModalFormParams) => {
+  return class BaseModalForm extends DynamicForm<IProps, IState> {
     state = {
       data: {},
     };
@@ -33,17 +60,14 @@ export default ({
       formItemLayout,
     });
 
-    componentDidMount() {
+    async componentDidMount() {
       const { id, primaryKey } = this.props;
-      setTimeout(async () => {
-        this.form = this.formRef.current;
-        if (id) {
-          const values = await getDataDetail(`${url}/${primaryKey || id}`, fromApi);
-          console.log(values);
-          this.form.setFieldsValue(values);
-          this.setState({ data: values });
-        }
-      }, 100);
+      this.form = this.formRef.current;
+      if (id) {
+        const values = await getDataDetail(`${url}/${primaryKey || id}`, fromApi);
+        this.form.setFieldsValue(values);
+        this.setState({ data: values });
+      }
     }
 
     handleSubmit = async () => {
@@ -90,17 +114,17 @@ export default ({
     render() {
       const { visible, onCancel, id } = this.props;
       return (
-        <Modal
-          {...modalProps}
-          visible={visible}
-          onCancel={onCancel}
-          onOk={this.handleSubmit}
-          title={id ? `${window.t('common.update')} ${title}` : `${window.t('common.create')} ${title}`}
-        >
-          <Form ref={this.formRef} {...formItemLayout}>
+        <Form ref={this.formRef} {...formItemLayout}>
+          <Modal
+            {...modalProps}
+            visible={visible}
+            onCancel={onCancel}
+            onOk={this.handleSubmit}
+            title={id ? `${window.t('common.update')} ${title}` : `${window.t('common.create')} ${title}`}
+          >
             {this.renderEditContent()}
-          </Form>
-        </Modal>
+          </Modal>
+        </Form>
       );
     }
   };

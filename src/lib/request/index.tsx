@@ -27,7 +27,7 @@ function showLoading() {
 function hideLoading() {
   requestCount--;
   if (requestCount === 0) {
-    document.body.removeChild(document.getElementById('loading'));
+    document.body.removeChild(document.getElementById('loading') as any);
   }
 }
 

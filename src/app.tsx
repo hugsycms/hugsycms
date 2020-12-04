@@ -186,7 +186,7 @@ export class App extends Component<any, any> {
           </Layout.Content>
         </Layout>
         <Layout.Footer className="global-layout-footer">
-          {APP_CONFIG.COPYRIGHT}
+          {APP_CONFIG.COPYRIGHT} &nbsp;
           {APP_CONFIG.VERSION}
         </Layout.Footer>
       </Layout>

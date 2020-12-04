@@ -1,5 +1,5 @@
 interface Window {
-  t: (key: string, options?: any) => {};
+  t: (key: string, options?: any) => string;
   less: any;
 }
 

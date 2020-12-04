@@ -6,6 +6,8 @@ import { omitRoutes } from '@/lib/routes';
 import { updateTabs } from '@/lib/redux/action/tabs';
 import { connect } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { History, Location } from 'history';
+import { TabIProps } from '@/components/layout/components/tab-button';
 import './sider.less';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -17,15 +19,23 @@ interface IProps {
   user?: any;
   tabs?: any;
   onToggle?: () => void;
+  history: History;
+  updateTabs: (data: TabIProps) => any;
+  location: Location;
 }
 
-export class Sider extends React.Component<IProps> {
+interface IState {
+  activeKey: string;
+  openKeys: any[];
+}
+
+export class Sider extends React.Component<IProps, IState> {
   state = {
     activeKey: '',
     openKeys: [],
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     const { tabs, user } = nextProps;
     const activeKey = get(tabs, 'activeKey');
     if (prevState.activeKey !== activeKey) {

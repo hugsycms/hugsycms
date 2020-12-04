@@ -4,7 +4,7 @@ import { getAllMenus, transferMenus, getActiveMenu, updateMenu, createMenu, dele
 import CustomSpin from '@/components/general-components/custom-spin';
 import { get, isNil, isEmpty } from 'lodash';
 import ParentPermissionSelect from '@/components/general-components/parent-permission-select';
-import PermissionTypeSelect from '@/components/general-components/permission-type-select';
+import NormalSelect from '@/components/general-components/normal-select';
 import IconSelect from '@/components/general-components/icon-select';
 import { PlusOutlined } from '@/components/general-components/custom-icon';
 import './index.less';
@@ -15,6 +15,8 @@ export default class List extends Component {
     menus: undefined,
     activeMenu: undefined,
   };
+
+  form: any;
 
   async componentDidMount() {
     const menus = transferMenus(await getAllMenus());
@@ -94,7 +96,7 @@ export default class List extends Component {
                 <Input />
               </Form.Item>
               <Form.Item name="type" label={window.t('system.menu.permission-type')}>
-                <PermissionTypeSelect />
+                <NormalSelect type="permissionTypeMapping" />
               </Form.Item>
               <Form.Item name="key" label={window.t('system.menu.permission-path')}>
                 <Input />

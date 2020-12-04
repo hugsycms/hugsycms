@@ -38,8 +38,6 @@ export class Login extends Component {
     }
   };
 
-  onFinishFailed = (errorInfo: any) => {};
-
   render() {
     const { loading } = this.state;
 
@@ -54,7 +52,7 @@ export class Login extends Component {
         <main className="login-main">
           <div className="login-main__block">
             <h3 className="login-main__block-title">{window.t('login.tip')}</h3>
-            <Form onFinish={this.onFinish} onFinishFailed={this.onFinishFailed}>
+            <Form onFinish={this.onFinish}>
               <Form.Item
                 name="username"
                 rules={[

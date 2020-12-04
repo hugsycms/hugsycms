@@ -5,37 +5,52 @@ import { map, get } from 'lodash';
 export const genderMapping = [
   {
     value: 1,
-    title: '男',
+    label: '男',
   },
   {
     value: 2,
-    title: '女',
+    label: '女',
   },
   {
     value: 3,
-    title: '未知',
+    label: '未知',
   },
 ];
 
 export const hasOrNoMapping = [
   {
     value: 0,
-    title: '无',
+    label: '无',
   },
   {
     value: 1,
-    title: '有',
+    label: '有',
   },
 ];
 
 export const yesOrNoMapping = [
   {
     value: 0,
-    title: '否',
+    label: '否',
   },
   {
     value: 1,
-    title: '是',
+    label: '是',
+  },
+];
+
+export const permissionTypeMapping = [
+  {
+    value: 'menu',
+    label: 'components.permission-type-select.menu',
+  },
+  {
+    value: 'page',
+    label: 'components.permission-type-select.page',
+  },
+  {
+    value: 'function',
+    label: 'components.permission-type-select.function',
   },
 ];
 
@@ -43,10 +58,11 @@ export const statusMapping = {
   genderMapping,
   hasOrNoMapping,
   yesOrNoMapping,
+  permissionTypeMapping,
 };
 
 interface IProps {
-  type: 'genderMapping' | 'hasOrNoMapping' | 'yesOrNoMapping';
+  type: 'genderMapping' | 'hasOrNoMapping' | 'yesOrNoMapping' | 'permissionTypeMapping';
   showSearch?: true | false;
   placeholder?: string;
 }
@@ -62,7 +78,7 @@ export default (props: IProps) => {
       {...props}
     >
       {map(get(statusMapping, type), (status) => (
-        <Select.Option value={get(status, 'value')}>{get(status, 'title') || get(status, 'label')}</Select.Option>
+        <Select.Option value={get(status, 'value')}>{window.t(get(status, 'label'))}</Select.Option>
       ))}
     </Select>
   );

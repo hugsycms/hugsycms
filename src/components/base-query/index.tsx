@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'antd';
 import { SearchOutlined, RedoOutlined } from '@/components/general-components/custom-icon';
-import DynamicForm from '@/components/base-modal-form/dynamic-form';
+import DynamicForm from '@/components/base-dynamic-form/dynamic-form';
 import './index.less';
 
 interface IState {}

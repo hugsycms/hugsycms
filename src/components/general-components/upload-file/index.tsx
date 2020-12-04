@@ -10,7 +10,6 @@ export default (props: any) => {
   const [fileList, setFileList] = useState([] as any);
 
   useEffect(() => {
-    console.log(value);
     setFileList(
       value
         ? [
@@ -31,7 +30,7 @@ export default (props: any) => {
 
   return (
     <Upload
-      action="/api/uploadVideo"
+      action="/api/upload"
       listType="text"
       fileList={fileList}
       onChange={handleChange}

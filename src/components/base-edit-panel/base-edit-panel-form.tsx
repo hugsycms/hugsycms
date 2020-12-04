@@ -3,8 +3,8 @@ import { Form, Button, message } from 'antd';
 import { FileTextOutlined, RedoOutlined } from '@/components/general-components/custom-icon';
 import { get, map, isFunction, debounce } from 'lodash';
 import { FormInstance } from 'antd/lib/form';
-import DynamicForm from '@/components/base-modal-form/dynamic-form';
-import FormSection from '@/components/base-modal-form/form-section';
+import DynamicForm from '@/components/base-dynamic-form/dynamic-form';
+import FormSection from '@/components/base-dynamic-form/form-section';
 import './base-edit-panel-form.less';
 
 const formItemLayout = {

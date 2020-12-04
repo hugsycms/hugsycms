@@ -20,16 +20,3 @@ export const doLogin = (data: any) => async (dispatch: Dispatch) => {
     username,
   };
 };
-
-export const loginByOauth = (data: {}) => async (dispatch: Dispatch) => {
-  const result = (await request.post('/api/mock/desklogin', data)) as object;
-  const { emp_id = 'admin', token: idToken, pat_id: patId } = result;
-  store.set(APP_CONFIG.TOKEN, idToken);
-  store.set(APP_CONFIG.AUTH_NAME, emp_id);
-  store.set(APP_CONFIG.LOGIN_TIME, new Date().getTime());
-  await initUser(emp_id)(dispatch);
-  return {
-    ...result,
-    patId,
-  };
-};
