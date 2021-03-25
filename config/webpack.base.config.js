@@ -5,7 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const lessToJS = require('less-vars-to-js');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+
 const appDirectory = fs.realpathSync(process.cwd());
 
 const devMode = process.env.ENVIRONMENT_MODE === 'dev' ? true : false;
@@ -106,12 +109,16 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/assets/logo.png',
     }),
-    new webpack.DllReferencePlugin({
-      manifest: path.join(appDirectory, 'dist', 'dll', 'manifest.json'),
+    new HardSourceWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(appDirectory, 'public/lib'),
+          to: path.join(appDirectory, 'dist/lib'),
+        },
+      ],
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**', '!lib', '!lib/**', '!CHANGELOG.md'],
-    }),
+    new CleanWebpackPlugin(),
     ...otherPlugins,
   ],
 };
