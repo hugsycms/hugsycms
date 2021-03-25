@@ -1,3 +1,4 @@
+const fs = require('fs');
 const cp = require('child_process');
 const os = require('os');
 const path = require('path');
@@ -7,6 +8,8 @@ const proxy = require('koa-proxies');
 const koaWebpack = require('koa-webpack');
 const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 const compress = require('koa-compress');
+
+const appDirectory = fs.realpathSync(process.cwd());
 
 const {
   HOST_URL = 'http://127.0.0.1:3351',
@@ -28,10 +31,10 @@ server.use(
     br: false,
   }),
 );
-const staticPath = './dist';
+const staticPath = appDirectory + '/dist';
 
 server.use(historyApiFallback({ whiteList: ['/api/*'] }));
-server.use(static(path.join(__dirname, staticPath)));
+server.use(static(staticPath));
 
 server.use(
   proxy('/api/mock/(.*)', {
@@ -65,9 +68,9 @@ function getIPAdress() {
 }
 
 if (isDev) {
+  const webpackConfig = require(path.join(appDirectory, 'config', 'webpack.dev.config.js'));
   koaWebpack({
-    configPath: path.join(__dirname, '.', 'webpack.dev.config.js'),
-    // must set stats here, because koaWebpack can't use webpack.dev.config stats.
+    config: webpackConfig,
     devMiddleware: {
       stats: {
         children: false,

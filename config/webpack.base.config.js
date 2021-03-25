@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const lessToJS = require('less-vars-to-js');
+const appDirectory = fs.realpathSync(process.cwd());
 
 const devMode = process.env.ENVIRONMENT_MODE === 'dev' ? true : false;
 const threadLoader = require('thread-loader');
@@ -16,13 +17,13 @@ const jsWorkerPool = {
 
 threadLoader.warmup(jsWorkerPool, ['babel-loader']);
 
-const themeVariablesArray = require('./src/assets/less/themeVariables');
+const themeVariablesArray = require(path.join(appDirectory, './src/assets/less/themeVariables'));
 
 const themeOptions = {
-  outputFilePath: path.join(__dirname, './public/static.less'),
-  antDir: path.join(__dirname, './node_modules/antd'),
-  stylesDir: path.join(__dirname, './src'),
-  varFile: path.join(__dirname, './src/assets/less/variables.less'),
+  outputFilePath: path.join(appDirectory, './public/static.less'),
+  antDir: path.join(appDirectory, './node_modules/antd'),
+  stylesDir: path.join(appDirectory, './src'),
+  varFile: path.join(appDirectory, './src/assets/less/variables.less'),
   themeVariables: themeVariablesArray,
   indexFileName: 'index.html',
   lessUrl: '/lib/less.js',
@@ -32,7 +33,7 @@ const themeOptions = {
 const themePlugin = new AntDesignThemePlugin(themeOptions);
 const otherPlugins = [];
 const themeVariables = lessToJS(
-  fs.readFileSync(path.resolve(__dirname, './src/assets/less/replaced-variable.less'), 'utf8'),
+  fs.readFileSync(path.join(appDirectory, './src/assets/less/replaced-variable.less'), 'utf8'),
 );
 
 process.env.WITH_THEME && otherPlugins.push(themePlugin);
@@ -41,26 +42,12 @@ module.exports = {
   entry: ['@babel/polyfill', 'core-js/stable', './src/entry.tsx'],
   output: {
     filename: 'js/vendor.[hash].js',
-    path: path.join(__dirname, '/dist'),
+    path: path.join(appDirectory, '/dist'),
     publicPath: '/',
-  },
-  stats: {
-    children: false,
-    chunks: false,
-    chunkGroups: false,
-    chunkModules: false,
-    chunkOrigins: false,
-    entrypoints: false,
-    modules: false,
-    reasons: false,
-    assets: false,
-    hash: false,
-    chunkOrigins: false,
-    performance: false,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(appDirectory, 'src'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -120,7 +107,7 @@ module.exports = {
       favicon: './public/assets/logo.png',
     }),
     new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, 'dist', 'dll', 'manifest.json'),
+      manifest: path.join(appDirectory, 'dist', 'dll', 'manifest.json'),
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**', '!lib', '!lib/**', '!CHANGELOG.md'],

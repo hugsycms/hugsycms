@@ -5,7 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const plugins = [];
-!process.env.DEPLOY && plugins.push(new BundleAnalyzerPlugin());
+process.env.ANALYZE && plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = merge(baseConfig, {
   mode: 'production',
