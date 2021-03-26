@@ -11,57 +11,42 @@ module.exports = merge(baseConfig, {
   mode: 'production',
   watch: false,
   optimization: {
-    runtimeChunk: {
-      name: 'manifest',
-    },
     splitChunks: {
-      maxInitialRequests: 10,
       cacheGroups: {
-        vendor: {
-          priority: 1,
-          name: 'vendor',
-          test: /node_modules/,
+        default: {
+          filename: 'common.js',
           chunks: 'initial',
-          minSize: 0,
-          minChunks: 1,
+          priority: -20,
         },
-        moment: {
-          name: 'moment',
-          priority: 5,
-          test: /[\/]node_modules[\/]moment[\/]/,
+        vendors: {
           chunks: 'initial',
-          minSize: 100,
-          minChunks: 1,
+          test: /[\\/]node_modules[\\/]/,
+          filename: 'vendor.js',
+          priority: -10,
         },
-        lodash: {
-          name: 'lodash',
-          priority: 6,
-          test: /[\/]node_modules[\/]lodash[\/]/,
-          chunks: 'initial',
-          minSize: 100,
-          minChunks: 1,
+        vendorsAsync: {
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendorsAsync',
+          priority: 0,
+        },
+        antv: {
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]@antv[\\/]/,
+          name: 'antv',
+          priority: 10,
         },
         antd: {
-          name: 'antd',
-          priority: 7,
-          test: /[\/]node_modules[\/]antd[\/]es[\/]/,
           chunks: 'initial',
-          minSize: 100,
-          minChunks: 1,
+          test: /[\\/]node_modules[\\/]antd[\\/]/,
+          filename: 'antd.js',
+          priority: 20,
         },
-        antDesign: {
-          name: 'antDesign',
-          priority: 8,
-          test: /[\/]node_modules[\/]@ant-design[\/]/,
-          chunks: 'initial',
-          minSize: 100,
-          minChunks: 1,
-        },
-        common: {
-          chunks: 'initial',
-          name: 'common',
-          minSize: 200,
-          minChunks: 3,
+        moment: {
+          chunks: 'async',
+          test: /[\\/]node_modules[\\/]moment[\\/]/,
+          name: 'moment',
+          priority: 30,
         },
       },
     },
